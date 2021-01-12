@@ -1,0 +1,589 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F993225AE493500BDD672 /* FaceBit_CompanionApp.swift */; };
+		015F993525AE493500BDD672 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F993425AE493500BDD672 /* ContentView.swift */; };
+		015F993725AE493500BDD672 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 015F993625AE493500BDD672 /* Assets.xcassets */; };
+		015F993A25AE493500BDD672 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 015F993925AE493500BDD672 /* Preview Assets.xcassets */; };
+		015F994525AE493500BDD672 /* FaceBit_CompanionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F994425AE493500BDD672 /* FaceBit_CompanionTests.swift */; };
+		015F995025AE493500BDD672 /* FaceBit_CompanionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */; };
+		015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		015F994125AE493500BDD672 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 015F992725AE493500BDD672 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 015F992E25AE493500BDD672;
+			remoteInfo = "FaceBit Companion";
+		};
+		015F994C25AE493500BDD672 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 015F992725AE493500BDD672 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 015F992E25AE493500BDD672;
+			remoteInfo = "FaceBit Companion";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		015F992F25AE493500BDD672 /* FaceBit Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FaceBit Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		015F993225AE493500BDD672 /* FaceBit_CompanionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBit_CompanionApp.swift; sourceTree = "<group>"; };
+		015F993425AE493500BDD672 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		015F993625AE493500BDD672 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		015F993925AE493500BDD672 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		015F993B25AE493500BDD672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		015F994025AE493500BDD672 /* FaceBit CompanionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FaceBit CompanionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		015F994425AE493500BDD672 /* FaceBit_CompanionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBit_CompanionTests.swift; sourceTree = "<group>"; };
+		015F994625AE493500BDD672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		015F994B25AE493500BDD672 /* FaceBit CompanionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FaceBit CompanionUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBit_CompanionUITests.swift; sourceTree = "<group>"; };
+		015F995125AE493500BDD672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnectionManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		015F992C25AE493500BDD672 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		015F993D25AE493500BDD672 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		015F994825AE493500BDD672 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		015F992625AE493500BDD672 = {
+			isa = PBXGroup;
+			children = (
+				015F993125AE493500BDD672 /* FaceBit Companion */,
+				015F994325AE493500BDD672 /* FaceBit CompanionTests */,
+				015F994E25AE493500BDD672 /* FaceBit CompanionUITests */,
+				015F993025AE493500BDD672 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		015F993025AE493500BDD672 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				015F992F25AE493500BDD672 /* FaceBit Companion.app */,
+				015F994025AE493500BDD672 /* FaceBit CompanionTests.xctest */,
+				015F994B25AE493500BDD672 /* FaceBit CompanionUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		015F993125AE493500BDD672 /* FaceBit Companion */ = {
+			isa = PBXGroup;
+			children = (
+				015F993225AE493500BDD672 /* FaceBit_CompanionApp.swift */,
+				015F993425AE493500BDD672 /* ContentView.swift */,
+				015F993625AE493500BDD672 /* Assets.xcassets */,
+				015F993B25AE493500BDD672 /* Info.plist */,
+				015F993825AE493500BDD672 /* Preview Content */,
+				015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */,
+			);
+			path = "FaceBit Companion";
+			sourceTree = "<group>";
+		};
+		015F993825AE493500BDD672 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				015F993925AE493500BDD672 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		015F994325AE493500BDD672 /* FaceBit CompanionTests */ = {
+			isa = PBXGroup;
+			children = (
+				015F994425AE493500BDD672 /* FaceBit_CompanionTests.swift */,
+				015F994625AE493500BDD672 /* Info.plist */,
+			);
+			path = "FaceBit CompanionTests";
+			sourceTree = "<group>";
+		};
+		015F994E25AE493500BDD672 /* FaceBit CompanionUITests */ = {
+			isa = PBXGroup;
+			children = (
+				015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */,
+				015F995125AE493500BDD672 /* Info.plist */,
+			);
+			path = "FaceBit CompanionUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		015F992E25AE493500BDD672 /* FaceBit Companion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 015F995425AE493500BDD672 /* Build configuration list for PBXNativeTarget "FaceBit Companion" */;
+			buildPhases = (
+				015F992B25AE493500BDD672 /* Sources */,
+				015F992C25AE493500BDD672 /* Frameworks */,
+				015F992D25AE493500BDD672 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FaceBit Companion";
+			productName = "FaceBit Companion";
+			productReference = 015F992F25AE493500BDD672 /* FaceBit Companion.app */;
+			productType = "com.apple.product-type.application";
+		};
+		015F993F25AE493500BDD672 /* FaceBit CompanionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 015F995725AE493500BDD672 /* Build configuration list for PBXNativeTarget "FaceBit CompanionTests" */;
+			buildPhases = (
+				015F993C25AE493500BDD672 /* Sources */,
+				015F993D25AE493500BDD672 /* Frameworks */,
+				015F993E25AE493500BDD672 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				015F994225AE493500BDD672 /* PBXTargetDependency */,
+			);
+			name = "FaceBit CompanionTests";
+			productName = "FaceBit CompanionTests";
+			productReference = 015F994025AE493500BDD672 /* FaceBit CompanionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		015F994A25AE493500BDD672 /* FaceBit CompanionUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 015F995A25AE493500BDD672 /* Build configuration list for PBXNativeTarget "FaceBit CompanionUITests" */;
+			buildPhases = (
+				015F994725AE493500BDD672 /* Sources */,
+				015F994825AE493500BDD672 /* Frameworks */,
+				015F994925AE493500BDD672 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				015F994D25AE493500BDD672 /* PBXTargetDependency */,
+			);
+			name = "FaceBit CompanionUITests";
+			productName = "FaceBit CompanionUITests";
+			productReference = 015F994B25AE493500BDD672 /* FaceBit CompanionUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		015F992725AE493500BDD672 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					015F992E25AE493500BDD672 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					015F993F25AE493500BDD672 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 015F992E25AE493500BDD672;
+					};
+					015F994A25AE493500BDD672 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 015F992E25AE493500BDD672;
+					};
+				};
+			};
+			buildConfigurationList = 015F992A25AE493500BDD672 /* Build configuration list for PBXProject "FaceBit Companion" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 015F992625AE493500BDD672;
+			productRefGroup = 015F993025AE493500BDD672 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				015F992E25AE493500BDD672 /* FaceBit Companion */,
+				015F993F25AE493500BDD672 /* FaceBit CompanionTests */,
+				015F994A25AE493500BDD672 /* FaceBit CompanionUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		015F992D25AE493500BDD672 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				015F993A25AE493500BDD672 /* Preview Assets.xcassets in Resources */,
+				015F993725AE493500BDD672 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		015F993E25AE493500BDD672 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		015F994925AE493500BDD672 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		015F992B25AE493500BDD672 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				015F993525AE493500BDD672 /* ContentView.swift in Sources */,
+				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
+				015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		015F993C25AE493500BDD672 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				015F994525AE493500BDD672 /* FaceBit_CompanionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		015F994725AE493500BDD672 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				015F995025AE493500BDD672 /* FaceBit_CompanionUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		015F994225AE493500BDD672 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 015F992E25AE493500BDD672 /* FaceBit Companion */;
+			targetProxy = 015F994125AE493500BDD672 /* PBXContainerItemProxy */;
+		};
+		015F994D25AE493500BDD672 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 015F992E25AE493500BDD672 /* FaceBit Companion */;
+			targetProxy = 015F994C25AE493500BDD672 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		015F995225AE493500BDD672 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		015F995325AE493500BDD672 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		015F995525AE493500BDD672 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"FaceBit Companion/Preview Content\"";
+				DEVELOPMENT_TEAM = 9MQDGC4RM2;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "FaceBit Companion/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kamoamoa.smartppe.FaceBit-Companion";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		015F995625AE493500BDD672 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"FaceBit Companion/Preview Content\"";
+				DEVELOPMENT_TEAM = 9MQDGC4RM2;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "FaceBit Companion/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kamoamoa.smartppe.FaceBit-Companion";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		015F995825AE493500BDD672 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9MQDGC4RM2;
+				INFOPLIST_FILE = "FaceBit CompanionTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kamoamoa.smartppe.FaceBit-CompanionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FaceBit Companion.app/FaceBit Companion";
+			};
+			name = Debug;
+		};
+		015F995925AE493500BDD672 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9MQDGC4RM2;
+				INFOPLIST_FILE = "FaceBit CompanionTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kamoamoa.smartppe.FaceBit-CompanionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FaceBit Companion.app/FaceBit Companion";
+			};
+			name = Release;
+		};
+		015F995B25AE493500BDD672 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9MQDGC4RM2;
+				INFOPLIST_FILE = "FaceBit CompanionUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kamoamoa.smartppe.FaceBit-CompanionUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "FaceBit Companion";
+			};
+			name = Debug;
+		};
+		015F995C25AE493500BDD672 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9MQDGC4RM2;
+				INFOPLIST_FILE = "FaceBit CompanionUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kamoamoa.smartppe.FaceBit-CompanionUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "FaceBit Companion";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		015F992A25AE493500BDD672 /* Build configuration list for PBXProject "FaceBit Companion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				015F995225AE493500BDD672 /* Debug */,
+				015F995325AE493500BDD672 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		015F995425AE493500BDD672 /* Build configuration list for PBXNativeTarget "FaceBit Companion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				015F995525AE493500BDD672 /* Debug */,
+				015F995625AE493500BDD672 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		015F995725AE493500BDD672 /* Build configuration list for PBXNativeTarget "FaceBit CompanionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				015F995825AE493500BDD672 /* Debug */,
+				015F995925AE493500BDD672 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		015F995A25AE493500BDD672 /* Build configuration list for PBXNativeTarget "FaceBit CompanionUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				015F995B25AE493500BDD672 /* Debug */,
+				015F995C25AE493500BDD672 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 015F992725AE493500BDD672 /* Project object */;
+}
