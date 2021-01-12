@@ -16,9 +16,14 @@ struct ContentView: View {
                 .font(.system(.largeTitle))
                 .padding()
             Divider()
-            Text("Central Connection State")
+            Text("Central Connection Status")
                 .font(.system(.headline))
-            Text(bluetoothManager.stateString)
+            Text(bluetoothManager.centralStateString)
+                .font(.system(.subheadline))
+            Divider()
+            Text("Peripheral Connection Status")
+                .font(.system(.headline))
+            Text(bluetoothManager.peripheralStateString)
                 .font(.system(.subheadline))
         }
     }
