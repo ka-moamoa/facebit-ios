@@ -9,12 +9,15 @@ import SwiftUI
 
 @main
 struct FaceBit_CompanionApp: App {
-    @StateObject private var bluetoothManager = BluetoothConnectionManager()
+    @StateObject private var bluetoothManager = BluetoothConnectionManager.shared
+    @StateObject private var facebit = FaceBitPeripheral()
         
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(bluetoothManager)
+                .environmentObject(facebit)
+                
         }
     }
 }
