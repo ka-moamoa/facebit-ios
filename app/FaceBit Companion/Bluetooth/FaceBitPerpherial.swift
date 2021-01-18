@@ -62,7 +62,7 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
         switch peripheral.state {
         case .connected:
             state = .connected
-            print("connected")
+            BLELogger.info("Connected")
             peripheral.discoverServices([mainServiceUUID])
         case .connecting, .disconnected, .disconnecting:
             state = .disconnected
@@ -104,29 +104,29 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
             if let value = characteristic.value, let raw = UInt64(value.hexEncodedString(), radix: 16) {
                 guard Double(raw) != 0.0 else { return }
                 
-                print("temp raw \(raw), \(value.hexEncodedString())")
                 latestTemperature = Double(raw) / 10000.0
-                TemperatureReadings.append(
-                    TimeSeriesMeasurement(
-                        value: latestTemperature,
-                        date: Date()
-                    )
+                let measurement = TimeSeriesMeasurement(
+                    value: latestTemperature,
+                    date: Date(),
+                    type: .temperature
                 )
-                print("Temp: \(latestTemperature)")
+                TemperatureReadings.append(measurement)
+                try? SQLiteDatabase.main?.insertRecord(record: measurement)
+                BLELogger.debug("Temperature Reading: \(self.latestTemperature)")
             }
         case PressureCharacteristicUUID:
             if let value = characteristic.value, let raw = UInt64(value.hexEncodedString(), radix: 16) {
                 guard Double(raw) != 0.0 else { return }
                 
-                print("pressure raw \(raw)")
                 latestPressure = Double(raw) / 100.0
-                PressureReadings.append(
-                    TimeSeriesMeasurement(
-                        value: latestPressure,
-                        date: Date()
-                    )
+                let measurement = TimeSeriesMeasurement(
+                    value: latestPressure,
+                    date: Date(),
+                    type: .pressure
                 )
-                print("Pressure: \(latestPressure)")
+                PressureReadings.append(measurement)
+                try? SQLiteDatabase.main?.insertRecord(record: measurement)
+                BLELogger.debug("Pressure Reading: \(self.latestPressure)")
             }
         default:
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")

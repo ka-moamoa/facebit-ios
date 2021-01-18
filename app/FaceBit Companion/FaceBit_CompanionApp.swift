@@ -17,7 +17,20 @@ struct FaceBit_CompanionApp: App {
             ContentView()
                 .environmentObject(bluetoothManager)
                 .environmentObject(facebit)
+                .onAppear(perform: {
+                   setupDatabase()
+                })
                 
+        }
+    }
+    
+    func setupDatabase() {
+        if let db = SQLiteDatabase.main {
+            do {
+                try db.createTable(table: TimeSeriesMeasurement.self)
+            } catch {
+                PersistanceLogger.error("unable to setup database: \(db.errorMessage)")
+            }
         }
     }
 }

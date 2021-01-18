@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862B725B2423900EAF722 /* SQLiteDatabase.swift */; };
+		010862BD25B5E27800EAF722 /* SQLiteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862BC25B5E27800EAF722 /* SQLiteTable.swift */; };
+		010862C825B5E54F00EAF722 /* Int+Id.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862C725B5E54F00EAF722 /* Int+Id.swift */; };
+		010862CE25B6122600EAF722 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862CD25B6122600EAF722 /* Logger.swift */; };
 		012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */; };
 		012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */; };
 		015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F993225AE493500BDD672 /* FaceBit_CompanionApp.swift */; };
@@ -37,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010862B725B2423900EAF722 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
+		010862BC25B5E27800EAF722 /* SQLiteTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteTable.swift; sourceTree = "<group>"; };
+		010862C725B5E54F00EAF722 /* Int+Id.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Id.swift"; sourceTree = "<group>"; };
+		010862CD25B6122600EAF722 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLinePlot.swift; sourceTree = "<group>"; };
 		012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurement.swift; sourceTree = "<group>"; };
 		015F992F25AE493500BDD672 /* FaceBit Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FaceBit Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +89,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		010862CC25B6120200EAF722 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				010862CD25B6122600EAF722 /* Logger.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		012C91B225B1ECE200274F82 /* Visualizations */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +109,9 @@
 			isa = PBXGroup;
 			children = (
 				012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */,
+				010862B725B2423900EAF722 /* SQLiteDatabase.swift */,
+				010862BC25B5E27800EAF722 /* SQLiteTable.swift */,
+				010862C725B5E54F00EAF722 /* Int+Id.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -120,6 +139,7 @@
 		015F993125AE493500BDD672 /* FaceBit Companion */ = {
 			isa = PBXGroup;
 			children = (
+				010862CC25B6120200EAF722 /* Utils */,
 				012C91BB25B1ED2300274F82 /* Data */,
 				012C91B225B1ECE200274F82 /* Visualizations */,
 				01FAB92025B090FA009E5B72 /* FaceBit Companion.entitlements */,
@@ -300,9 +320,13 @@
 				015F993525AE493500BDD672 /* ContentView.swift in Sources */,
 				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
 				012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */,
+				010862BD25B5E27800EAF722 /* SQLiteTable.swift in Sources */,
 				015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */,
+				010862CE25B6122600EAF722 /* Logger.swift in Sources */,
 				012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */,
 				01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */,
+				010862C825B5E54F00EAF722 /* Int+Id.swift in Sources */,
+				010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +494,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kamoamoa.smartppe.FaceBit-Companion";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -494,6 +519,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kamoamoa.smartppe.FaceBit-Companion";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
