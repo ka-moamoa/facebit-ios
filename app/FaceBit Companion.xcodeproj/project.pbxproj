@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862B725B2423900EAF722 /* SQLiteDatabase.swift */; };
+		010862BD25B5E27800EAF722 /* SQLiteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862BC25B5E27800EAF722 /* SQLiteTable.swift */; };
+		010862C825B5E54F00EAF722 /* Int+Id.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862C725B5E54F00EAF722 /* Int+Id.swift */; };
+		010862CE25B6122600EAF722 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862CD25B6122600EAF722 /* Logger.swift */; };
+		012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */; };
+		012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */; };
 		015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F993225AE493500BDD672 /* FaceBit_CompanionApp.swift */; };
 		015F993525AE493500BDD672 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F993425AE493500BDD672 /* ContentView.swift */; };
 		015F993725AE493500BDD672 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 015F993625AE493500BDD672 /* Assets.xcassets */; };
@@ -14,6 +20,7 @@
 		015F994525AE493500BDD672 /* FaceBit_CompanionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F994425AE493500BDD672 /* FaceBit_CompanionTests.swift */; };
 		015F995025AE493500BDD672 /* FaceBit_CompanionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */; };
 		015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */; };
+		01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +41,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010862B725B2423900EAF722 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
+		010862BC25B5E27800EAF722 /* SQLiteTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteTable.swift; sourceTree = "<group>"; };
+		010862C725B5E54F00EAF722 /* Int+Id.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Id.swift"; sourceTree = "<group>"; };
+		010862CD25B6122600EAF722 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLinePlot.swift; sourceTree = "<group>"; };
+		012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurement.swift; sourceTree = "<group>"; };
 		015F992F25AE493500BDD672 /* FaceBit Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FaceBit Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		015F993225AE493500BDD672 /* FaceBit_CompanionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBit_CompanionApp.swift; sourceTree = "<group>"; };
 		015F993425AE493500BDD672 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -47,6 +60,8 @@
 		015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBit_CompanionUITests.swift; sourceTree = "<group>"; };
 		015F995125AE493500BDD672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnectionManager.swift; sourceTree = "<group>"; };
+		01FAB92025B090FA009E5B72 /* FaceBit Companion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FaceBit Companion.entitlements"; sourceTree = "<group>"; };
+		01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBitPerpherial.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +89,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		010862CC25B6120200EAF722 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				010862CD25B6122600EAF722 /* Logger.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		012C91B225B1ECE200274F82 /* Visualizations */ = {
+			isa = PBXGroup;
+			children = (
+				012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */,
+			);
+			path = Visualizations;
+			sourceTree = "<group>";
+		};
+		012C91BB25B1ED2300274F82 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */,
+				010862B725B2423900EAF722 /* SQLiteDatabase.swift */,
+				010862BC25B5E27800EAF722 /* SQLiteTable.swift */,
+				010862C725B5E54F00EAF722 /* Int+Id.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		015F992625AE493500BDD672 = {
 			isa = PBXGroup;
 			children = (
@@ -97,12 +139,16 @@
 		015F993125AE493500BDD672 /* FaceBit Companion */ = {
 			isa = PBXGroup;
 			children = (
+				010862CC25B6120200EAF722 /* Utils */,
+				012C91BB25B1ED2300274F82 /* Data */,
+				012C91B225B1ECE200274F82 /* Visualizations */,
+				01FAB92025B090FA009E5B72 /* FaceBit Companion.entitlements */,
+				01EAD74C25AF711A00ACFAAA /* Bluetooth */,
 				015F993225AE493500BDD672 /* FaceBit_CompanionApp.swift */,
 				015F993425AE493500BDD672 /* ContentView.swift */,
 				015F993625AE493500BDD672 /* Assets.xcassets */,
 				015F993B25AE493500BDD672 /* Info.plist */,
 				015F993825AE493500BDD672 /* Preview Content */,
-				015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */,
 			);
 			path = "FaceBit Companion";
 			sourceTree = "<group>";
@@ -131,6 +177,15 @@
 				015F995125AE493500BDD672 /* Info.plist */,
 			);
 			path = "FaceBit CompanionUITests";
+			sourceTree = "<group>";
+		};
+		01EAD74C25AF711A00ACFAAA /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */,
+				01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */,
+			);
+			path = Bluetooth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,7 +319,14 @@
 			files = (
 				015F993525AE493500BDD672 /* ContentView.swift in Sources */,
 				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
+				012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */,
+				010862BD25B5E27800EAF722 /* SQLiteTable.swift in Sources */,
 				015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */,
+				010862CE25B6122600EAF722 /* Logger.swift in Sources */,
+				012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */,
+				01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */,
+				010862C825B5E54F00EAF722 /* Int+Id.swift in Sources */,
+				010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +483,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "FaceBit Companion/FaceBit Companion.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"FaceBit Companion/Preview Content\"";
 				DEVELOPMENT_TEAM = 9MQDGC4RM2;
@@ -431,8 +494,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kamoamoa.smartppe.FaceBit-Companion";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -443,6 +508,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "FaceBit Companion/FaceBit Companion.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"FaceBit Companion/Preview Content\"";
 				DEVELOPMENT_TEAM = 9MQDGC4RM2;
@@ -453,8 +519,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kamoamoa.smartppe.FaceBit-Companion";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
