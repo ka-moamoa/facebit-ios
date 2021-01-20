@@ -39,9 +39,31 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
     @Published var latestTemperature: Double = 0.0
     @Published var latestPressure: Double = 0.0
     
+    var publishRate: Int = 5
+    
     typealias Measurement = (value: Double, timestamp: Date)
     @Published var PressureReadings: [TimeSeriesMeasurement] = []
     @Published var TemperatureReadings: [TimeSeriesMeasurement] = []
+    
+    private var _pressureReadingsCache: [TimeSeriesMeasurement] = [] {
+        didSet {
+            if _pressureReadingsCache.count == publishRate {
+                PressureReadings += _pressureReadingsCache
+                latestPressure = PressureReadings.last?.value ?? 0.0
+                _pressureReadingsCache = []
+            }
+        }
+    }
+    
+    private var _temperatureReadingsCache: [TimeSeriesMeasurement] = [] {
+        didSet {
+            if _temperatureReadingsCache.count == publishRate {
+                TemperatureReadings += _temperatureReadingsCache
+                latestTemperature = TemperatureReadings.last?.value ?? 0.0
+                _temperatureReadingsCache = []
+            }
+        }
+    }
     
     var peripheral: CBPeripheral? {
         didSet {
@@ -52,6 +74,8 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
     
     private let TemperatureCharacteristicUUID = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8782")
     private let PressureCharacteristicUUID = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8781")
+    
+    private var currentEvent: SmartPPEEvent?
     
     required override init() {
         super.init()
@@ -69,6 +93,10 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
         @unknown default:
             state = .notFound
         }
+    }
+    
+    func setEvent(_ event: SmartPPEEvent?=nil) {
+        self.currentEvent = event
     }
 }
 
@@ -104,13 +132,15 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
             if let value = characteristic.value, let raw = UInt64(value.hexEncodedString(), radix: 16) {
                 guard Double(raw) != 0.0 else { return }
                 
-                latestTemperature = Double(raw) / 10000.0
+                let temp = Double(raw) / 10000.0
                 let measurement = TimeSeriesMeasurement(
-                    value: latestTemperature,
+                    value: temp,
                     date: Date(),
-                    type: .temperature
+                    type: .temperature,
+                    event: currentEvent
                 )
-                TemperatureReadings.append(measurement)
+                
+                _temperatureReadingsCache.append(measurement)
                 try? SQLiteDatabase.main?.insertRecord(record: measurement)
                 BLELogger.debug("Temperature Reading: \(self.latestTemperature)")
             }
@@ -118,13 +148,15 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
             if let value = characteristic.value, let raw = UInt64(value.hexEncodedString(), radix: 16) {
                 guard Double(raw) != 0.0 else { return }
                 
-                latestPressure = Double(raw) / 100.0
+                let pressure = Double(raw) / 100.0
                 let measurement = TimeSeriesMeasurement(
-                    value: latestPressure,
+                    value: pressure,
                     date: Date(),
-                    type: .pressure
+                    type: .pressure,
+                    event: currentEvent
                 )
-                PressureReadings.append(measurement)
+                
+                _pressureReadingsCache.append(measurement)
                 try? SQLiteDatabase.main?.insertRecord(record: measurement)
                 BLELogger.debug("Pressure Reading: \(self.latestPressure)")
             }

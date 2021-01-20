@@ -36,6 +36,7 @@ class SQLiteDatabase {
             let dbPath = dirURL?.appendingPathComponent("db.sqlite").relativePath
             guard let path = dbPath else { return nil }
             db = try SQLiteDatabase.open(path: path)
+            PersistanceLogger.debug("Database Path: \(path)")
             PersistanceLogger.info("Successfully opened connection to database.")
             _main = db
             return db

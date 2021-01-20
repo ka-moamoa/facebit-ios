@@ -20,6 +20,15 @@
 		015F994525AE493500BDD672 /* FaceBit_CompanionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F994425AE493500BDD672 /* FaceBit_CompanionTests.swift */; };
 		015F995025AE493500BDD672 /* FaceBit_CompanionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */; };
 		015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */; };
+		01EDBE7025B72659009505DC /* SmartPPEEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */; };
+		01EDBE7825B74604009505DC /* MyFaceBitMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */; };
+		01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */; };
+		01EDBE7F25B7476D009505DC /* FaceBitLoadingBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7D25B7476D009505DC /* FaceBitLoadingBarButton.swift */; };
+		01EDBEB425B773B9009505DC /* EventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBEB325B773B9009505DC /* EventRecordView.swift */; };
+		01EDBEBC25B773D3009505DC /* NormalBreathingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBEBB25B773D3009505DC /* NormalBreathingEventRecordView.swift */; };
+		01EDBEC125B773E8009505DC /* DeepBreathingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBEC025B773E8009505DC /* DeepBreathingEventRecordView.swift */; };
+		01EDBEC625B773F8009505DC /* TalkingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBEC525B773F8009505DC /* TalkingEventRecordView.swift */; };
+		01EDBECB25B7740B009505DC /* CoughEVentRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBECA25B7740B009505DC /* CoughEVentRecordView.swift */; };
 		01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +69,15 @@
 		015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBit_CompanionUITests.swift; sourceTree = "<group>"; };
 		015F995125AE493500BDD672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnectionManager.swift; sourceTree = "<group>"; };
+		01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartPPEEvent.swift; sourceTree = "<group>"; };
+		01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFaceBitMainView.swift; sourceTree = "<group>"; };
+		01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBitStatusView.swift; sourceTree = "<group>"; };
+		01EDBE7D25B7476D009505DC /* FaceBitLoadingBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBitLoadingBarButton.swift; sourceTree = "<group>"; };
+		01EDBEB325B773B9009505DC /* EventRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventRecordView.swift; path = ../../../../../../../Documents/EventRecordView.swift; sourceTree = "<group>"; };
+		01EDBEBB25B773D3009505DC /* NormalBreathingEventRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NormalBreathingEventRecordView.swift; path = ../../../../../../../Documents/NormalBreathingEventRecordView.swift; sourceTree = "<group>"; };
+		01EDBEC025B773E8009505DC /* DeepBreathingEventRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeepBreathingEventRecordView.swift; path = ../../../../../../../Documents/DeepBreathingEventRecordView.swift; sourceTree = "<group>"; };
+		01EDBEC525B773F8009505DC /* TalkingEventRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TalkingEventRecordView.swift; path = ../../../../../../../Documents/TalkingEventRecordView.swift; sourceTree = "<group>"; };
+		01EDBECA25B7740B009505DC /* CoughEVentRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoughEVentRecordView.swift; path = ../../../../../../../Documents/CoughEVentRecordView.swift; sourceTree = "<group>"; };
 		01FAB92025B090FA009E5B72 /* FaceBit Companion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FaceBit Companion.entitlements"; sourceTree = "<group>"; };
 		01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBitPerpherial.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +130,7 @@
 				010862B725B2423900EAF722 /* SQLiteDatabase.swift */,
 				010862BC25B5E27800EAF722 /* SQLiteTable.swift */,
 				010862C725B5E54F00EAF722 /* Int+Id.swift */,
+				01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -139,6 +158,7 @@
 		015F993125AE493500BDD672 /* FaceBit Companion */ = {
 			isa = PBXGroup;
 			children = (
+				01EDBE7425B745D6009505DC /* Views */,
 				010862CC25B6120200EAF722 /* Utils */,
 				012C91BB25B1ED2300274F82 /* Data */,
 				012C91B225B1ECE200274F82 /* Visualizations */,
@@ -186,6 +206,37 @@
 				01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */,
 			);
 			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		01EDBE7425B745D6009505DC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				01EDBE8B25B77022009505DC /* Event Recording */,
+				01EDBE7525B745E2009505DC /* MyFaceBit */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		01EDBE7525B745E2009505DC /* MyFaceBit */ = {
+			isa = PBXGroup;
+			children = (
+				01EDBE7D25B7476D009505DC /* FaceBitLoadingBarButton.swift */,
+				01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */,
+				01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */,
+			);
+			path = MyFaceBit;
+			sourceTree = "<group>";
+		};
+		01EDBE8B25B77022009505DC /* Event Recording */ = {
+			isa = PBXGroup;
+			children = (
+				01EDBEB325B773B9009505DC /* EventRecordView.swift */,
+				01EDBEBB25B773D3009505DC /* NormalBreathingEventRecordView.swift */,
+				01EDBEC025B773E8009505DC /* DeepBreathingEventRecordView.swift */,
+				01EDBEC525B773F8009505DC /* TalkingEventRecordView.swift */,
+				01EDBECA25B7740B009505DC /* CoughEVentRecordView.swift */,
+			);
+			path = "Event Recording";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,11 +370,20 @@
 			files = (
 				015F993525AE493500BDD672 /* ContentView.swift in Sources */,
 				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
+				01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */,
+				01EDBEC625B773F8009505DC /* TalkingEventRecordView.swift in Sources */,
 				012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */,
+				01EDBECB25B7740B009505DC /* CoughEVentRecordView.swift in Sources */,
 				010862BD25B5E27800EAF722 /* SQLiteTable.swift in Sources */,
 				015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */,
 				010862CE25B6122600EAF722 /* Logger.swift in Sources */,
+				01EDBE7825B74604009505DC /* MyFaceBitMainView.swift in Sources */,
+				01EDBEBC25B773D3009505DC /* NormalBreathingEventRecordView.swift in Sources */,
+				01EDBEC125B773E8009505DC /* DeepBreathingEventRecordView.swift in Sources */,
 				012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */,
+				01EDBEB425B773B9009505DC /* EventRecordView.swift in Sources */,
+				01EDBE7F25B7476D009505DC /* FaceBitLoadingBarButton.swift in Sources */,
+				01EDBE7025B72659009505DC /* SmartPPEEvent.swift in Sources */,
 				01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */,
 				010862C825B5E54F00EAF722 /* Int+Id.swift in Sources */,
 				010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */,

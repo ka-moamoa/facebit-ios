@@ -8,37 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var bluetoothManager: BluetoothConnectionManager
-    @EnvironmentObject var faceBit: FaceBitPeripheral
+    @StateObject private var facebit = FaceBitPeripheral()
     
     var body: some View {
-        VStack {
-            Text("FaceBit Companion App")
-                .font(.system(.largeTitle))
-                .padding()
-            Divider()
-            Text("FaceBit Device State")
-                .font(.system(.headline))
-            Text(faceBit.state.rawValue)
-            if faceBit.state == .connected {
-                Divider()
-                HStack {
-                    Text("Temperature: \(faceBit.latestTemperature), \(faceBit.TemperatureReadings.count)")
-                    Text("Pressure: \(faceBit.latestPressure), \(faceBit.PressureReadings.count)")
+        TabView {
+            MyFaceBitMainViewMacOS(facebit: facebit)
+                .tabItem {
+                    Image(systemName: "house.fill")
+                    Text("My FaceBit")
                 }
-                Divider()
-                Text("Live Pressure Reading")
-                LiveLinePlot()
-                    .environmentObject(faceBit)
-            }
-        
-        }.onAppear(perform: searchForFaceBit)
+            
+            Text("My Insights")
+                .font(.headline)
+                .tabItem {
+                    Image(systemName: "chart.bar.xaxis")
+                    Text("Insights")
+                }
+            
+            Text("Settings")
+                .font(.headline)
+                .tabItem {
+                    Image(systemName: "gearshape")
+                    Text("Settings")
+                }
+        }
+    
     }
     
-    private func searchForFaceBit() {
-        print("searching")
-        bluetoothManager.searchFor(peripheral: faceBit)
-    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
