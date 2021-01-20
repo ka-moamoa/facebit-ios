@@ -50,6 +50,8 @@ class SQLiteDatabase {
         return ISO8601DateFormatter()
     }
     
+    static var tables: [SQLiteTable.Type] = [SmartPPEEvent.self, TimeSeriesMeasurement.self]
+    
     deinit {
         sqlite3_close(dbPointer)
     }
@@ -125,6 +127,20 @@ class SQLiteDatabase {
         let insertedId = try lastInsertedId()
         record.didInsert(id: insertedId)
         print(record)
+    }
+    
+    func updateRecord<T:SQLiteTable>(record: T, updateSQL: String) throws {
+        let updateStatement = try prepareStatement(sql: updateSQL)
+        
+        defer {
+            sqlite3_finalize(updateStatement)
+        }
+        
+        guard sqlite3_step(updateStatement) == SQLITE_DONE else {
+            throw SQLiteError.Step(message: errorMessage)
+        }
+        
+        PersistanceLogger.info("successfully update \(T.tableName) row")
     }
     
 // Attempt at Batch Insert -- Loose id updates

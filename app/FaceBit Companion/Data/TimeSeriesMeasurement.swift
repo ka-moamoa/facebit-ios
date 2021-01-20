@@ -46,7 +46,10 @@ class TimeSeriesMeasurement: Codable, SQLiteTable {
             value REAL NOT NULL,
             date TEXT NOT NULL,
             type TEXT NOT NULL,
-            event TEXT
+            event_id INT,
+
+            FOREIGN KEY (event_id)
+                REFERENCES \(SmartPPEEvent.tableName) (id)
         );
     """
     
@@ -70,11 +73,20 @@ class TimeSeriesMeasurement: Codable, SQLiteTable {
     }
     
     func insertSQL() -> String {
-        return """
-            INSERT INTO \(TimeSeriesMeasurement.tableName)
-            (value, date, type, event)
-            VALUES (\(value), '\(SQLiteDatabase.dateFormatter.string(from: date))', '\(type.rawValue)', '\(event?.rawValue ?? "")' );
-        """
+        
+        if event != nil {
+            return """
+                INSERT INTO \(TimeSeriesMeasurement.tableName)
+                (value, date, type, event_id)
+                VALUES (\(value), '\(SQLiteDatabase.dateFormatter.string(from: date))', '\(type.rawValue)', \(event!.id) );
+            """
+        } else {
+            return """
+                INSERT INTO \(TimeSeriesMeasurement.tableName)
+                (value, date, type)
+                VALUES (\(value), '\(SQLiteDatabase.dateFormatter.string(from: date))', '\(type.rawValue)');
+            """
+        }
     }
     
     func didInsert(id: Int) {
