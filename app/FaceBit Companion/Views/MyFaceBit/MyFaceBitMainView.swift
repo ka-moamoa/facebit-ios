@@ -28,6 +28,7 @@ struct MyFaceBitMainViewMacOS: View {
                     .frame(height: 100.0)
                 Divider()
 
+                MyFaceBitMetricsDashboardView(facebit: facebit)
                 
                 Spacer()
             }

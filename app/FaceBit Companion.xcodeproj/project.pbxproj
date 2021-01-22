@@ -20,6 +20,7 @@
 		010C677825BB82A400E0EF01 /* TalkingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677325BB82A400E0EF01 /* TalkingEventRecordView.swift */; };
 		010C677925BB82A400E0EF01 /* DeepBreathingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677425BB82A400E0EF01 /* DeepBreathingEventRecordView.swift */; };
 		010C677A25BB82A400E0EF01 /* NormalBreathingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677525BB82A400E0EF01 /* NormalBreathingEventRecordView.swift */; };
+		010C677F25BB87EE00E0EF01 /* RawTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677E25BB87EE00E0EF01 /* RawTemperature.swift */; };
 		012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */; };
 		012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */; };
 		013B00B725BB278100319A42 /* GenericSettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B00B625BB278100319A42 /* GenericSettingsRow.swift */; };
@@ -75,6 +76,7 @@
 		010C677325BB82A400E0EF01 /* TalkingEventRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkingEventRecordView.swift; sourceTree = "<group>"; };
 		010C677425BB82A400E0EF01 /* DeepBreathingEventRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepBreathingEventRecordView.swift; sourceTree = "<group>"; };
 		010C677525BB82A400E0EF01 /* NormalBreathingEventRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalBreathingEventRecordView.swift; sourceTree = "<group>"; };
+		010C677E25BB87EE00E0EF01 /* RawTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawTemperature.swift; sourceTree = "<group>"; };
 		012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLinePlot.swift; sourceTree = "<group>"; };
 		012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurement.swift; sourceTree = "<group>"; };
 		013B00B625BB278100319A42 /* GenericSettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSettingsRow.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				010C675C25BB6C9A00E0EF01 /* RawPressure.swift */,
 				010C676925BB80E300E0EF01 /* MetricDashboardView.swift */,
+				010C677E25BB87EE00E0EF01 /* RawTemperature.swift */,
 			);
 			path = Metrics;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
 				010C677825BB82A400E0EF01 /* TalkingEventRecordView.swift in Sources */,
 				01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */,
+				010C677F25BB87EE00E0EF01 /* RawTemperature.swift in Sources */,
 				012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */,
 				013B00CD25BB2B6400319A42 /* FaceBit+Bundle.swift in Sources */,
 				013B00D225BB315C00319A42 /* FaceBitNotificationView.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  RawPressure.swift
+//  RawTemperature.swift
 //  FaceBit Companion
 //
 //  Created by blaine on 1/22/21.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct RawPressure: View, MetricDashboardView {
+struct RawTemperature: View, MetricDashboardView {
     @ObservedObject var facebit: FaceBitPeripheral
     
     var body: some View {
         VStack {
-            Text("Raw Pressure")
-            LiveLinePlot(timeSeries: $facebit.PressureReadings, showAxis: false)
+            Text("Raw Temperature")
+            LiveLinePlot(timeSeries: $facebit.TemperatureReadings, showAxis: false)
         }
         .padding()
         .overlay(
@@ -23,9 +23,9 @@ struct RawPressure: View, MetricDashboardView {
     }
 }
 
-struct RawPressure_Previews: PreviewProvider {
+struct RawTemperature_Previews: PreviewProvider {
     
     static var previews: some View {
-        RawPressure(facebit: FaceBitPeripheral())
+        RawTemperature(facebit: FaceBitPeripheral())
     }
 }

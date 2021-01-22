@@ -31,9 +31,11 @@ struct FaceBitStatusView: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 8.0) {
-            Image(systemName: "face.smiling.fill")
-                .font(.system(size: 65))
+            Image("face-mask")
+                .resizable()
+                .padding(2.0)
                 .frame(width: 75, height: 75, alignment: .center)
+                .scaledToFill()
                 .overlay(
                     RoundedRectangle(cornerRadius: 10.0)
                         .stroke(lineWidth: 2.0)
