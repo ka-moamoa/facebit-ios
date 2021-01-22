@@ -27,6 +27,8 @@ struct MyFaceBitMainViewMacOS: View {
                 FaceBitNotificationView(cards: cards)
                     .frame(height: 100.0)
                 Divider()
+
+                
                 Spacer()
             }
             .onAppear(perform: searchForFaceBit)

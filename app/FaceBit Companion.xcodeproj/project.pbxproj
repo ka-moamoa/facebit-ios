@@ -13,6 +13,13 @@
 		010862CE25B6122600EAF722 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862CD25B6122600EAF722 /* Logger.swift */; };
 		010C675725BB5AFC00E0EF01 /* FaceBitConnectionStatusButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C675625BB5AFC00E0EF01 /* FaceBitConnectionStatusButtonView.swift */; };
 		010C675D25BB6C9A00E0EF01 /* RawPressure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C675C25BB6C9A00E0EF01 /* RawPressure.swift */; };
+		010C676525BB7EEC00E0EF01 /* MyFaceBitMetricsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C676425BB7EEC00E0EF01 /* MyFaceBitMetricsDashboardView.swift */; };
+		010C676A25BB80E300E0EF01 /* MetricDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C676925BB80E300E0EF01 /* MetricDashboardView.swift */; };
+		010C677625BB82A400E0EF01 /* EventRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677125BB82A400E0EF01 /* EventRecorderView.swift */; };
+		010C677725BB82A400E0EF01 /* CoughEVentRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677225BB82A400E0EF01 /* CoughEVentRecordView.swift */; };
+		010C677825BB82A400E0EF01 /* TalkingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677325BB82A400E0EF01 /* TalkingEventRecordView.swift */; };
+		010C677925BB82A400E0EF01 /* DeepBreathingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677425BB82A400E0EF01 /* DeepBreathingEventRecordView.swift */; };
+		010C677A25BB82A400E0EF01 /* NormalBreathingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677525BB82A400E0EF01 /* NormalBreathingEventRecordView.swift */; };
 		012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */; };
 		012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */; };
 		013B00B725BB278100319A42 /* GenericSettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B00B625BB278100319A42 /* GenericSettingsRow.swift */; };
@@ -34,11 +41,6 @@
 		01EDBE7825B74604009505DC /* MyFaceBitMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */; };
 		01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */; };
 		01EDBE7F25B7476D009505DC /* FaceBitLoadingBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7D25B7476D009505DC /* FaceBitLoadingBarButton.swift */; };
-		01EDBEB425B773B9009505DC /* EventRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBEB325B773B9009505DC /* EventRecorderView.swift */; };
-		01EDBEBC25B773D3009505DC /* NormalBreathingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBEBB25B773D3009505DC /* NormalBreathingEventRecordView.swift */; };
-		01EDBEC125B773E8009505DC /* DeepBreathingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBEC025B773E8009505DC /* DeepBreathingEventRecordView.swift */; };
-		01EDBEC625B773F8009505DC /* TalkingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBEC525B773F8009505DC /* TalkingEventRecordView.swift */; };
-		01EDBECB25B7740B009505DC /* CoughEVentRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBECA25B7740B009505DC /* CoughEVentRecordView.swift */; };
 		01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,13 @@
 		010862CD25B6122600EAF722 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		010C675625BB5AFC00E0EF01 /* FaceBitConnectionStatusButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBitConnectionStatusButtonView.swift; sourceTree = "<group>"; };
 		010C675C25BB6C9A00E0EF01 /* RawPressure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawPressure.swift; sourceTree = "<group>"; };
+		010C676425BB7EEC00E0EF01 /* MyFaceBitMetricsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFaceBitMetricsDashboardView.swift; sourceTree = "<group>"; };
+		010C676925BB80E300E0EF01 /* MetricDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricDashboardView.swift; sourceTree = "<group>"; };
+		010C677125BB82A400E0EF01 /* EventRecorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRecorderView.swift; sourceTree = "<group>"; };
+		010C677225BB82A400E0EF01 /* CoughEVentRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoughEVentRecordView.swift; sourceTree = "<group>"; };
+		010C677325BB82A400E0EF01 /* TalkingEventRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkingEventRecordView.swift; sourceTree = "<group>"; };
+		010C677425BB82A400E0EF01 /* DeepBreathingEventRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepBreathingEventRecordView.swift; sourceTree = "<group>"; };
+		010C677525BB82A400E0EF01 /* NormalBreathingEventRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalBreathingEventRecordView.swift; sourceTree = "<group>"; };
 		012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLinePlot.swift; sourceTree = "<group>"; };
 		012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurement.swift; sourceTree = "<group>"; };
 		013B00B625BB278100319A42 /* GenericSettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSettingsRow.swift; sourceTree = "<group>"; };
@@ -92,11 +101,6 @@
 		01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFaceBitMainView.swift; sourceTree = "<group>"; };
 		01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBitStatusView.swift; sourceTree = "<group>"; };
 		01EDBE7D25B7476D009505DC /* FaceBitLoadingBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBitLoadingBarButton.swift; sourceTree = "<group>"; };
-		01EDBEB325B773B9009505DC /* EventRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventRecorderView.swift; path = ../../../../../../../Documents/EventRecorderView.swift; sourceTree = "<group>"; };
-		01EDBEBB25B773D3009505DC /* NormalBreathingEventRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NormalBreathingEventRecordView.swift; path = ../../../../../../../Documents/NormalBreathingEventRecordView.swift; sourceTree = "<group>"; };
-		01EDBEC025B773E8009505DC /* DeepBreathingEventRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeepBreathingEventRecordView.swift; path = ../../../../../../../Documents/DeepBreathingEventRecordView.swift; sourceTree = "<group>"; };
-		01EDBEC525B773F8009505DC /* TalkingEventRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TalkingEventRecordView.swift; path = ../../../../../../../Documents/TalkingEventRecordView.swift; sourceTree = "<group>"; };
-		01EDBECA25B7740B009505DC /* CoughEVentRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoughEVentRecordView.swift; path = ../../../../../../../Documents/CoughEVentRecordView.swift; sourceTree = "<group>"; };
 		01FAB92025B090FA009E5B72 /* FaceBit Companion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FaceBit Companion.entitlements"; sourceTree = "<group>"; };
 		01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBitPerpherial.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				010C675C25BB6C9A00E0EF01 /* RawPressure.swift */,
+				010C676925BB80E300E0EF01 /* MetricDashboardView.swift */,
 			);
 			path = Metrics;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 				013B00D125BB315C00319A42 /* FaceBitNotificationView.swift */,
 				013B00D625BB324700319A42 /* FaceBitNotificationCardView.swift */,
 				010C675625BB5AFC00E0EF01 /* FaceBitConnectionStatusButtonView.swift */,
+				010C676425BB7EEC00E0EF01 /* MyFaceBitMetricsDashboardView.swift */,
 			);
 			path = MyFaceBit;
 			sourceTree = "<group>";
@@ -283,11 +289,11 @@
 		01EDBE8B25B77022009505DC /* Event Recording */ = {
 			isa = PBXGroup;
 			children = (
-				01EDBEB325B773B9009505DC /* EventRecorderView.swift */,
-				01EDBEBB25B773D3009505DC /* NormalBreathingEventRecordView.swift */,
-				01EDBEC025B773E8009505DC /* DeepBreathingEventRecordView.swift */,
-				01EDBEC525B773F8009505DC /* TalkingEventRecordView.swift */,
-				01EDBECA25B7740B009505DC /* CoughEVentRecordView.swift */,
+				010C677225BB82A400E0EF01 /* CoughEVentRecordView.swift */,
+				010C677425BB82A400E0EF01 /* DeepBreathingEventRecordView.swift */,
+				010C677125BB82A400E0EF01 /* EventRecorderView.swift */,
+				010C677525BB82A400E0EF01 /* NormalBreathingEventRecordView.swift */,
+				010C677325BB82A400E0EF01 /* TalkingEventRecordView.swift */,
 			);
 			path = "Event Recording";
 			sourceTree = "<group>";
@@ -432,22 +438,22 @@
 				015F993525AE493500BDD672 /* ContentView.swift in Sources */,
 				010C675D25BB6C9A00E0EF01 /* RawPressure.swift in Sources */,
 				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
+				010C677825BB82A400E0EF01 /* TalkingEventRecordView.swift in Sources */,
 				01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */,
-				01EDBEC625B773F8009505DC /* TalkingEventRecordView.swift in Sources */,
 				012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */,
 				013B00CD25BB2B6400319A42 /* FaceBit+Bundle.swift in Sources */,
 				013B00D225BB315C00319A42 /* FaceBitNotificationView.swift in Sources */,
-				01EDBECB25B7740B009505DC /* CoughEVentRecordView.swift in Sources */,
 				010862BD25B5E27800EAF722 /* SQLiteTable.swift in Sources */,
 				015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */,
 				010862CE25B6122600EAF722 /* Logger.swift in Sources */,
+				010C677725BB82A400E0EF01 /* CoughEVentRecordView.swift in Sources */,
 				01EDBE7825B74604009505DC /* MyFaceBitMainView.swift in Sources */,
-				01EDBEBC25B773D3009505DC /* NormalBreathingEventRecordView.swift in Sources */,
-				01EDBEC125B773E8009505DC /* DeepBreathingEventRecordView.swift in Sources */,
+				010C677625BB82A400E0EF01 /* EventRecorderView.swift in Sources */,
 				012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */,
 				013B00D725BB324700319A42 /* FaceBitNotificationCardView.swift in Sources */,
-				01EDBEB425B773B9009505DC /* EventRecorderView.swift in Sources */,
+				010C676525BB7EEC00E0EF01 /* MyFaceBitMetricsDashboardView.swift in Sources */,
 				01EDBE7F25B7476D009505DC /* FaceBitLoadingBarButton.swift in Sources */,
+				010C677925BB82A400E0EF01 /* DeepBreathingEventRecordView.swift in Sources */,
 				01EDBE7025B72659009505DC /* SmartPPEEvent.swift in Sources */,
 				01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */,
 				010C675725BB5AFC00E0EF01 /* FaceBitConnectionStatusButtonView.swift in Sources */,
@@ -455,6 +461,8 @@
 				010862C825B5E54F00EAF722 /* Int+Id.swift in Sources */,
 				010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */,
 				013B00EE25BB517A00319A42 /* FaceBit+String.swift in Sources */,
+				010C677A25BB82A400E0EF01 /* NormalBreathingEventRecordView.swift in Sources */,
+				010C676A25BB80E300E0EF01 /* MetricDashboardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
