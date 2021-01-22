@@ -7,94 +7,37 @@
 
 import SwiftUI
 import Combine
+import ACarousel
 
 struct MyFaceBitMainViewMacOS: View {
     @ObservedObject var facebit: FaceBitPeripheral
-
     
+    var cards: [FaceBitNotificationCard] = [
+        FaceBitNotificationCard(title: "hello", message: String.loremipsum()),
+        FaceBitNotificationCard(title: "hello1", message: String.loremipsum()),
+        FaceBitNotificationCard(title: "hello2", message: String.loremipsum()),
+        FaceBitNotificationCard(title: "hello3", message: String.loremipsum()),
+    ]
+
     var body: some View {
         NavigationView {
             VStack {
-                
-                HStack {
-                    Spacer()
-                    Text("FaceBit Device State")
-                        .font(.system(.headline))
-                    Text(facebit.state.rawValue)
-                        Spacer()
-                        NavigationLink(
-                            destination: EventRecorderView(facebit: facebit),
-                            label: {
-                                Text("Record Event")
-                            }
-                        )
-                    Spacer()
-                }
-                .padding()
-                
+                FaceBitStatusView(facebit: facebit)
+                    .padding()
+                FaceBitNotificationView(cards: cards)
+                    .frame(height: 100.0)
+                Divider()
                 Spacer()
-                
-                if facebit.state == .connected {
-                    Divider()
-                    
-                    HStack {
-                        Spacer()
-                        Text("Live Pressure Reading")
-                        Spacer()
-                        Text("Current: \(facebit.latestPressure)")
-                            .font(.body)
-                        Spacer()
-                    }
-                    
-                    GeometryReader { geometry in
-                        LiveLinePlot(
-                            timeSeries: $facebit.PressureReadings,
-                            showAxis: false,
-                            maxTicks: 50
-                        )
-                        .frame(
-                            width: geometry.size.width,
-                            height: geometry.size.height / 4.0,
-                            alignment: .leading
-                        )
-                        .cornerRadius(10.0)
-                        .padding(16)
-                    }
-                    
-                    Divider()
-                    
-                    HStack {
-                        Spacer()
-                        Text("Live Temperature Reading")
-                        Spacer()
-                        Text("Current: \(facebit.latestTemperature)")
-                            .font(.body)
-                        Spacer()
-                    }
-                        
-                    GeometryReader { geometry in
-                        LiveLinePlot(
-                            timeSeries: $facebit.TemperatureReadings,
-                            showAxis: false,
-                            maxTicks: 50
-                        )
-                        .frame(
-                            width: geometry.size.width,
-                            height: geometry.size.height / 4.0,
-                            alignment: .leading
-                        )
-                        .cornerRadius(10.0)
-                        .padding(16)
-                    }
-                    
-                }
-            
             }
             .onAppear(perform: searchForFaceBit)
             .navigationBarTitle("My FaceBit", displayMode: .inline)
+            .navigationBarItems(trailing:
+                FaceBitConnectionStatusButtonView(facebit: facebit)
+            )
+
+            Spacer()
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .frame(minWidth: 800, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity)
     }
     
     private func searchForFaceBit() {

@@ -38,6 +38,7 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
     @Published var state: PeripheralState = .notFound
     @Published var latestTemperature: Double = 0.0
     @Published var latestPressure: Double = 0.0
+    @Published var lastContact: Date?
     
     var publishRate: Int = 5
     
@@ -86,6 +87,7 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
         switch peripheral.state {
         case .connected:
             state = .connected
+            lastContact = Date()
             BLELogger.info("Connected")
             peripheral.discoverServices([mainServiceUUID])
         case .connecting, .disconnected, .disconnecting:

@@ -25,7 +25,7 @@ struct ContentView: View {
                     Text("Insights")
                 }
             
-            Text("Settings")
+            SettingsView(facebit: facebit)
                 .font(.headline)
                 .tabItem {
                     Image(systemName: "gearshape")
