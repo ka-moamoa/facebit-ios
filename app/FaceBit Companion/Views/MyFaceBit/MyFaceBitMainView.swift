@@ -10,7 +10,7 @@ import Combine
 import ACarousel
 
 struct MyFaceBitMainViewMacOS: View {
-    @ObservedObject var facebit: FaceBitPeripheral
+    @EnvironmentObject var facebit: FaceBitPeripheral
     
     var cards: [FaceBitNotificationCard] = [
         FaceBitNotificationCard(title: "hello", message: String.loremipsum()),
@@ -22,20 +22,22 @@ struct MyFaceBitMainViewMacOS: View {
     var body: some View {
         NavigationView {
             VStack {
-                FaceBitStatusView(facebit: facebit)
+                FaceBitStatusView()
                     .padding()
+                
                 FaceBitNotificationView(cards: cards)
                     .frame(height: 100.0)
+                
                 Divider()
 
-                MyFaceBitMetricsDashboardView(facebit: facebit)
+                MyFaceBitMetricsDashboardView()
                 
                 Spacer()
             }
             .onAppear(perform: searchForFaceBit)
             .navigationBarTitle("My FaceBit", displayMode: .inline)
             .navigationBarItems(trailing:
-                FaceBitConnectionStatusButtonView(facebit: facebit)
+                FaceBitConnectionStatusButtonView()
             )
 
             Spacer()
@@ -53,6 +55,6 @@ struct MyFaceBitMainViewMacOS: View {
 
 struct MyFaceBitMainViewMacOS_Previews: PreviewProvider {
     static var previews: some View {
-        MyFaceBitMainViewMacOS(facebit: FaceBitPeripheral())
+        MyFaceBitMainViewMacOS()
     }
 }

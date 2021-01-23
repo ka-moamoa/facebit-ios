@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var facebit: FaceBitPeripheral
+    @EnvironmentObject var facebit: FaceBitPeripheral
     
     var body: some View {
         NavigationView {
@@ -29,6 +29,9 @@ struct SettingsView: View {
             }
             .listStyle(GroupedListStyle())
             .navigationBarTitle("Settings", displayMode: .inline)
+            .navigationBarItems(trailing:
+                FaceBitConnectionStatusButtonView()
+            )
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
@@ -36,6 +39,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(facebit: FaceBitPeripheral())
+        SettingsView()
     }
 }

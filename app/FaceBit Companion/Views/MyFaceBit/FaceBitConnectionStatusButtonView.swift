@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FaceBitConnectionStatusButtonView: View {
-    @ObservedObject var facebit: FaceBitPeripheral
+    @EnvironmentObject var facebit: FaceBitPeripheral
     
     var icon: some View {
         
@@ -28,6 +28,6 @@ struct FaceBitConnectionStatusButtonView: View {
 
 struct FaceBitConnectionStatusButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        FaceBitConnectionStatusButtonView(facebit: FaceBitPeripheral())
+        FaceBitConnectionStatusButtonView()
     }
 }

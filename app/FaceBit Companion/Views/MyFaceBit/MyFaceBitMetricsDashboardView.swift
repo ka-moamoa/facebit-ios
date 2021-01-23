@@ -8,21 +8,31 @@
 import SwiftUI
 
 struct MyFaceBitMetricsDashboardView: View {
-    @ObservedObject var facebit: FaceBitPeripheral
+    @EnvironmentObject var facebit: FaceBitPeripheral
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false, content: {
             GeometryReader { geometry in
-                
                 VStack {
                     HStack {
-                        RawPressure(facebit: facebit)
-                        RawTemperature(facebit: facebit)
+                        TimeSeriesGraphWidgetView(title: "Pressure", series: $facebit.PressureReadings)
+                        TimeSeriesGraphWidgetView(title: "Temperature", series: $facebit.TemperatureReadings)
                     }
-                    .padding()
-                    .frame(width: geometry.size.width, height: geometry.size.width / 2)
+                    HStack {
+                        ValueWidgetView(
+                            title: "Pressure",
+                            unit: "bar",
+                            value: $facebit.latestPressure
+                        )
+                        ValueWidgetView(
+                            title: "Temperature",
+                            unit: "celsius",
+                            value: $facebit.latestTemperature
+                        )
+                    }
                 }
-                
+                .padding()
+                .frame(width: geometry.size.width, height: geometry.size.width)
             }
         })
     }
@@ -30,6 +40,6 @@ struct MyFaceBitMetricsDashboardView: View {
 
 struct MyFaceBitMetricsDashboardView_Previews: PreviewProvider {
     static var previews: some View {
-        MyFaceBitMetricsDashboardView(facebit: FaceBitPeripheral())
+        MyFaceBitMetricsDashboardView()
     }
 }

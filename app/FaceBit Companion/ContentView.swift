@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var facebit = FaceBitPeripheral()
+    @EnvironmentObject private var facebit: FaceBitPeripheral
     
     var body: some View {
         TabView {
-            MyFaceBitMainViewMacOS(facebit: facebit)
+            MyFaceBitMainViewMacOS()
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("My FaceBit")
@@ -25,7 +25,7 @@ struct ContentView: View {
                     Text("Insights")
                 }
             
-            SettingsView(facebit: facebit)
+            SettingsView()
                 .font(.headline)
                 .tabItem {
                     Image(systemName: "gearshape")
@@ -41,7 +41,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(BluetoothConnectionManager.shared)
             .environmentObject(FaceBitPeripheral())
     }
 }

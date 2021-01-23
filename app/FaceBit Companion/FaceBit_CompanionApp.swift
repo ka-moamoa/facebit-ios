@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct FaceBit_CompanionApp: App {
+    let facebit = FaceBitPeripheral()
+    
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(facebit)
                 .onAppear(perform: {
                    setupDatabase()
                 })

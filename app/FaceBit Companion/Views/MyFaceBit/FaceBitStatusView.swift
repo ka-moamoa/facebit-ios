@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FaceBitStatusView: View {
-    @ObservedObject var facebit: FaceBitPeripheral
+    @EnvironmentObject var facebit: FaceBitPeripheral
     
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -75,6 +75,6 @@ struct FaceBitStatusView: View {
 
 struct FaceBitStatus_Previews: PreviewProvider {
     static var previews: some View {
-        FaceBitStatusView(facebit: FaceBitPeripheral())
+        FaceBitStatusView()
     }
 }

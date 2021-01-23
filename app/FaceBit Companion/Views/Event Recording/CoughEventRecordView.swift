@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CoughEVentRecordView: View {
+struct CoughEventRecordView: View {
     var body: some View {
         Text("Cough Event Recoding")
     }
@@ -15,6 +15,6 @@ struct CoughEVentRecordView: View {
 
 struct CoughEVentRecordView_Previews: PreviewProvider {
     static var previews: some View {
-        CoughEVentRecordView()
+        CoughEventRecordView()
     }
 }
