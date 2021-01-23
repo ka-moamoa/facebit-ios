@@ -18,6 +18,7 @@ class TimeSeriesMeasurement: Codable, SQLiteTable {
     let value: Double
     let date: Date
     let type: DataType
+    let event: SmartPPEEvent?
     
     static func sampleSeries() -> [TimeSeriesMeasurement] {
         let startValue = 1.0
@@ -44,27 +45,48 @@ class TimeSeriesMeasurement: Codable, SQLiteTable {
             id INTEGER PRIMARY KEY NOT NULL,
             value REAL NOT NULL,
             date TEXT NOT NULL,
-            type TEXT NOT NULL
+            type TEXT NOT NULL,
+            event_id INT,
+
+            FOREIGN KEY (event_id)
+                REFERENCES \(SmartPPEEvent.tableName) (id)
         );
     """
     
     static let memId = MemoryId()
     var isInserted: Bool
     
-    init(id: Int=TimeSeriesMeasurement.memId.next, value: Double, date: Date, type: DataType, isInserted:Bool=false) {
+    init(
+        id: Int=TimeSeriesMeasurement.memId.next,
+        value: Double,
+        date: Date,
+        type: DataType,
+        event: SmartPPEEvent?=nil,
+        isInserted:Bool=false
+    ) {
         self.id = id
         self.value = value
         self.date = date
         self.type = type
+        self.event = event
         self.isInserted = isInserted
     }
     
     func insertSQL() -> String {
-        return """
-            INSERT INTO \(TimeSeriesMeasurement.tableName)
-            (value, date, type)
-            VALUES (\(value), '\(SQLiteDatabase.dateFormatter.string(from: date))', '\(type.rawValue)');
-        """
+        
+        if event != nil {
+            return """
+                INSERT INTO \(TimeSeriesMeasurement.tableName)
+                (value, date, type, event_id)
+                VALUES (\(value), '\(SQLiteDatabase.dateFormatter.string(from: date))', '\(type.rawValue)', \(event!.id) );
+            """
+        } else {
+            return """
+                INSERT INTO \(TimeSeriesMeasurement.tableName)
+                (value, date, type)
+                VALUES (\(value), '\(SQLiteDatabase.dateFormatter.string(from: date))', '\(type.rawValue)');
+            """
+        }
     }
     
     func didInsert(id: Int) {
