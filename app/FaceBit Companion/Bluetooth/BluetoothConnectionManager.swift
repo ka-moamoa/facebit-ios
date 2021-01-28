@@ -65,19 +65,20 @@ extension BluetoothConnectionManager: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         guard var peri = peripherals.first(where: { $0.name == peripheral.name }) else { return }
-        print("found peripheral: \(peri.name)")
+        BLELogger.info("found peripheral: \(peri.name)")
         peri.peripheral = peripheral
         centralManager.connect(peripheral, options: nil)
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         guard let peri = peripherals.first(where: { $0.name == peripheral.name }) else { return }
-        print("connceted to: \(peri.name)")
+        BLELogger.info("connceted to: \(peri.name)")
         peri.didUpdateState()
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         guard let peri = peripherals.first(where: { $0.name == peripheral.name }) else { return }
+        BLELogger.info("\(peri.name) disconnected")
         peri.didUpdateState()
     }
 }

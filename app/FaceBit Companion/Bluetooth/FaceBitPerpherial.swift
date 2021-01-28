@@ -40,7 +40,7 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
     @Published var latestPressure: Double = 0.0
     @Published var lastContact: Date?
     
-    var publishRate: Int = 5
+    var publishRate: Int = 60
     
     typealias Measurement = (value: Double, timestamp: Date)
     @Published var PressureReadings: [TimeSeriesMeasurement] = []

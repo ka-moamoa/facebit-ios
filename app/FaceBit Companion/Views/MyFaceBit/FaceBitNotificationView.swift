@@ -13,10 +13,14 @@ struct FaceBitNotificationView: View {
     @State var height: CGFloat = 100.0
     
     var body: some View {
-        ACarousel(
-            cards,
-            sidesScaling: 1.0) { card in
-            FaceBitNotificationCardView(card: card, height: height - 16.0)
+        if cards.count > 0 {
+            ACarousel(
+                cards,
+                sidesScaling: 1.0) { card in
+                FaceBitNotificationCardView(card: card, height: height - 16.0)
+            }
+        } else {
+            Text("No new notifications")
         }
     }
 }

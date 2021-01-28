@@ -12,12 +12,7 @@ import ACarousel
 struct MyFaceBitMainViewMacOS: View {
     @EnvironmentObject var facebit: FaceBitPeripheral
     
-    var cards: [FaceBitNotificationCard] = [
-        FaceBitNotificationCard(title: "hello", message: String.loremipsum()),
-        FaceBitNotificationCard(title: "hello1", message: String.loremipsum()),
-        FaceBitNotificationCard(title: "hello2", message: String.loremipsum()),
-        FaceBitNotificationCard(title: "hello3", message: String.loremipsum()),
-    ]
+    var cards: [FaceBitNotificationCard] = []
 
     var body: some View {
         NavigationView {
@@ -46,10 +41,12 @@ struct MyFaceBitMainViewMacOS: View {
     }
     
     private func searchForFaceBit() {
-        print("searching")
-        BluetoothConnectionManager
-            .shared
-            .searchFor(peripheral: facebit)
+        if facebit.state != .connected {
+            print("searching")
+            BluetoothConnectionManager
+                .shared
+                .searchFor(peripheral: facebit)
+        }
     }
 }
 

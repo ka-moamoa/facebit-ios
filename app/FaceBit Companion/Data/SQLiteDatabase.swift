@@ -25,6 +25,13 @@ class SQLiteDatabase {
     }
     
     private static var _main: SQLiteDatabase?
+    
+    static var dbPath: URL? {
+        let dirURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let dbPath = dirURL?.appendingPathComponent("db.sqlite")
+        return dbPath
+    }
+    
     static var main: SQLiteDatabase? {
         guard SQLiteDatabase._main == nil else {
             return _main
@@ -32,9 +39,7 @@ class SQLiteDatabase {
         
         let db: SQLiteDatabase
         do {
-            let dirURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            let dbPath = dirURL?.appendingPathComponent("db.sqlite").relativePath
-            guard let path = dbPath else { return nil }
+            guard let path = SQLiteDatabase.dbPath?.relativePath else { return nil }
             db = try SQLiteDatabase.open(path: path)
             PersistanceLogger.debug("Database Path: \(path)")
             PersistanceLogger.info("Successfully opened connection to database.")

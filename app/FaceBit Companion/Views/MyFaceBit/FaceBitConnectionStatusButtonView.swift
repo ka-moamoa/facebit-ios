@@ -21,8 +21,19 @@ struct FaceBitConnectionStatusButtonView: View {
     }
     
     var body: some View {
-        icon
-            .font(.system(size: 24.0))
+        Button(action: {
+            if facebit.state != .connected {
+                BluetoothConnectionManager
+                    .shared
+                    .searchFor(peripheral: facebit)
+            } else {
+                // todo: disconnect
+            }
+        }, label: {
+            icon
+                .font(.system(size: 24.0))
+        })
+        
     }
 }
 

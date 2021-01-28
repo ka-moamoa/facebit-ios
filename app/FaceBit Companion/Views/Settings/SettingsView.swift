@@ -24,7 +24,11 @@ struct SettingsView: View {
                         label: {
                             GenericSettingsRow(text: "Record Events")
                         })
-                    
+                    Button(action: {
+                        shareDatabase()
+                    }, label: {
+                        GenericSettingsRow(text: "Share SQLite Database")
+                    })
                 }
             }
             .listStyle(GroupedListStyle())
@@ -34,6 +38,12 @@ struct SettingsView: View {
             )
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    private func shareDatabase() {
+        guard let data = SQLiteDatabase.dbPath else { return }
+        let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }
 }
 
