@@ -24,6 +24,7 @@
 		010C67A925BB9FEC00E0EF01 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C67A825BB9FEC00E0EF01 /* WidgetView.swift */; };
 		012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */; };
 		012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */; };
+		01325D3B25C35196000B2A05 /* ShareDatabaseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01325D3A25C35196000B2A05 /* ShareDatabaseButtonView.swift */; };
 		013B00B725BB278100319A42 /* GenericSettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B00B625BB278100319A42 /* GenericSettingsRow.swift */; };
 		013B00BC25BB289B00319A42 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B00BB25BB289B00319A42 /* SettingsView.swift */; };
 		013B00C525BB2A7500319A42 /* KeyValueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B00C425BB2A7500319A42 /* KeyValueRow.swift */; };
@@ -81,6 +82,7 @@
 		010C67A825BB9FEC00E0EF01 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLinePlot.swift; sourceTree = "<group>"; };
 		012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurement.swift; sourceTree = "<group>"; };
+		01325D3A25C35196000B2A05 /* ShareDatabaseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareDatabaseButtonView.swift; sourceTree = "<group>"; };
 		013B00B625BB278100319A42 /* GenericSettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSettingsRow.swift; sourceTree = "<group>"; };
 		013B00BB25BB289B00319A42 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		013B00C425BB2A7500319A42 /* KeyValueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueRow.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				013B00C325BB2A6400319A42 /* Rows */,
 				013B00BB25BB289B00319A42 /* SettingsView.swift */,
+				01325D3A25C35196000B2A05 /* ShareDatabaseButtonView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				015F993525AE493500BDD672 /* ContentView.swift in Sources */,
 				010C675D25BB6C9A00E0EF01 /* TimeSeriesGraphWidgetView.swift in Sources */,
 				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
+				01325D3B25C35196000B2A05 /* ShareDatabaseButtonView.swift in Sources */,
 				010C677825BB82A400E0EF01 /* TalkingEventRecordView.swift in Sources */,
 				01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */,
 				012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */,
