@@ -12,6 +12,7 @@ enum SmartPPEEventType: String, CaseIterable, Codable, Identifiable {
     case deepBreathing = "deep_breathing"
     case talking = "talking"
     case cough = "cough"
+    case other = "other"
     
     var id: String { self.rawValue }
 }
@@ -22,6 +23,8 @@ class SmartPPEEvent: Codable, SQLiteTable {
         CREATE TABLE IF NOT EXISTS \(SmartPPEEvent.tableName)(
             id INTEGER PRIMARY KEY NOT NULL,
             event_type TEXT NOT NULL,
+            other_event_label TEXT,
+            notes TEXT,
             start_date TEXT,
             end_date TEXT
         );
@@ -31,6 +34,8 @@ class SmartPPEEvent: Codable, SQLiteTable {
     
     var id: Int
     let eventType: SmartPPEEventType
+    let otherEventLabel: String?
+    let notes: String?
     var startDate: Date?
     var endDate: Date?
     
@@ -39,11 +44,15 @@ class SmartPPEEvent: Codable, SQLiteTable {
     init(
         id: Int = SmartPPEEvent.memId.next,
         eventType: SmartPPEEventType,
+        otherEventLabel: String?=nil,
+        notes: String?=nil,
         startDate: Date?=nil,
         endDate: Date?=nil
     ) {
         self.id = id
         self.eventType = eventType
+        self.otherEventLabel = otherEventLabel
+        self.notes = notes
         self.startDate = startDate
         self.endDate = endDate
     }
@@ -83,8 +92,8 @@ class SmartPPEEvent: Codable, SQLiteTable {
         
         return """
             INSERT INTO \(SmartPPEEvent.tableName)
-            (event_type, start_date, end_date)
-            VALUES ('\(eventType.rawValue)', '\(startTimeString)', '\(endTimeString)');
+            (event_type, other_event_label, notes, start_date, end_date)
+            VALUES ('\(eventType.rawValue)', '\(otherEventLabel ?? "")', '\(notes ?? "")', '\(startTimeString)', '\(endTimeString)');
         """
     }
     

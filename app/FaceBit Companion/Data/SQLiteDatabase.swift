@@ -51,8 +51,11 @@ class SQLiteDatabase {
         }
     }
     
-    static var dateFormatter: ISO8601DateFormatter {
-        return ISO8601DateFormatter()
+    static var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        return dateFormatter
     }
     
     static var tables: [SQLiteTable.Type] = [SmartPPEEvent.self, TimeSeriesMeasurement.self]
@@ -103,6 +106,20 @@ class SQLiteDatabase {
         return statement
     }
     
+    func executeSQL(sql: String) throws {
+        let statement = try prepareStatement(sql: sql)
+        
+        defer {
+            sqlite3_finalize(statement)
+        }
+        
+        PersistanceLogger.info("Executing \(sql)")
+        
+        guard sqlite3_step(statement) == SQLITE_DONE else {
+            throw SQLiteError.Step(message: errorMessage)
+        }
+    }
+        
     func createTable(table: SQLiteTable.Type) throws {
         let createTableSQL = try prepareStatement(sql: table.createSQL)
         
@@ -187,10 +204,9 @@ class SQLiteDatabase {
         return id
     }
     
-    func getAll() -> [TimeSeriesMeasurement] {
-        let query = "SELECT * FROM \(TimeSeriesMeasurement.tableName);"
-        guard let queryStatement = try? prepareStatement(sql: query) else {
-            return []
+    func query(_ sql: String) -> OpaquePointer? {
+        guard let queryStatement = try? prepareStatement(sql: sql) else {
+            return nil
         }
         
         defer {
@@ -200,6 +216,23 @@ class SQLiteDatabase {
 //        guard sqlite3_bind_int(queryStatement, 1, Int32(id)) == SQLITE_OK else {
 //            return nil
 //        }
+        
+        return queryStatement
+    }
+    
+    func getAllTS(from startDate: Date, to endDate: Date) -> [TimeSeriesMeasurement] {
+        let sql = """
+        SELECT id, value, date, type
+        FROM \(TimeSeriesMeasurement.tableName)
+        WHERE date >= '\(SQLiteDatabase.dateFormatter.string(from: startDate))'
+            AND date <= '\(SQLiteDatabase.dateFormatter.string(from: endDate))';
+        """
+        
+        guard let queryStatement = try? prepareStatement(sql: sql) else { return [] }
+        
+        defer {
+            sqlite3_finalize(queryStatement)
+        }
         
         var measurements: [TimeSeriesMeasurement] = []
         
@@ -227,7 +260,6 @@ class SQLiteDatabase {
                 )
             )
         }
-        
         return measurements
     }
 }
