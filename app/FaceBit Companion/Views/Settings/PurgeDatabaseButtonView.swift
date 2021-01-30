@@ -18,12 +18,19 @@ struct PurgeDatabaseButtonView: View {
     }
     
     private func purge() {
-        try? SQLiteDatabase.main?.executeSQL(
-            sql: "DELETE FROM \(TimeSeriesMeasurement.tableName);"
-        )
-        try? SQLiteDatabase.main?.executeSQL(
-            sql: "DELETE FROM \(SmartPPEEvent.tableName);"
-        )
+                
+        SQLiteDatabase.openDatabase(purge: true)
+        
+        if let db = SQLiteDatabase.main {
+            do {
+                for table in SQLiteDatabase.tables {
+                    try db.createTable(table: table)
+                }
+                
+            } catch {
+                PersistanceLogger.error("unable to setup database: \(db.errorMessage)")
+            }
+        }
     }
 }
 

@@ -37,18 +37,8 @@ class SQLiteDatabase {
             return _main
         }
         
-        let db: SQLiteDatabase
-        do {
-            guard let path = SQLiteDatabase.dbPath?.relativePath else { return nil }
-            db = try SQLiteDatabase.open(path: path)
-            PersistanceLogger.debug("Database Path: \(path)")
-            PersistanceLogger.info("Successfully opened connection to database.")
-            _main = db
-            return db
-        } catch {
-            PersistanceLogger.error("Unable to open database.")
-            return nil
-        }
+        openDatabase()
+        return _main
     }
     
     static var dateFormatter: DateFormatter {
@@ -92,6 +82,26 @@ class SQLiteDatabase {
             } else {
                 throw SQLiteError.OpenDatabase(message: "No error message provided from sqlite.")
             }
+        }
+    }
+    
+    static func openDatabase(purge: Bool=false) {
+        do {
+            guard let path = SQLiteDatabase.dbPath?.relativePath else { return }
+           
+            if purge, let dbPath = SQLiteDatabase.dbPath?.relativePath,
+               FileManager.default.fileExists(atPath: dbPath) {
+                
+                try FileManager.default.removeItem(atPath: dbPath)
+            }
+            
+            let db = try SQLiteDatabase.open(path: path)
+            PersistanceLogger.debug("Database Path: \(path)")
+            PersistanceLogger.info("Successfully opened connection to database.")
+            _main = db
+        } catch {
+            PersistanceLogger.error("Unable to open database.")
+            return
         }
     }
     
