@@ -54,29 +54,42 @@ struct EventFormView: View {
     }
     
     private func endEvent() {
-        guard let currentEvent = currentEvent,
-              let startDate = currentEvent.startDate else { return }
-        currentEvent.end()
-//        currentEvent = nil
-        notes = ""
-        otherEventName = ""
-        
-        let measurements = SQLiteDatabase.main?.getAllTS(
-            from: startDate,
-            to: currentEvent.endDate ?? Date()
-        ) ?? []
-        
-        measurements.forEach { (measurement) in
-            measurement.event = currentEvent
-            let sql = """
-                UPDATE \(TimeSeriesMeasurement.tableName)
-                SET event_id = '\(currentEvent.id)'
-                WHERE id = \(measurement.id);
-            """
-            try? SQLiteDatabase.main?.updateRecord(record: measurement, updateSQL: sql)
+        defer {
+            self.currentEvent = nil
+            notes = ""
+            otherEventName = ""
         }
         
-        self.currentEvent = nil
+        guard let currentEvent = currentEvent,
+              let startDate = currentEvent.startDate else { return }
+        
+        currentEvent.end()
+        
+//        let measurements = SQLiteDatabase.main?.getAllTS(
+//            from: startDate,
+//            to: currentEvent.endDate ?? Date()
+//        ) ?? []
+        
+        guard let endDate = currentEvent.endDate else { return }
+        
+        let updateQuery = """
+            UPDATE \(TimeSeriesMeasurement.tableName)
+            SET event_id = \(currentEvent.id)
+            WHERE date >= '\(SQLiteDatabase.dateFormatter.string(from: startDate))'
+            AND date <= '\(SQLiteDatabase.dateFormatter.string(from: endDate))';
+        """
+        
+        try? SQLiteDatabase.main?.executeSQL(sql: updateQuery)
+        
+//        measurements.forEach { (measurement) in
+//            measurement.event = currentEvent
+//            let sql = """
+//                UPDATE \(TimeSeriesMeasurement.tableName)
+//                SET event_id = '\(currentEvent.id)'
+//                WHERE id = \(measurement.id);
+//            """
+//            try? SQLiteDatabase.main?.updateRecord(record: measurement, updateSQL: sql)
+//        }
     }
 }
 
