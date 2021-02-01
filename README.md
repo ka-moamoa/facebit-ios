@@ -21,7 +21,11 @@ The application is built as a [Catalyst](https://developer.apple.com/mac-catalys
 
 # iOS App
 ## Running iOS Application (No XCode - Release)
-This requires a enterprise signing certificate or a beta release in the AppStore. We are holding of on this until we have a stable build.
+* on a iOS Device, download TestFlight from the AppStore
+* Slack Blaine to add you to the app team as a Developer
+* Accept the invite via email on your iOS Device
+* Download the app via TestFlight (should receive notification for new builds)
+![testflight](resources/imgs/testflight.jpeg)
 
 ## Running on iOS Application (XCode - Development)
 **Note**: Requires a active [Apple Developer Account](https://developer.apple.com/)
