@@ -37,22 +37,15 @@ class SQLiteDatabase {
             return _main
         }
         
-        let db: SQLiteDatabase
-        do {
-            guard let path = SQLiteDatabase.dbPath?.relativePath else { return nil }
-            db = try SQLiteDatabase.open(path: path)
-            PersistanceLogger.debug("Database Path: \(path)")
-            PersistanceLogger.info("Successfully opened connection to database.")
-            _main = db
-            return db
-        } catch {
-            PersistanceLogger.error("Unable to open database.")
-            return nil
-        }
+        openDatabase()
+        return _main
     }
     
-    static var dateFormatter: ISO8601DateFormatter {
-        return ISO8601DateFormatter()
+    static var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        return dateFormatter
     }
     
     static var tables: [SQLiteTable.Type] = [SmartPPEEvent.self, TimeSeriesMeasurement.self]
@@ -92,6 +85,26 @@ class SQLiteDatabase {
         }
     }
     
+    static func openDatabase(purge: Bool=false) {
+        do {
+            guard let path = SQLiteDatabase.dbPath?.relativePath else { return }
+           
+            if purge, let dbPath = SQLiteDatabase.dbPath?.relativePath,
+               FileManager.default.fileExists(atPath: dbPath) {
+                
+                try FileManager.default.removeItem(atPath: dbPath)
+            }
+            
+            let db = try SQLiteDatabase.open(path: path)
+            PersistanceLogger.debug("Database Path: \(path)")
+            PersistanceLogger.info("Successfully opened connection to database.")
+            _main = db
+        } catch {
+            PersistanceLogger.error("Unable to open database.")
+            return
+        }
+    }
+    
     func prepareStatement(sql: String) throws -> OpaquePointer? {
         var statement: OpaquePointer?
         
@@ -103,6 +116,20 @@ class SQLiteDatabase {
         return statement
     }
     
+    func executeSQL(sql: String) throws {
+        let statement = try prepareStatement(sql: sql)
+        
+        defer {
+            sqlite3_finalize(statement)
+        }
+        
+        PersistanceLogger.info("Executing \(sql)")
+        
+        guard sqlite3_step(statement) == SQLITE_DONE else {
+            throw SQLiteError.Step(message: errorMessage)
+        }
+    }
+        
     func createTable(table: SQLiteTable.Type) throws {
         let createTableSQL = try prepareStatement(sql: table.createSQL)
         
@@ -187,10 +214,9 @@ class SQLiteDatabase {
         return id
     }
     
-    func getAll() -> [TimeSeriesMeasurement] {
-        let query = "SELECT * FROM \(TimeSeriesMeasurement.tableName);"
-        guard let queryStatement = try? prepareStatement(sql: query) else {
-            return []
+    func query(_ sql: String) -> OpaquePointer? {
+        guard let queryStatement = try? prepareStatement(sql: sql) else {
+            return nil
         }
         
         defer {
@@ -200,6 +226,23 @@ class SQLiteDatabase {
 //        guard sqlite3_bind_int(queryStatement, 1, Int32(id)) == SQLITE_OK else {
 //            return nil
 //        }
+        
+        return queryStatement
+    }
+    
+    func getAllTS(from startDate: Date, to endDate: Date) -> [TimeSeriesMeasurement] {
+        let sql = """
+        SELECT id, value, date, type
+        FROM \(TimeSeriesMeasurement.tableName)
+        WHERE date >= '\(SQLiteDatabase.dateFormatter.string(from: startDate))'
+            AND date <= '\(SQLiteDatabase.dateFormatter.string(from: endDate))';
+        """
+        
+        guard let queryStatement = try? prepareStatement(sql: sql) else { return [] }
+        
+        defer {
+            sqlite3_finalize(queryStatement)
+        }
         
         var measurements: [TimeSeriesMeasurement] = []
         
@@ -227,7 +270,6 @@ class SQLiteDatabase {
                 )
             )
         }
-        
         return measurements
     }
 }

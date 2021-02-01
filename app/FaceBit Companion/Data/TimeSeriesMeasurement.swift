@@ -18,7 +18,7 @@ class TimeSeriesMeasurement: Codable, SQLiteTable {
     let value: Double
     let date: Date
     let type: DataType
-    let event: SmartPPEEvent?
+    var event: SmartPPEEvent?
     
     static func sampleSeries() -> [TimeSeriesMeasurement] {
         let startValue = 1.0
@@ -92,5 +92,28 @@ class TimeSeriesMeasurement: Codable, SQLiteTable {
     func didInsert(id: Int) {
         self.id = id
         self.isInserted = true
+    }
+}
+
+extension Array where Element == TimeSeriesMeasurement {
+    func insertSQL() -> String {
+        var sql = """
+            INSERT INTO \(TimeSeriesMeasurement.tableName)
+            (value, date, type, event_id)
+            VALUES
+        """
+        
+        for ts in self {
+            if ts.event == nil {
+                sql += " (\(ts.value), '\(SQLiteDatabase.dateFormatter.string(from: ts.date))', '\(ts.type.rawValue)', NULL),"
+            } else {
+                sql += " (\(ts.value), '\(SQLiteDatabase.dateFormatter.string(from: ts.date))', '\(ts.type.rawValue)', \(ts.event!.id)),"
+            }
+        }
+        
+        sql = String(sql.dropLast())
+        sql += ";"
+        
+        return sql
     }
 }

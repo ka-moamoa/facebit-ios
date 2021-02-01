@@ -25,6 +25,7 @@
 		012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */; };
 		012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */; };
 		01325D3B25C35196000B2A05 /* ShareDatabaseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01325D3A25C35196000B2A05 /* ShareDatabaseButtonView.swift */; };
+		01325D4025C35BC5000B2A05 /* GenericEventRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01325D3F25C35BC5000B2A05 /* GenericEventRecordingView.swift */; };
 		013B00B725BB278100319A42 /* GenericSettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B00B625BB278100319A42 /* GenericSettingsRow.swift */; };
 		013B00BC25BB289B00319A42 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B00BB25BB289B00319A42 /* SettingsView.swift */; };
 		013B00C525BB2A7500319A42 /* KeyValueRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B00C425BB2A7500319A42 /* KeyValueRow.swift */; };
@@ -40,6 +41,8 @@
 		015F994525AE493500BDD672 /* FaceBit_CompanionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F994425AE493500BDD672 /* FaceBit_CompanionTests.swift */; };
 		015F995025AE493500BDD672 /* FaceBit_CompanionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */; };
 		015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */; };
+		019754EF25C499D300211FE9 /* PurgeDatabaseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019754EE25C499D300211FE9 /* PurgeDatabaseButtonView.swift */; };
+		019754FD25C4AAFE00211FE9 /* EventFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019754FC25C4AAFE00211FE9 /* EventFormView.swift */; };
 		01EDBE7025B72659009505DC /* SmartPPEEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */; };
 		01EDBE7825B74604009505DC /* MyFaceBitMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */; };
 		01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */; };
@@ -83,6 +86,7 @@
 		012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLinePlot.swift; sourceTree = "<group>"; };
 		012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurement.swift; sourceTree = "<group>"; };
 		01325D3A25C35196000B2A05 /* ShareDatabaseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareDatabaseButtonView.swift; sourceTree = "<group>"; };
+		01325D3F25C35BC5000B2A05 /* GenericEventRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericEventRecordingView.swift; sourceTree = "<group>"; };
 		013B00B625BB278100319A42 /* GenericSettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSettingsRow.swift; sourceTree = "<group>"; };
 		013B00BB25BB289B00319A42 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		013B00C425BB2A7500319A42 /* KeyValueRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueRow.swift; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 		015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBit_CompanionUITests.swift; sourceTree = "<group>"; };
 		015F995125AE493500BDD672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnectionManager.swift; sourceTree = "<group>"; };
+		019754EE25C499D300211FE9 /* PurgeDatabaseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurgeDatabaseButtonView.swift; sourceTree = "<group>"; };
+		019754FC25C4AAFE00211FE9 /* EventFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFormView.swift; sourceTree = "<group>"; };
 		01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartPPEEvent.swift; sourceTree = "<group>"; };
 		01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFaceBitMainView.swift; sourceTree = "<group>"; };
 		01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBitStatusView.swift; sourceTree = "<group>"; };
@@ -182,6 +188,7 @@
 			children = (
 				013B00C325BB2A6400319A42 /* Rows */,
 				013B00BB25BB289B00319A42 /* SettingsView.swift */,
+				019754EE25C499D300211FE9 /* PurgeDatabaseButtonView.swift */,
 				01325D3A25C35196000B2A05 /* ShareDatabaseButtonView.swift */,
 			);
 			path = Settings;
@@ -303,6 +310,8 @@
 				010C677125BB82A400E0EF01 /* EventRecorderView.swift */,
 				010C677525BB82A400E0EF01 /* NormalBreathingEventRecordView.swift */,
 				010C677325BB82A400E0EF01 /* TalkingEventRecordView.swift */,
+				01325D3F25C35BC5000B2A05 /* GenericEventRecordingView.swift */,
+				019754FC25C4AAFE00211FE9 /* EventFormView.swift */,
 			);
 			path = "Event Recording";
 			sourceTree = "<group>";
@@ -457,6 +466,7 @@
 				010862BD25B5E27800EAF722 /* SQLiteTable.swift in Sources */,
 				015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */,
 				010862CE25B6122600EAF722 /* Logger.swift in Sources */,
+				01325D4025C35BC5000B2A05 /* GenericEventRecordingView.swift in Sources */,
 				010C677725BB82A400E0EF01 /* CoughEventRecordView.swift in Sources */,
 				01EDBE7825B74604009505DC /* MyFaceBitMainView.swift in Sources */,
 				010C677625BB82A400E0EF01 /* EventRecorderView.swift in Sources */,
@@ -469,11 +479,13 @@
 				01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */,
 				010C675725BB5AFC00E0EF01 /* FaceBitConnectionStatusButtonView.swift in Sources */,
 				013B00B725BB278100319A42 /* GenericSettingsRow.swift in Sources */,
+				019754FD25C4AAFE00211FE9 /* EventFormView.swift in Sources */,
 				010862C825B5E54F00EAF722 /* Int+Id.swift in Sources */,
 				010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */,
 				010C67A125BB9C7400E0EF01 /* ValueWidgetView.swift in Sources */,
 				013B00EE25BB517A00319A42 /* FaceBit+String.swift in Sources */,
 				010C677A25BB82A400E0EF01 /* NormalBreathingEventRecordView.swift in Sources */,
+				019754EF25C499D300211FE9 /* PurgeDatabaseButtonView.swift in Sources */,
 				010C679925BB982900E0EF01 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -75,6 +75,7 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
     
     private let TemperatureCharacteristicUUID = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8782")
     private let PressureCharacteristicUUID = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8781")
+    private let IsDataReadyCharacteristicUUID = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8783")
     
     private var currentEvent: SmartPPEEvent?
     
@@ -110,7 +111,7 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         
         for service in services {
             print(service)
-            peripheral.discoverCharacteristics([TemperatureCharacteristicUUID, PressureCharacteristicUUID], for: service)
+            peripheral.discoverCharacteristics([TemperatureCharacteristicUUID, PressureCharacteristicUUID, IsDataReadyCharacteristicUUID], for: service)
         }
     }
     
@@ -119,9 +120,9 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         
         for characteristic in characteristics {
             print(characteristic)
-            if characteristic.properties.contains(.read) {
-                peripheral.readValue(for: characteristic)
-            }
+//            if characteristic.properties.contains(.read) {
+//                peripheral.readValue(for: characteristic)
+//            }
             if characteristic.properties.contains(.notify) {
                 peripheral.setNotifyValue(true, for: characteristic)
             }
@@ -131,36 +132,64 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         switch characteristic.uuid {
         case TemperatureCharacteristicUUID:
-            if let value = characteristic.value, let raw = UInt64(value.hexEncodedString(), radix: 16) {
-                guard Double(raw) != 0.0 else { return }
-                
-                let temp = Double(raw) / 10000.0
+            guard let value = characteristic.value else { return }
+            let bytes = [UInt8](value)
+            var tempReads: [UInt16] = []
+
+            for i in stride(from: 0, to: bytes.count, by: 2) {
+                tempReads.append((UInt16(bytes[i]) << 8 | UInt16(bytes[i+1])))
+            }
+            
+            let start = Date()
+            let freq: TimeInterval = 1.0 / 25.0
+
+            for (i, val) in tempReads.reversed().enumerated() {
+                let temp = Double(val) / 10.0
                 let measurement = TimeSeriesMeasurement(
                     value: temp,
-                    date: Date(),
+                    date: start.addingTimeInterval(-(freq*Double(i))),
                     type: .temperature,
                     event: currentEvent
                 )
-                
-                _temperatureReadingsCache.append(measurement)
                 try? SQLiteDatabase.main?.insertRecord(record: measurement)
-                BLELogger.debug("Temperature Reading: \(self.latestTemperature)")
             }
         case PressureCharacteristicUUID:
-            if let value = characteristic.value, let raw = UInt64(value.hexEncodedString(), radix: 16) {
-                guard Double(raw) != 0.0 else { return }
-                
-                let pressure = Double(raw) / 100.0
+            guard let value = characteristic.value else { return }
+            let bytes = [UInt8](value)
+            var pressureReads: [UInt16] = []
+
+            for i in stride(from: 0, to: bytes.count, by: 2) {
+                pressureReads.append((UInt16(bytes[i]) << 8 | UInt16(bytes[i+1])))
+            }
+            
+            let start = Date()
+            let freq: TimeInterval = 1.0 / 25.0
+
+            for (i, val) in pressureReads.reversed().enumerated() {
+                let pressure = (Double(val) + 80000) / 100
                 let measurement = TimeSeriesMeasurement(
                     value: pressure,
-                    date: Date(),
+                    date: start.addingTimeInterval(-(freq*Double(i))),
                     type: .pressure,
                     event: currentEvent
                 )
-                
-                _pressureReadingsCache.append(measurement)
                 try? SQLiteDatabase.main?.insertRecord(record: measurement)
-                BLELogger.debug("Pressure Reading: \(self.latestPressure)")
+            }
+
+            
+        case IsDataReadyCharacteristicUUID:
+            if let value = characteristic.value, let raw = UInt64(value.hexEncodedString(), radix: 16) {
+                BLELogger.debug("Is Ready \(raw)")
+                if raw == 1 {
+                    // todo: read temp and pressure
+                    if let characteristics = peripheral.services?.first(where: { $0.uuid == self.mainServiceUUID })?.characteristics {
+                        for characteristic in characteristics {
+                            if characteristic.properties.contains(.read) {
+                                peripheral.readValue(for: characteristic)
+                            }
+                        }
+                    }
+                }
             }
         default:
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")

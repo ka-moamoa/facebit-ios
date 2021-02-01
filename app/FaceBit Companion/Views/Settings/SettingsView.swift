@@ -13,18 +13,14 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-//                Section(header: Text("General")) {
-//                    KeyValueRow(key: "Application Version", value: Bundle.main.versionNumber)
-//                    KeyValueRow(key: "Application Build", value: Bundle.main.buildNumber)
-//                }
-                
                 Section(header: Text("Development")) {
                     NavigationLink(
-                        destination: EventRecorderView(facebit: facebit),
+                        destination: GenericEventRecordingView(),
                         label: {
                             GenericSettingsRow(text: "Record Events")
                         })
                     ShareDatabaseButtonView()
+                    PurgeDatabaseButtonView()
                 }
             }
             .listStyle(GroupedListStyle())
