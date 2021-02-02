@@ -65,11 +65,6 @@ struct EventFormView: View {
         
         currentEvent.end()
         
-//        let measurements = SQLiteDatabase.main?.getAllTS(
-//            from: startDate,
-//            to: currentEvent.endDate ?? Date()
-//        ) ?? []
-        
         guard let endDate = currentEvent.endDate else { return }
         
         let updateQuery = """
@@ -80,16 +75,6 @@ struct EventFormView: View {
         """
         
         try? SQLiteDatabase.main?.executeSQL(sql: updateQuery)
-        
-//        measurements.forEach { (measurement) in
-//            measurement.event = currentEvent
-//            let sql = """
-//                UPDATE \(TimeSeriesMeasurement.tableName)
-//                SET event_id = '\(currentEvent.id)'
-//                WHERE id = \(measurement.id);
-//            """
-//            try? SQLiteDatabase.main?.updateRecord(record: measurement, updateSQL: sql)
-//        }
     }
 }
 

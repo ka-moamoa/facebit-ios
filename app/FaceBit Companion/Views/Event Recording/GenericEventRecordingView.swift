@@ -11,13 +11,26 @@ struct GenericEventRecordingView: View {
     @EnvironmentObject var facebit: FaceBitPeripheral
     
     var body: some View {
-        VStack {
-            Text("Event Recording")
-                .font(.headline)
-            Spacer()
-            EventFormView()
+        if facebit.state != PeripheralState.connected {
+            Text("Please Connect Facebit Device")
+                .navigationTitle("Event Recording")
+                .navigationBarItems(trailing:
+                    FaceBitConnectionStatusButtonView()
+                )
+        } else {
+            VStack {
+                Text("Event Recording")
+                    .font(.headline)
+                Spacer()
+                EventFormView()
+            }
+            .padding()
+            .navigationTitle("Event Recording")
+            .navigationBarItems(trailing:
+                FaceBitConnectionStatusButtonView()
+            )
         }
-        .padding()
+        
     }
 }
 
