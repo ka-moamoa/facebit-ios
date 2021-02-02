@@ -9,15 +9,24 @@ import SwiftUI
 
 struct GenericEventRecordingView: View {
     @EnvironmentObject var facebit: FaceBitPeripheral
+    @State private var activeEvent: SmartPPEEvent? = SmartPPEEvent.getActiveEvent()
     
     var body: some View {
         VStack {
-            Text("Event Recording")
-                .font(.headline)
-            Spacer()
-            EventFormView()
+            if activeEvent != nil {
+                ActiveEventView(activeEvent: $activeEvent)
+            } else {
+                StartEventView(activeEvent: $activeEvent)
+            }
         }
         .padding()
+        .navigationTitle("Event Recording")
+        .navigationBarItems(trailing:
+            FaceBitConnectionStatusButtonView()
+        )
+        .onAppear(perform: {
+            activeEvent = SmartPPEEvent.getActiveEvent()
+        })
     }
 }
 

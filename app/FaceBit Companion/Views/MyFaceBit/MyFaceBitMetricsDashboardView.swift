@@ -13,26 +13,26 @@ struct MyFaceBitMetricsDashboardView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false, content: {
             GeometryReader { geometry in
-                VStack {
-                    HStack {
-                        TimeSeriesGraphWidgetView(title: "Pressure", series: $facebit.PressureReadings)
-                        TimeSeriesGraphWidgetView(title: "Temperature", series: $facebit.TemperatureReadings)
-                    }
-                    HStack {
-                        ValueWidgetView(
-                            title: "Pressure",
-                            unit: "bar",
-                            value: $facebit.latestPressure
-                        )
-                        ValueWidgetView(
-                            title: "Temperature",
-                            unit: "celsius",
-                            value: $facebit.latestTemperature
-                        )
-                    }
-                }
-                .padding()
-                .frame(width: geometry.size.width, height: geometry.size.width)
+//                VStack {
+//                    HStack {
+//                        TimeSeriesGraphWidgetView(title: "Pressure", series: [])
+//                        TimeSeriesGraphWidgetView(title: "Temperature", series: [])
+//                    }
+//                    HStack {
+//                        ValueWidgetView(
+//                            title: "Pressure",
+//                            unit: "bar",
+//                            value: 0.0
+//                        )
+//                        ValueWidgetView(
+//                            title: "Temperature",
+//                            unit: "celsius",
+//                            value: 0.0
+//                        )
+//                    }
+//                }
+//                .padding()
+//                .frame(width: geometry.size.width, height: geometry.size.width)
             }
         })
     }
