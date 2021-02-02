@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SQLite3
 
 enum SmartPPEEventType: String, CaseIterable, Codable, Identifiable {
     case normalBreathing = "normal_breathing"
@@ -47,7 +48,8 @@ class SmartPPEEvent: Codable, SQLiteTable {
         otherEventLabel: String?=nil,
         notes: String?=nil,
         startDate: Date?=nil,
-        endDate: Date?=nil
+        endDate: Date?=nil,
+        isInserted: Bool = false
     ) {
         self.id = id
         self.eventType = eventType
@@ -55,6 +57,7 @@ class SmartPPEEvent: Codable, SQLiteTable {
         self.notes = notes
         self.startDate = startDate
         self.endDate = endDate
+        self.isInserted = isInserted
     }
     
     func start() {
@@ -100,6 +103,51 @@ class SmartPPEEvent: Codable, SQLiteTable {
     func didInsert(id: Int) {
         self.id = id
         self.isInserted = true
+    }
+    
+    static func getActiveEvent() -> SmartPPEEvent? {
+        guard let db = SQLiteDatabase.main else { return nil }
+        let sql = """
+            SELECT id, event_type, other_event_label, notes, start_date, end_date
+            FROM event
+            WHERE end_date IS NULL or end_date = ''
+            ORDER BY start_date DESC
+            LIMIT 1
+        """
+        guard let statement = try? db.prepareStatement(sql: sql) else { return nil }
+        
+        defer {
+            sqlite3_finalize(statement)
+        }
+        
+        if sqlite3_step(statement) == SQLITE_ROW {
+            let id = Int(sqlite3_column_int(statement, 0))
+            
+            guard let eventType = SmartPPEEventType(rawValue: String(cString: sqlite3_column_text(statement, 1))),
+                  let startDate = SQLiteDatabase.dateFormatter.date(from: String(cString: sqlite3_column_text(statement, 4))) else {
+                
+                return nil
+            }
+            
+            let otherEventLabel = String(cString: sqlite3_column_text(statement, 2))
+            let notes = String(cString: sqlite3_column_text(statement, 3))
+            
+            let endDate = SQLiteDatabase.dateFormatter.date(from: String(cString: sqlite3_column_text(statement, 5)))
+            
+            let event = SmartPPEEvent(
+                id: id,
+                eventType: eventType,
+                otherEventLabel: otherEventLabel,
+                notes: notes,
+                startDate: startDate,
+                endDate: endDate,
+                isInserted: true
+            )
+            
+            return event
+        }
+        
+        return nil
     }
     
     private func update(sql: String) {

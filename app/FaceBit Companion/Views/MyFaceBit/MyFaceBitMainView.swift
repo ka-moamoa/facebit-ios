@@ -12,7 +12,7 @@ import ACarousel
 struct MyFaceBitMainViewMacOS: View {
     @EnvironmentObject var facebit: FaceBitPeripheral
     
-    var cards: [FaceBitNotificationCard] = []
+    @State var cards: [FaceBitNotificationCard] = []
 
     var body: some View {
         NavigationView {

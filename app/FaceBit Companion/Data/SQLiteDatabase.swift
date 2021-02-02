@@ -214,21 +214,17 @@ class SQLiteDatabase {
         return id
     }
     
-    func query(_ sql: String) -> OpaquePointer? {
-        guard let queryStatement = try? prepareStatement(sql: sql) else {
-            return nil
-        }
-        
-        defer {
-            sqlite3_finalize(queryStatement)
-        }
-        
-//        guard sqlite3_bind_int(queryStatement, 1, Int32(id)) == SQLITE_OK else {
+//    func query(_ sql: String) -> OpaquePointer? {
+//        guard let queryStatement = try? prepareStatement(sql: sql) else {
 //            return nil
 //        }
-        
-        return queryStatement
-    }
+//        
+//        defer {
+//            sqlite3_finalize(queryStatement)
+//        }
+//        
+//        return queryStatement
+//    }
     
     func getAllTS(from startDate: Date, to endDate: Date) -> [TimeSeriesMeasurement] {
         let sql = """
