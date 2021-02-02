@@ -9,14 +9,19 @@ import SwiftUI
 
 struct GenericEventRecordingView: View {
     @EnvironmentObject var facebit: FaceBitPeripheral
-    @State private var activeEvent: SmartPPEEvent? = SmartPPEEvent.getActiveEvent()
+    @State private var activeEvent: SmartPPEEvent?
+    @State private var initialized: Bool = false
     
     var body: some View {
         VStack {
-            if activeEvent != nil {
-                ActiveEventView(activeEvent: $activeEvent)
-            } else {
-                StartEventView(activeEvent: $activeEvent)
+            if initialized {
+                if activeEvent != nil {
+                    ActiveEventView(activeEvent: $activeEvent)
+                } else {
+                    StartEventView(activeEvent: $activeEvent)
+                }
+            }else {
+                Text("Checking for Active Event ...")
             }
         }
         .padding()
@@ -25,7 +30,11 @@ struct GenericEventRecordingView: View {
             FaceBitConnectionStatusButtonView()
         )
         .onAppear(perform: {
-            activeEvent = SmartPPEEvent.getActiveEvent()
+            initialized = false
+            SmartPPEEvent.getActiveEvent(callback: { (event) in
+                self.activeEvent = event
+                self.initialized = true
+            })
         })
     }
 }

@@ -32,6 +32,8 @@ class SQLiteDatabase {
         return dbPath
     }
     
+    static let queue = DispatchQueue(label: "sqlite-queue", qos: .userInitiated)
+    
     static var main: SQLiteDatabase? {
         guard SQLiteDatabase._main == nil else {
             return _main
@@ -116,63 +118,81 @@ class SQLiteDatabase {
         return statement
     }
     
-    func executeSQL(sql: String) throws {
-        let statement = try prepareStatement(sql: sql)
-        
-        defer {
-            sqlite3_finalize(statement)
-        }
-        
-//        PersistanceLogger.info("Executing \(sql)")
-        
-        guard sqlite3_step(statement) == SQLITE_DONE else {
-            throw SQLiteError.Step(message: errorMessage)
+    func executeSQL(sql: String) {
+        SQLiteDatabase.queue.async { [weak self] in
+            guard let self = self else { return }
+            let statement = try? self.prepareStatement(sql: sql)
+            
+            defer {
+                sqlite3_finalize(statement)
+            }
+            
+            guard sqlite3_step(statement) == SQLITE_DONE else {
+                PersistanceLogger.error("\(self.errorMessage)")
+                return
+            }
         }
     }
         
-    func createTable(table: SQLiteTable.Type) throws {
-        let createTableSQL = try prepareStatement(sql: table.createSQL)
-        
-        defer {
-            sqlite3_finalize(createTableSQL)
+    func createTable(table: SQLiteTable.Type) {
+        SQLiteDatabase.queue.async { [weak self] in
+            guard let self = self else { return }
+            
+            let createTableSQL = try? self.prepareStatement(sql: table.createSQL)
+            
+            defer {
+                sqlite3_finalize(createTableSQL)
+            }
+            
+            guard sqlite3_step(createTableSQL) == SQLITE_DONE else {
+                PersistanceLogger.error("\(self.errorMessage)")
+                return
+            }
+            PersistanceLogger.info("\(table) table created.")
         }
-        
-        guard sqlite3_step(createTableSQL) == SQLITE_DONE else {
-            throw SQLiteError.Step(message: errorMessage)
-        }
-        PersistanceLogger.info("\(table) table created.")
-    }
-    
-    func insertRecord<T:SQLiteTable>(record: T) throws {
-        let insertStatement = try prepareStatement(sql: record.insertSQL())
-        
-        defer {
-            sqlite3_finalize(insertStatement)
-        }
-        
-        guard sqlite3_step(insertStatement) == SQLITE_DONE else {
-            throw SQLiteError.Step(message: errorMessage)
-        }
-        
-        PersistanceLogger.debug("Successfully inserted \(T.tableName) row.")
-        
-        let insertedId = try lastInsertedId()
-        record.didInsert(id: insertedId)
-        print(record)
     }
     
-    func updateRecord<T:SQLiteTable>(record: T, updateSQL: String) throws {
-        let updateStatement = try prepareStatement(sql: updateSQL)
-        
-        defer {
-            sqlite3_finalize(updateStatement)
+    func insertRecord<T:SQLiteTable>(record: T) {
+        SQLiteDatabase.queue.async { [weak self] in
+            guard let self = self else { return }
+            
+            let insertStatement = try? self.prepareStatement(sql: record.insertSQL())
+            
+            defer {
+                sqlite3_finalize(insertStatement)
+            }
+            
+            guard sqlite3_step(insertStatement) == SQLITE_DONE else {
+                PersistanceLogger.error("\(self.errorMessage)")
+                return
+            }
+            
+            PersistanceLogger.debug("Successfully inserted \(T.tableName) row.")
+            
+            if let insertedId = try? self.lastInsertedId() {
+                record.didInsert(id: insertedId)
+            }
+        }
+    }
+    
+    func updateRecord<T:SQLiteTable>(record: T, updateSQL: String) {
+        SQLiteDatabase.queue.async { [weak self] in
+            guard let self = self else { return }
+            
+            let updateStatement = try? self.prepareStatement(sql: updateSQL)
+            
+            defer {
+                sqlite3_finalize(updateStatement)
+            }
+            
+            guard sqlite3_step(updateStatement) == SQLITE_DONE else {
+                PersistanceLogger.error("\(self.errorMessage)")
+                return
+            }
+            
+            PersistanceLogger.info("successfully update \(T.tableName) row")
         }
         
-        guard sqlite3_step(updateStatement) == SQLITE_DONE else {
-            throw SQLiteError.Step(message: errorMessage)
-        }
-        
-        PersistanceLogger.info("successfully update \(T.tableName) row")
     }
     
 // Attempt at Batch Insert -- Loose id updates
@@ -189,17 +209,10 @@ class SQLiteDatabase {
 //
 //        print("Successfully inserted \(T.tableName) rows")
 //    }
-    
-    func insertRecords<T: SQLiteTable>(records: [T]) throws {
-        // TODO: make this batch (with id updates)
-        for record in records {
-            try insertRecord(record: record)
-        }
-    }
-    
+
     func lastInsertedId() throws -> Int {
         let sql = "SELECT last_insert_rowid()"
-        let statement = try prepareStatement(sql: sql)
+        let statement = try? prepareStatement(sql: sql)
         
         defer {
             sqlite3_finalize(statement)
@@ -226,46 +239,46 @@ class SQLiteDatabase {
 //        return queryStatement
 //    }
     
-    func getAllTS(from startDate: Date, to endDate: Date) -> [TimeSeriesMeasurement] {
-        let sql = """
-        SELECT id, value, date, type
-        FROM \(TimeSeriesMeasurement.tableName)
-        WHERE date >= '\(SQLiteDatabase.dateFormatter.string(from: startDate))'
-            AND date <= '\(SQLiteDatabase.dateFormatter.string(from: endDate))';
-        """
-        
-        guard let queryStatement = try? prepareStatement(sql: sql) else { return [] }
-        
-        defer {
-            sqlite3_finalize(queryStatement)
-        }
-        
-        var measurements: [TimeSeriesMeasurement] = []
-        
-        while(sqlite3_step(queryStatement) == SQLITE_ROW) {
-            let id = Int(sqlite3_column_int(queryStatement, 0))
-            let value = sqlite3_column_double(queryStatement, 1)
-            
-            guard let dateCString = sqlite3_column_text(queryStatement, 2),
-                  let typeCString = sqlite3_column_text(queryStatement, 3) else {
-                continue
-            }
-            
-            guard let date = SQLiteDatabase.dateFormatter.date(from: String(cString: dateCString)),
-                  let type = TimeSeriesMeasurement.DataType(rawValue: String(cString: typeCString)) else {
-                continue
-            }
-            
-            measurements.append(
-                TimeSeriesMeasurement(
-                    id: id,
-                    value: value,
-                    date: date,
-                    type: type,
-                    isInserted: true
-                )
-            )
-        }
-        return measurements
-    }
+//    func getAllTS(from startDate: Date, to endDate: Date) -> [TimeSeriesMeasurement] {
+//        let sql = """
+//        SELECT id, value, date, type
+//        FROM \(TimeSeriesMeasurement.tableName)
+//        WHERE date >= '\(SQLiteDatabase.dateFormatter.string(from: startDate))'
+//            AND date <= '\(SQLiteDatabase.dateFormatter.string(from: endDate))';
+//        """
+//
+//        guard let queryStatement = try? prepareStatement(sql: sql) else { return [] }
+//
+//        defer {
+//            sqlite3_finalize(queryStatement)
+//        }
+//
+//        var measurements: [TimeSeriesMeasurement] = []
+//
+//        while(sqlite3_step(queryStatement) == SQLITE_ROW) {
+//            let id = Int(sqlite3_column_int(queryStatement, 0))
+//            let value = sqlite3_column_double(queryStatement, 1)
+//
+//            guard let dateCString = sqlite3_column_text(queryStatement, 2),
+//                  let typeCString = sqlite3_column_text(queryStatement, 3) else {
+//                continue
+//            }
+//
+//            guard let date = SQLiteDatabase.dateFormatter.date(from: String(cString: dateCString)),
+//                  let type = TimeSeriesMeasurement.DataType(rawValue: String(cString: typeCString)) else {
+//                continue
+//            }
+//
+//            measurements.append(
+//                TimeSeriesMeasurement(
+//                    id: id,
+//                    value: value,
+//                    date: date,
+//                    type: type,
+//                    isInserted: true
+//                )
+//            )
+//        }
+//        return measurements
+//    }
 }

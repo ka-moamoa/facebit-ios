@@ -48,7 +48,7 @@ struct NormalBreathingEventRecordView: View {
                     self.startCountdown = 3
                     self.timeRemaining = 30
                     self.event = SmartPPEEvent(eventType: .normalBreathing)
-                    try? SQLiteDatabase.main?.insertRecord(record: self.event!)
+                    SQLiteDatabase.main?.insertRecord(record: self.event!)
                 }, label: {
                     Text("Start")
                         .font(.title)

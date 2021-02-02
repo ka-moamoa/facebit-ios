@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01004ABE25C996F0006F5670 /* DatabasePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01004ABD25C996F0006F5670 /* DatabasePublisher.swift */; };
+		01004AC425C997A4006F5670 /* TimeSeriesMeasurementPub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01004AC325C997A4006F5670 /* TimeSeriesMeasurementPub.swift */; };
 		010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862B725B2423900EAF722 /* SQLiteDatabase.swift */; };
 		010862BD25B5E27800EAF722 /* SQLiteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862BC25B5E27800EAF722 /* SQLiteTable.swift */; };
 		010862C825B5E54F00EAF722 /* Int+Id.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862C725B5E54F00EAF722 /* Int+Id.swift */; };
@@ -44,6 +46,7 @@
 		015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */; };
 		019754EF25C499D300211FE9 /* PurgeDatabaseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019754EE25C499D300211FE9 /* PurgeDatabaseButtonView.swift */; };
 		019754FD25C4AAFE00211FE9 /* StartEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019754FC25C4AAFE00211FE9 /* StartEventView.swift */; };
+		01B48FA525C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B48FA425C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift */; };
 		01EDBE7025B72659009505DC /* SmartPPEEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */; };
 		01EDBE7825B74604009505DC /* MyFaceBitMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */; };
 		01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */; };
@@ -69,6 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01004ABD25C996F0006F5670 /* DatabasePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabasePublisher.swift; sourceTree = "<group>"; };
+		01004AC325C997A4006F5670 /* TimeSeriesMeasurementPub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurementPub.swift; sourceTree = "<group>"; };
 		010862B725B2423900EAF722 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		010862BC25B5E27800EAF722 /* SQLiteTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteTable.swift; sourceTree = "<group>"; };
 		010862C725B5E54F00EAF722 /* Int+Id.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Id.swift"; sourceTree = "<group>"; };
@@ -111,6 +116,7 @@
 		015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnectionManager.swift; sourceTree = "<group>"; };
 		019754EE25C499D300211FE9 /* PurgeDatabaseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurgeDatabaseButtonView.swift; sourceTree = "<group>"; };
 		019754FC25C4AAFE00211FE9 /* StartEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartEventView.swift; sourceTree = "<group>"; };
+		01B48FA425C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesValueWidgetView.swift; sourceTree = "<group>"; };
 		01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartPPEEvent.swift; sourceTree = "<group>"; };
 		01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFaceBitMainView.swift; sourceTree = "<group>"; };
 		01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBitStatusView.swift; sourceTree = "<group>"; };
@@ -145,6 +151,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01004AC225C9977F006F5670 /* Publishers */ = {
+			isa = PBXGroup;
+			children = (
+				01004ABD25C996F0006F5670 /* DatabasePublisher.swift */,
+				01004AC325C997A4006F5670 /* TimeSeriesMeasurementPub.swift */,
+			);
+			path = Publishers;
+			sourceTree = "<group>";
+		};
 		010862CC25B6120200EAF722 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				010C675C25BB6C9A00E0EF01 /* TimeSeriesGraphWidgetView.swift */,
+				01B48FA425C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift */,
 				010C67A025BB9C7400E0EF01 /* ValueWidgetView.swift */,
 				010C67A825BB9FEC00E0EF01 /* WidgetView.swift */,
 			);
@@ -176,6 +192,7 @@
 		012C91BB25B1ED2300274F82 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				01004AC225C9977F006F5670 /* Publishers */,
 				012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */,
 				010862B725B2423900EAF722 /* SQLiteDatabase.swift */,
 				010862BC25B5E27800EAF722 /* SQLiteTable.swift */,
@@ -458,11 +475,14 @@
 				013B00BC25BB289B00319A42 /* SettingsView.swift in Sources */,
 				015F993525AE493500BDD672 /* ContentView.swift in Sources */,
 				010C675D25BB6C9A00E0EF01 /* TimeSeriesGraphWidgetView.swift in Sources */,
+				01004AC425C997A4006F5670 /* TimeSeriesMeasurementPub.swift in Sources */,
 				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
 				01325D3B25C35196000B2A05 /* ShareDatabaseButtonView.swift in Sources */,
 				010C677825BB82A400E0EF01 /* TalkingEventRecordView.swift in Sources */,
+				01B48FA525C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift in Sources */,
 				01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */,
 				012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */,
+				01004ABE25C996F0006F5670 /* DatabasePublisher.swift in Sources */,
 				013B00CD25BB2B6400319A42 /* FaceBit+Bundle.swift in Sources */,
 				013B00D225BB315C00319A42 /* FaceBitNotificationView.swift in Sources */,
 				010C67A925BB9FEC00E0EF01 /* WidgetView.swift in Sources */,
@@ -660,7 +680,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hesterlab.smartppe.facebit-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -687,7 +707,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hesterlab.smartppe.facebit-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;

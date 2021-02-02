@@ -39,7 +39,7 @@ struct StartEventView: View {
             notes: notes,
             startDate: Date()
         )
-        try? SQLiteDatabase.main?.insertRecord(record: event)
+        SQLiteDatabase.main?.insertRecord(record: event)
         event.start()
         activeEvent = event
     }

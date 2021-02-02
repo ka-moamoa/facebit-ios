@@ -22,13 +22,8 @@ struct PurgeDatabaseButtonView: View {
         SQLiteDatabase.openDatabase(purge: true)
         
         if let db = SQLiteDatabase.main {
-            do {
-                for table in SQLiteDatabase.tables {
-                    try db.createTable(table: table)
-                }
-                
-            } catch {
-                PersistanceLogger.error("unable to setup database: \(db.errorMessage)")
+            for table in SQLiteDatabase.tables {
+                db.createTable(table: table)
             }
         }
     }
