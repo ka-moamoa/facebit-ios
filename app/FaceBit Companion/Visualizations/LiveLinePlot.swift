@@ -39,7 +39,7 @@ struct LiveLinePlot: View {
                 (
                     point: CGPoint(
                         x: (startDate.distance(to: m.date) - timeStart) / (timeEnd - timeStart),
-                        y: (m.value - minValue) / (maxValue - minValue)
+                        y: (m.value - minValue) / ((maxValue - minValue) + Double.leastNonzeroMagnitude)
                     ),
                     measurement: m
                 )

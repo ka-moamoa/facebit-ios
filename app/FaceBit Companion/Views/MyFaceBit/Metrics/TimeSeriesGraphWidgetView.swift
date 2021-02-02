@@ -8,35 +8,46 @@
 import SwiftUI
 
 struct TimeSeriesGraphWidgetView: View {
-    @State var title: String
-    @Binding var series: [TimeSeriesMeasurement]
+    var title: String
+    @ObservedObject var publisher: TimeSeriesMeasurementPub
+    
+    init(title: String, dataType: TimeSeriesMeasurement.DataType, timerInterval: TimeInterval, rowLimit: Int, timeOffset: TimeInterval) {
+        
+        self.title = title
+        self.publisher = TimeSeriesMeasurementPub(
+            dataType: dataType,
+            rowLimit: rowLimit,
+            timerInterval: timerInterval,
+            timeOffset: timeOffset
+        )
+    }
     
     var body: some View {
         WidgetView {
             VStack {
                 Text(title)
                     .bold()
-                LiveLinePlot(timeSeries: $series, showAxis: false)
+                LiveLinePlot(timeSeries: $publisher.items, showAxis: false)
             }
         }
+        .onAppear(perform: {
+            publisher.start()
+        })
+        .onDisappear(perform: {
+            publisher.stop()
+        })
     }
 }
 
 struct RawPressure_Previews: PreviewProvider {
-    @State static var timeSeries = [
-        TimeSeriesMeasurement(value: 10.0, date: Date(), type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 10, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 20, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 30, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 40, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 50, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 60, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 70, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 80, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 90, type: .pressure)
-    ]
     
     static var previews: some View {
-        TimeSeriesGraphWidgetView(title: "Time Series", series: $timeSeries)
+        TimeSeriesGraphWidgetView(
+            title: "Time Series",
+            dataType: .temperature,
+            timerInterval: 1,
+            rowLimit: 25,
+            timeOffset: 2
+        )
     }
 }

@@ -105,49 +105,58 @@ class SmartPPEEvent: Codable, SQLiteTable {
         self.isInserted = true
     }
     
-    static func getActiveEvent() -> SmartPPEEvent? {
-        guard let db = SQLiteDatabase.main else { return nil }
-        let sql = """
-            SELECT id, event_type, other_event_label, notes, start_date, end_date
-            FROM event
-            WHERE end_date IS NULL or end_date = ''
-            ORDER BY start_date DESC
-            LIMIT 1
-        """
-        guard let statement = try? db.prepareStatement(sql: sql) else { return nil }
-        
-        defer {
-            sqlite3_finalize(statement)
-        }
-        
-        if sqlite3_step(statement) == SQLITE_ROW {
-            let id = Int(sqlite3_column_int(statement, 0))
-            
-            guard let eventType = SmartPPEEventType(rawValue: String(cString: sqlite3_column_text(statement, 1))),
-                  let startDate = SQLiteDatabase.dateFormatter.date(from: String(cString: sqlite3_column_text(statement, 4))) else {
-                
-                return nil
+    static func getActiveEvent(callback: @escaping (SmartPPEEvent?)->Void) {
+        SQLiteDatabase.queue.async {
+            guard let db = SQLiteDatabase.main else {
+                DispatchQueue.main.async { callback(nil) }
+                return
             }
-            
-            let otherEventLabel = String(cString: sqlite3_column_text(statement, 2))
-            let notes = String(cString: sqlite3_column_text(statement, 3))
-            
-            let endDate = SQLiteDatabase.dateFormatter.date(from: String(cString: sqlite3_column_text(statement, 5)))
-            
-            let event = SmartPPEEvent(
-                id: id,
-                eventType: eventType,
-                otherEventLabel: otherEventLabel,
-                notes: notes,
-                startDate: startDate,
-                endDate: endDate,
-                isInserted: true
-            )
-            
-            return event
+            let sql = """
+                SELECT id, event_type, other_event_label, notes, start_date, end_date
+                FROM event
+                WHERE end_date IS NULL or end_date = ''
+                ORDER BY start_date DESC
+                LIMIT 1
+            """
+            guard let statement = try? db.prepareStatement(sql: sql) else {
+                DispatchQueue.main.async { callback(nil) }
+                return
+            }
+
+            defer {
+                sqlite3_finalize(statement)
+            }
+
+            if sqlite3_step(statement) == SQLITE_ROW {
+                let id = Int(sqlite3_column_int(statement, 0))
+
+                guard let eventType = SmartPPEEventType(rawValue: String(cString: sqlite3_column_text(statement, 1))),
+                      let startDate = SQLiteDatabase.dateFormatter.date(from: String(cString: sqlite3_column_text(statement, 4))) else {
+
+                    DispatchQueue.main.async { callback(nil) }
+                    return
+                }
+
+                let otherEventLabel = String(cString: sqlite3_column_text(statement, 2))
+                let notes = String(cString: sqlite3_column_text(statement, 3))
+
+                let endDate = SQLiteDatabase.dateFormatter.date(from: String(cString: sqlite3_column_text(statement, 5)))
+
+                let event = SmartPPEEvent(
+                    id: id,
+                    eventType: eventType,
+                    otherEventLabel: otherEventLabel,
+                    notes: notes,
+                    startDate: startDate,
+                    endDate: endDate,
+                    isInserted: true
+                )
+
+                DispatchQueue.main.async { callback(event) }
+            } else {
+                DispatchQueue.main.async { callback(nil) }
+            }
         }
-        
-        return nil
     }
     
     private func update(sql: String) {

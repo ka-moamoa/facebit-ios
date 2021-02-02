@@ -119,38 +119,34 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
             let start = readStart
             // TODO: update freq to be configured.
             let freq: TimeInterval = 1.0 / 25.0
-            
-            // insert time series records on background thread
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                guard let self = self else { return }
 
-                var measurements: [TimeSeriesMeasurement] = []
+            var measurements: [TimeSeriesMeasurement] = []
+            
+            for (i, rawVal) in values.reversed().enumerated() {
                 
-                for (i, rawVal) in values.reversed().enumerated() {
-                    
-                    var valType: TimeSeriesMeasurement.DataType
-                    var val: Double
-                    
-                    if characteristic.uuid == self.TemperatureCharacteristicUUID {
-                        valType = .temperature
-                        val = Double(rawVal) / 10.0
-                    } else if characteristic.uuid == self.PressureCharacteristicUUID {
-                        valType = .pressure
-                        val = (Double(rawVal) + 80000) / 100
-                    } else {
-                        valType = .none
-                        val = Double(rawVal)
-                    }
-                    
-                    let measurement = TimeSeriesMeasurement(
-                        value: val,
-                        date: start.addingTimeInterval(-(freq*Double(i))),
-                        type: valType,
-                        event: nil
-                    )
-                    measurements.append(measurement)
+                var valType: TimeSeriesMeasurement.DataType
+                var val: Double
+                
+                if characteristic.uuid == self.TemperatureCharacteristicUUID {
+                    valType = .temperature
+                    val = Double(rawVal) / 10.0
+                } else if characteristic.uuid == self.PressureCharacteristicUUID {
+                    valType = .pressure
+                    val = (Double(rawVal) + 80000) / 100
+                } else {
+                    valType = .none
+                    val = Double(rawVal)
                 }
                 
+                let measurement = TimeSeriesMeasurement(
+                    value: val,
+                    date: start.addingTimeInterval(-(freq*Double(i))),
+                    type: valType,
+                    event: nil
+                )
+                measurements.append(measurement)
+            }
+            
 //                print("\(characteristic.uuid == self.TemperatureCharacteristicUUID ? "temp" : "pressure")")
 //                print("inserting: \(measurements.count) records")
 //
@@ -160,8 +156,7 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
 //                let endDate = SQLiteDatabase.dateFormatter.string(from: measurements.min(by: { $0.date > $1.date })!.date)
 //                print("endDate: \(endDate) records")
 //                print()
-                try? SQLiteDatabase.main?.executeSQL(sql: measurements.insertSQL())
-            }
+            try? SQLiteDatabase.main?.executeSQL(sql: measurements.insertSQL())
             
         case IsDataReadyCharacteristicUUID:
             if let value = characteristic.value, let raw = UInt64(value.hexEncodedString(), radix: 16) {
