@@ -32,7 +32,7 @@ class SQLiteDatabase {
         return dbPath
     }
     
-    static let queue = DispatchQueue(label: "sqlite-queue", qos: .default)
+    static let queue = DispatchQueue(label: "sqlite-queue", qos: .userInitiated)
     
     static var main: SQLiteDatabase? {
         guard SQLiteDatabase._main == nil else {

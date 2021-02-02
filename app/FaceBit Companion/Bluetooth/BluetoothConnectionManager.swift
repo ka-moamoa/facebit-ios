@@ -74,6 +74,7 @@ extension BluetoothConnectionManager: CBCentralManagerDelegate {
         guard let peri = peripherals.first(where: { $0.name == peripheral.name }) else { return }
         BLELogger.info("connceted to: \(peri.name)")
         peri.didUpdateState()
+        stopScan()
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {

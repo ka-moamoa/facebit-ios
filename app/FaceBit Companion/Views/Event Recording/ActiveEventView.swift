@@ -42,7 +42,7 @@ struct ActiveEventView: View {
             AND date <= '\(SQLiteDatabase.dateFormatter.string(from: endDate))';
         """
         
-        try? SQLiteDatabase.main?.executeSQL(sql: updateQuery)
+        SQLiteDatabase.main?.executeSQL(sql: updateQuery)
     }
 }
 

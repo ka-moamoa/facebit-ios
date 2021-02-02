@@ -160,10 +160,6 @@ class SmartPPEEvent: Codable, SQLiteTable {
     }
     
     private func update(sql: String) {
-        do {
-            try SQLiteDatabase.main?.updateRecord(record: self, updateSQL: sql)
-        } catch {
-            PersistanceLogger.error("unable to update SmartPPEEvent record")
-        }
+        SQLiteDatabase.main?.updateRecord(record: self, updateSQL: sql)
     }
 }
