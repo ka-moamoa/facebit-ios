@@ -36,35 +36,9 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
     var name = "GattServer"
     
     @Published var state: PeripheralState = .notFound
-    @Published var latestTemperature: Double = 0.0
-    @Published var latestPressure: Double = 0.0
     @Published var lastContact: Date?
     
     var publishRate: Int = 60
-    
-    typealias Measurement = (value: Double, timestamp: Date)
-    @Published var PressureReadings: [TimeSeriesMeasurement] = []
-    @Published var TemperatureReadings: [TimeSeriesMeasurement] = []
-    
-    private var _pressureReadingsCache: [TimeSeriesMeasurement] = [] {
-        didSet {
-            if _pressureReadingsCache.count == publishRate {
-                PressureReadings += _pressureReadingsCache
-                latestPressure = PressureReadings.last?.value ?? 0.0
-                _pressureReadingsCache = []
-            }
-        }
-    }
-    
-    private var _temperatureReadingsCache: [TimeSeriesMeasurement] = [] {
-        didSet {
-            if _temperatureReadingsCache.count == publishRate {
-                TemperatureReadings += _temperatureReadingsCache
-                latestTemperature = TemperatureReadings.last?.value ?? 0.0
-                _temperatureReadingsCache = []
-            }
-        }
-    }
     
     var peripheral: CBPeripheral? {
         didSet {
@@ -78,6 +52,8 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
     private let IsDataReadyCharacteristicUUID = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8783")
     
     private var currentEvent: SmartPPEEvent?
+    private var readStart = Date()
+    
     
     required override init() {
         super.init()
@@ -131,57 +107,66 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         switch characteristic.uuid {
-        case TemperatureCharacteristicUUID:
+        case TemperatureCharacteristicUUID, PressureCharacteristicUUID:
             guard let value = characteristic.value else { return }
             let bytes = [UInt8](value)
-            var tempReads: [UInt16] = []
+            var values: [UInt16] = []
 
             for i in stride(from: 0, to: bytes.count, by: 2) {
-                tempReads.append((UInt16(bytes[i]) << 8 | UInt16(bytes[i+1])))
+                values.append((UInt16(bytes[i]) << 8 | UInt16(bytes[i+1])))
             }
             
-            let start = Date()
+            let start = readStart
+            // TODO: update freq to be configured.
             let freq: TimeInterval = 1.0 / 25.0
-
-            for (i, val) in tempReads.reversed().enumerated() {
-                let temp = Double(val) / 10.0
-                let measurement = TimeSeriesMeasurement(
-                    value: temp,
-                    date: start.addingTimeInterval(-(freq*Double(i))),
-                    type: .temperature,
-                    event: currentEvent
-                )
-                try? SQLiteDatabase.main?.insertRecord(record: measurement)
-            }
-        case PressureCharacteristicUUID:
-            guard let value = characteristic.value else { return }
-            let bytes = [UInt8](value)
-            var pressureReads: [UInt16] = []
-
-            for i in stride(from: 0, to: bytes.count, by: 2) {
-                pressureReads.append((UInt16(bytes[i]) << 8 | UInt16(bytes[i+1])))
-            }
             
-            let start = Date()
-            let freq: TimeInterval = 1.0 / 25.0
+            // insert time series records on background thread
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                guard let self = self else { return }
 
-            for (i, val) in pressureReads.reversed().enumerated() {
-                let pressure = (Double(val) + 80000) / 100
-                let measurement = TimeSeriesMeasurement(
-                    value: pressure,
-                    date: start.addingTimeInterval(-(freq*Double(i))),
-                    type: .pressure,
-                    event: currentEvent
-                )
-                try? SQLiteDatabase.main?.insertRecord(record: measurement)
+                var measurements: [TimeSeriesMeasurement] = []
+                
+                for (i, rawVal) in values.reversed().enumerated() {
+                    
+                    var valType: TimeSeriesMeasurement.DataType
+                    var val: Double
+                    
+                    if characteristic.uuid == self.TemperatureCharacteristicUUID {
+                        valType = .temperature
+                        val = Double(rawVal) / 10.0
+                    } else if characteristic.uuid == self.PressureCharacteristicUUID {
+                        valType = .pressure
+                        val = (Double(rawVal) + 80000) / 100
+                    } else {
+                        valType = .none
+                        val = Double(rawVal)
+                    }
+                    
+                    let measurement = TimeSeriesMeasurement(
+                        value: val,
+                        date: start.addingTimeInterval(-(freq*Double(i))),
+                        type: valType,
+                        event: nil
+                    )
+                    measurements.append(measurement)
+                }
+                
+//                print("\(characteristic.uuid == self.TemperatureCharacteristicUUID ? "temp" : "pressure")")
+//                print("inserting: \(measurements.count) records")
+//
+//                let startDate = SQLiteDatabase.dateFormatter.string(from: measurements.max(by: { $0.date > $1.date })!.date)
+//                print("startDate: \(startDate) records")
+//
+//                let endDate = SQLiteDatabase.dateFormatter.string(from: measurements.min(by: { $0.date > $1.date })!.date)
+//                print("endDate: \(endDate) records")
+//                print()
+                try? SQLiteDatabase.main?.executeSQL(sql: measurements.insertSQL())
             }
-
             
         case IsDataReadyCharacteristicUUID:
             if let value = characteristic.value, let raw = UInt64(value.hexEncodedString(), radix: 16) {
-                BLELogger.debug("Is Ready \(raw)")
                 if raw == 1 {
-                    // todo: read temp and pressure
+                    readStart = Date()
                     if let characteristics = peripheral.services?.first(where: { $0.uuid == self.mainServiceUUID })?.characteristics {
                         for characteristic in characteristics {
                             if characteristic.properties.contains(.read) {

@@ -123,7 +123,7 @@ class SQLiteDatabase {
             sqlite3_finalize(statement)
         }
         
-        PersistanceLogger.info("Executing \(sql)")
+//        PersistanceLogger.info("Executing \(sql)")
         
         guard sqlite3_step(statement) == SQLITE_DONE else {
             throw SQLiteError.Step(message: errorMessage)
