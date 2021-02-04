@@ -670,7 +670,7 @@
 				CODE_SIGN_ENTITLEMENTS = "FaceBit Companion/FaceBit Companion.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"FaceBit Companion/Preview Content\"";
 				DEVELOPMENT_TEAM = 9MQDGC4RM2;
 				ENABLE_PREVIEWS = YES;
@@ -697,7 +697,7 @@
 				CODE_SIGN_ENTITLEMENTS = "FaceBit Companion/FaceBit Companion.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"FaceBit Companion/Preview Content\"";
 				DEVELOPMENT_TEAM = 9MQDGC4RM2;
 				ENABLE_PREVIEWS = YES;

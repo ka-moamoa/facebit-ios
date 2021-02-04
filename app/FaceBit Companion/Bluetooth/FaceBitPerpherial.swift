@@ -95,11 +95,9 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         guard let characteristics = service.characteristics else { return }
         
         for characteristic in characteristics {
-            print(characteristic)
-//            if characteristic.properties.contains(.read) {
-//                peripheral.readValue(for: characteristic)
-//            }
+            // print(characteristic)
             if characteristic.properties.contains(.notify) {
+                readStart = nil
                 peripheral.setNotifyValue(true, for: characteristic)
             }
         }
