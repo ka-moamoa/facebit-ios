@@ -32,7 +32,9 @@ protocol Peripheral {
 }
 
 class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
-    var mainServiceUUID = CBUUID(string: "6243FABC-23E9-4B79-BD30-1DC57B8005D6")
+    let mainServiceUUID = CBUUID(string: "6243FABC-23E9-4B79-BD30-1DC57B8005D6")
+    private let DataReadyCharacteristicUUID = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8783")
+
     var name = "SMARTPPE"
     
     @Published var state: PeripheralState = .notFound
@@ -47,15 +49,14 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
         }
     }
     
-    private let TemperatureCharacteristicUUID = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8782")
-    private let PressureCharacteristicUUID = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8781")
-    private let IsDataReadyCharacteristicUUID = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8783")
-    
     private var currentEvent: SmartPPEEvent?
-    private var readStart: Date?
+    
+    private var readChars: [FaceBitReadCharacteristic]
     
     
-    required override init() {
+    required init(readChars: [FaceBitReadCharacteristic]) {
+        self.readChars = readChars
+        
         super.init()
     }
     
@@ -85,53 +86,62 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
             return
         }
         
-        for service in services {
-            print(service)
-            peripheral.discoverCharacteristics([TemperatureCharacteristicUUID, PressureCharacteristicUUID, IsDataReadyCharacteristicUUID], for: service)
+        guard let service = services.first(where: { $0.uuid == mainServiceUUID }) else {
+            return
         }
+        
+        BLELogger.info("Discovered Main Service")
+        peripheral
+            .discoverCharacteristics(
+                readChars.map({ $0.uuid }) + [DataReadyCharacteristicUUID],
+                for: service
+            )
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard let characteristics = service.characteristics else { return }
         
         for characteristic in characteristics {
-            // print(characteristic)
-            if characteristic.properties.contains(.notify) {
-                readStart = nil
+            if characteristic.uuid == DataReadyCharacteristicUUID {
+                BLELogger.info("Discovered Read Ready Characteristic")
                 peripheral.setNotifyValue(true, for: characteristic)
             }
         }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        guard let value = characteristic.value else { return }
+        
         switch characteristic.uuid {
-        case TemperatureCharacteristicUUID, PressureCharacteristicUUID:
-            if let value = characteristic.value {
-                recordTimeSeriesData(value, uuid: characteristic.uuid)
-            }
-            
-        case IsDataReadyCharacteristicUUID:
-            if let value = characteristic.value, let raw = UInt64(value.hexEncodedString(), radix: 16) {
-                if raw == 1 {
-                    if readStart == nil {
-                        readStart = Date()
-                    }
-                    if let characteristics = peripheral.services?.first(where: { $0.uuid == self.mainServiceUUID })?.characteristics {
-                        for characteristic in characteristics {
-                            if characteristic.properties.contains(.read) {
-                                peripheral.readValue(for: characteristic)
-                            }
-                        }
-                    }
-                }
-            }
+        case DataReadyCharacteristicUUID:
+            handleReadReady(value)
+        case TemperatureCharacteristic.uuid, PressureCharacteristic.uuid:
+            recordTimeSeriesData(value, uuid: characteristic.uuid)
         default:
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }
     }
     
-    func recordTimeSeriesData(_ value: Data, uuid: CBUUID) {
-        let bytes = [UInt8](value)
+    private func handleReadReady(_ data: Data) {
+        let readValue = Int([UInt8](data)[0])
+        
+        if var readChar = readChars.first(where: { $0.readValue == readValue }),
+           let characteristics = peripheral?.services?.first(where: { $0.uuid == self.mainServiceUUID })?.characteristics {
+            for characteristic in characteristics {
+                if characteristic.uuid == readChar.uuid {
+                    readChar.readStart = Date()
+                    BLELogger.info("Read Ready: \(readChar.name) (\(readChar.readStart))")
+                    peripheral?.readValue(for: characteristic)
+                }
+            }
+        }
+    }
+    
+    // TODO: move into characteristic data structure
+    private func recordTimeSeriesData(_ data: Data, uuid: CBUUID) {
+        guard let readChar = readChars.first(where: { $0.uuid == uuid }) else { return }
+        
+        let bytes = [UInt8](data)
         var values: [UInt16] = []
         
         let millisecondBytes = Array(bytes[0..<8])
@@ -157,8 +167,15 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
             values.append((UInt16(payload[i]) << 8 | UInt16(payload[i+1])))
         }
         
-        let start = readStart?.addingTimeInterval(Double(millisecondOffset) / 1000.0) ?? Date()
+        let start = readChar.readStart.addingTimeInterval(Double(millisecondOffset) / 1000.0)
         let period: Double = 1.0 / Double(freq)
+        
+        BLELogger.info("""
+            Processing \(readChar.name) Data
+                - Number of samples: \(numSamples)
+                - Offset: \(millisecondOffset)
+                - Frequency: \(freq)
+        """)
         
         var measurements: [TimeSeriesMeasurement] = []
 
@@ -167,10 +184,10 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
             var valType: TimeSeriesMeasurement.DataType
             var val: Double
             
-            if uuid == self.TemperatureCharacteristicUUID {
+            if uuid == TemperatureCharacteristic.uuid {
                 valType = .temperature
                 val = Double(rawVal) / 10.0
-            } else if uuid == self.PressureCharacteristicUUID {
+            } else if uuid == PressureCharacteristic.uuid {
                 valType = .pressure
                 val = (Double(rawVal) + 80000) / 100
             } else {
@@ -186,17 +203,8 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
             )
             measurements.append(measurement)
         }
-        
-//        print("\(uuid == self.TemperatureCharacteristicUUID ? "temp" : "pressure")")
-//        print("inserting: \(measurements.count) records")
-//
-//        let startDate = SQLiteDatabase.dateFormatter.string(from: measurements.max(by: { $0.date > $1.date })!.date)
-//        print("startDate: \(startDate) records")
-//
-//        let endDate = SQLiteDatabase.dateFormatter.string(from: measurements.min(by: { $0.date > $1.date })!.date)
-//        print("endDate: \(endDate) records")
-//        print()
-        BLELogger.info("Inserting \(measurements.count) records. Freq: \(period)")
+
+        PersistanceLogger.info("Inserting \(measurements.count) \(readChar.name) time series records.")
         SQLiteDatabase.main?.executeSQL(sql: measurements.insertSQL())
     }
 }

@@ -48,6 +48,6 @@ struct EventRecorderView: View {
 
 struct EventRecorderView_Previews: PreviewProvider {
     static var previews: some View {
-        EventRecorderView(facebit: FaceBitPeripheral())
+        EventRecorderView(facebit: FaceBitPeripheral(readChars: []))
     }
 }
