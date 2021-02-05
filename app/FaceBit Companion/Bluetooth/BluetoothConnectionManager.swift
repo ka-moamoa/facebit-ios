@@ -67,7 +67,13 @@ extension BluetoothConnectionManager: CBCentralManagerDelegate {
         guard var peri = peripherals.first(where: { $0.name == peripheral.name }) else { return }
         BLELogger.info("found peripheral: \(peri.name)")
         peri.peripheral = peripheral
-        centralManager.connect(peripheral, options: nil)
+        centralManager.connect(
+            peripheral,
+            options: [
+                CBConnectPeripheralOptionNotifyOnConnectionKey: true,
+                CBConnectPeripheralOptionNotifyOnNotificationKey: true
+            ]
+        )
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {

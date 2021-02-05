@@ -44,6 +44,7 @@
 		015F994525AE493500BDD672 /* FaceBit_CompanionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F994425AE493500BDD672 /* FaceBit_CompanionTests.swift */; };
 		015F995025AE493500BDD672 /* FaceBit_CompanionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */; };
 		015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */; };
+		018B2F3625CCAE7C00178E6C /* FacebitReadCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018B2F3525CCAE7C00178E6C /* FacebitReadCharacteristic.swift */; };
 		019754EF25C499D300211FE9 /* PurgeDatabaseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019754EE25C499D300211FE9 /* PurgeDatabaseButtonView.swift */; };
 		019754FD25C4AAFE00211FE9 /* StartEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019754FC25C4AAFE00211FE9 /* StartEventView.swift */; };
 		01B48FA525C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B48FA425C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift */; };
@@ -114,6 +115,7 @@
 		015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBit_CompanionUITests.swift; sourceTree = "<group>"; };
 		015F995125AE493500BDD672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnectionManager.swift; sourceTree = "<group>"; };
+		018B2F3525CCAE7C00178E6C /* FacebitReadCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebitReadCharacteristic.swift; sourceTree = "<group>"; };
 		019754EE25C499D300211FE9 /* PurgeDatabaseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurgeDatabaseButtonView.swift; sourceTree = "<group>"; };
 		019754FC25C4AAFE00211FE9 /* StartEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartEventView.swift; sourceTree = "<group>"; };
 		01B48FA425C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesValueWidgetView.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			children = (
 				015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */,
 				01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */,
+				018B2F3525CCAE7C00178E6C /* FacebitReadCharacteristic.swift */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */,
 				013B00D725BB324700319A42 /* FaceBitNotificationCardView.swift in Sources */,
 				010C676525BB7EEC00E0EF01 /* MyFaceBitMetricsDashboardView.swift in Sources */,
+				018B2F3625CCAE7C00178E6C /* FacebitReadCharacteristic.swift in Sources */,
 				01EDBE7F25B7476D009505DC /* FaceBitLoadingBarButton.swift in Sources */,
 				010C677925BB82A400E0EF01 /* DeepBreathingEventRecordView.swift in Sources */,
 				01EDBE7025B72659009505DC /* SmartPPEEvent.swift in Sources */,

@@ -81,6 +81,6 @@ struct NormalBreathingEventRecordView: View {
 
 struct NormalBreathingEventRecordView_Previews: PreviewProvider {
     static var previews: some View {
-        NormalBreathingEventRecordView(facebit: FaceBitPeripheral())
+        NormalBreathingEventRecordView(facebit: FaceBitPeripheral(readChars: []))
     }
 }
