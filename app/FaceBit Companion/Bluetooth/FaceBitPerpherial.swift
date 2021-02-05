@@ -186,7 +186,7 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
             
             if uuid == TemperatureCharacteristic.uuid {
                 valType = .temperature
-                val = Double(rawVal) / 10.0
+                val = Double(rawVal) / 100.0
             } else if uuid == PressureCharacteristic.uuid {
                 valType = .pressure
                 val = (Double(rawVal) + 80000) / 100
