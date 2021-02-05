@@ -9,7 +9,10 @@ import SwiftUI
 
 @main
 struct FaceBit_CompanionApp: App {
-    let facebit = FaceBitPeripheral()
+    let facebit = FaceBitPeripheral(readChars: [
+        TemperatureCharacteristic(),
+        PressureCharacteristic()
+    ])
     
     
     var body: some Scene {
