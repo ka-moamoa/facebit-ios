@@ -69,10 +69,7 @@ extension BluetoothConnectionManager: CBCentralManagerDelegate {
         peri.peripheral = peripheral
         centralManager.connect(
             peripheral,
-            options: [
-                CBConnectPeripheralOptionNotifyOnConnectionKey: true,
-                CBConnectPeripheralOptionNotifyOnNotificationKey: true
-            ]
+            options: nil
         )
     }
     
