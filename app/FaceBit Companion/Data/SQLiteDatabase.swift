@@ -50,7 +50,11 @@ class SQLiteDatabase {
         return dateFormatter
     }
     
-    static var tables: [SQLiteTable.Type] = [SmartPPEEvent.self, TimeSeriesMeasurement.self]
+    static var tables: [SQLiteTable.Type] = [
+        SmartPPEEvent.self,
+        TimeSeriesDataRead.self,
+        TimeSeriesMeasurement.self,
+    ]
     
     deinit {
         sqlite3_close(dbPointer)
@@ -152,9 +156,12 @@ class SQLiteDatabase {
         }
     }
     
-    func insertRecord<T:SQLiteTable>(record: T) {
+    func insertRecord<T:SQLiteTable>(record: T, callback: ((T?)->())?=nil) {
         SQLiteDatabase.queue.async { [weak self] in
-            guard let self = self else { return }
+            guard let self = self else {
+                callback?(nil)
+                return
+            }
             
             let insertStatement = try? self.prepareStatement(sql: record.insertSQL())
             
@@ -164,6 +171,7 @@ class SQLiteDatabase {
             
             guard sqlite3_step(insertStatement) == SQLITE_DONE else {
                 PersistanceLogger.error("\(self.errorMessage)")
+                callback?(nil)
                 return
             }
             
@@ -171,6 +179,7 @@ class SQLiteDatabase {
             
             if let insertedId = try? self.lastInsertedId() {
                 record.didInsert(id: insertedId)
+                callback?(record)
             }
         }
     }

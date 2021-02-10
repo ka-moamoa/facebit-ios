@@ -177,34 +177,48 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
                 - Frequency: \(freq)
         """)
         
-        var measurements: [TimeSeriesMeasurement] = []
-
-        for (i, rawVal) in values.reversed().enumerated() {
-            
-            var valType: TimeSeriesMeasurement.DataType
-            var val: Double
-            
-            if uuid == TemperatureCharacteristic.uuid {
-                valType = .temperature
-                val = Double(rawVal) / 100.0
-            } else if uuid == PressureCharacteristic.uuid {
-                valType = .pressure
-                val = (Double(rawVal) + 80000) / 100
-            } else {
-                valType = .none
-                val = Double(rawVal)
-            }
-            
-            let measurement = TimeSeriesMeasurement(
-                value: val,
-                date: start.addingTimeInterval(-(period*Double(i))),
-                type: valType,
-                event: nil
-            )
-            measurements.append(measurement)
+        let dataType: TimeSeriesDataRead.DataType
+        switch uuid {
+        case TemperatureCharacteristic.uuid: dataType = .temperature
+        case PressureCharacteristic.uuid: dataType = .pressure
+        default: dataType = .none
         }
+        
+        let dataRead = TimeSeriesDataRead(
+            dataType: dataType,
+            frequency: freq,
+            millisecondOffset: Int(millisecondOffset),
+            startTime: start,
+            numSamples: numSamples
+        )
+        
+        SQLiteDatabase.main?.insertRecord(record: dataRead) { (dataRead) in
+            guard let dataRead = dataRead else { return }
+            
+            var measurements: [TimeSeriesMeasurement] = []
 
-        PersistanceLogger.info("Inserting \(measurements.count) \(readChar.name) time series records.")
-        SQLiteDatabase.main?.executeSQL(sql: measurements.insertSQL())
+            for (i, rawVal) in values.reversed().enumerated() {
+                var val: Double
+                
+                if dataType == .temperature {
+                    val = Double(rawVal) / 100.0
+                } else if dataType == .pressure {
+                    val = (Double(rawVal) + 80000) / 100
+                } else {
+                    val = Double(rawVal)
+                }
+                
+                let measurement = TimeSeriesMeasurement(
+                    value: val,
+                    date: start.addingTimeInterval(-(period*Double(i))),
+                    dataRead: dataRead,
+                    event: nil
+                )
+                measurements.append(measurement)
+            }
+
+            PersistanceLogger.info("Inserting \(measurements.count) \(readChar.name) time series records.")
+            SQLiteDatabase.main?.executeSQL(sql: measurements.insertSQL())
+        }
     }
 }

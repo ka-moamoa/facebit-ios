@@ -52,6 +52,7 @@
 		01EDBE7825B74604009505DC /* MyFaceBitMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */; };
 		01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */; };
 		01EDBE7F25B7476D009505DC /* FaceBitLoadingBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7D25B7476D009505DC /* FaceBitLoadingBarButton.swift */; };
+		01EECC2A25D38C2A00225DAA /* TimeSeriesDataRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EECC2925D38C2A00225DAA /* TimeSeriesDataRead.swift */; };
 		01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +124,7 @@
 		01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFaceBitMainView.swift; sourceTree = "<group>"; };
 		01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBitStatusView.swift; sourceTree = "<group>"; };
 		01EDBE7D25B7476D009505DC /* FaceBitLoadingBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBitLoadingBarButton.swift; sourceTree = "<group>"; };
+		01EECC2925D38C2A00225DAA /* TimeSeriesDataRead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesDataRead.swift; sourceTree = "<group>"; };
 		01FAB92025B090FA009E5B72 /* FaceBit Companion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FaceBit Companion.entitlements"; sourceTree = "<group>"; };
 		01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBitPerpherial.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,6 +198,7 @@
 			children = (
 				01004AC225C9977F006F5670 /* Publishers */,
 				012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */,
+				01EECC2925D38C2A00225DAA /* TimeSeriesDataRead.swift */,
 				010862B725B2423900EAF722 /* SQLiteDatabase.swift */,
 				010862BC25B5E27800EAF722 /* SQLiteTable.swift */,
 				010862C725B5E54F00EAF722 /* Int+Id.swift */,
@@ -487,6 +490,7 @@
 				012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */,
 				01004ABE25C996F0006F5670 /* DatabasePublisher.swift in Sources */,
 				013B00CD25BB2B6400319A42 /* FaceBit+Bundle.swift in Sources */,
+				01EECC2A25D38C2A00225DAA /* TimeSeriesDataRead.swift in Sources */,
 				013B00D225BB315C00319A42 /* FaceBitNotificationView.swift in Sources */,
 				010C67A925BB9FEC00E0EF01 /* WidgetView.swift in Sources */,
 				010862BD25B5E27800EAF722 /* SQLiteTable.swift in Sources */,

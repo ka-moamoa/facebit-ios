@@ -8,36 +8,11 @@
 import Foundation
 
 class TimeSeriesMeasurement: Codable, SQLiteTable {
-    enum DataType: String, Codable {
-        case none = "none"
-        case pressure = "pressure"
-        case temperature = "temperature"
-    }
-    
     var id: Int
     let value: Double
     let date: Date
-    let type: DataType
+    let dataRead: TimeSeriesDataRead
     var event: SmartPPEEvent?
-    
-    static func sampleSeries() -> [TimeSeriesMeasurement] {
-        let startValue = 1.0
-        let startDate = Date()
-        
-        
-        var series: [TimeSeriesMeasurement] = []
-        (0..<100).forEach { (i) in
-            series.append(
-                TimeSeriesMeasurement(
-                    value: startValue*Double(i*2),
-                    date: startDate + Double(i),
-                    type: .pressure)
-            )
-        }
-        
-        
-        return series
-    }
     
     static var tableName = "time_series_measurement"
     static var createSQL = """
@@ -45,7 +20,7 @@ class TimeSeriesMeasurement: Codable, SQLiteTable {
             id INTEGER PRIMARY KEY NOT NULL,
             value REAL NOT NULL,
             date TEXT NOT NULL,
-            type TEXT NOT NULL,
+            data_read_id INTEGER NOT NULL,
             event_id INT,
 
             FOREIGN KEY (event_id)
@@ -60,14 +35,14 @@ class TimeSeriesMeasurement: Codable, SQLiteTable {
         id: Int=TimeSeriesMeasurement.memId.next,
         value: Double,
         date: Date,
-        type: DataType,
+        dataRead: TimeSeriesDataRead,
         event: SmartPPEEvent?=nil,
         isInserted:Bool=false
     ) {
         self.id = id
         self.value = value
         self.date = date
-        self.type = type
+        self.dataRead = dataRead
         self.event = event
         self.isInserted = isInserted
     }
@@ -77,14 +52,14 @@ class TimeSeriesMeasurement: Codable, SQLiteTable {
         if event != nil {
             return """
                 INSERT INTO \(TimeSeriesMeasurement.tableName)
-                (value, date, type, event_id)
-                VALUES (\(value), '\(SQLiteDatabase.dateFormatter.string(from: date))', '\(type.rawValue)', \(event!.id) );
+                (value, date, data_read_id, event_id)
+                VALUES (\(value), '\(SQLiteDatabase.dateFormatter.string(from: date))', \(dataRead.id), \(event!.id) );
             """
         } else {
             return """
                 INSERT INTO \(TimeSeriesMeasurement.tableName)
-                (value, date, type)
-                VALUES (\(value), '\(SQLiteDatabase.dateFormatter.string(from: date))', '\(type.rawValue)');
+                (value, date, data_read_id)
+                VALUES (\(value), '\(SQLiteDatabase.dateFormatter.string(from: date))', \(dataRead.id));
             """
         }
     }
@@ -99,15 +74,15 @@ extension Array where Element == TimeSeriesMeasurement {
     func insertSQL() -> String {
         var sql = """
             INSERT INTO \(TimeSeriesMeasurement.tableName)
-            (value, date, type, event_id)
+            (value, date, data_read_id, event_id)
             VALUES
         """
         
         for ts in self {
             if ts.event == nil {
-                sql += " (\(ts.value), '\(SQLiteDatabase.dateFormatter.string(from: ts.date))', '\(ts.type.rawValue)', NULL),"
+                sql += " (\(ts.value), '\(SQLiteDatabase.dateFormatter.string(from: ts.date))', \(ts.dataRead.id), NULL),"
             } else {
-                sql += " (\(ts.value), '\(SQLiteDatabase.dateFormatter.string(from: ts.date))', '\(ts.type.rawValue)', \(ts.event!.id)),"
+                sql += " (\(ts.value), '\(SQLiteDatabase.dateFormatter.string(from: ts.date))', \(ts.dataRead.id), \(ts.event!.id)),"
             }
         }
         
