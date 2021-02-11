@@ -42,9 +42,9 @@ class RespitoryClassifierPub: ObservableObject {
     private var sampleSize: Int { return baseFrequency * 3 }
     
     private let queryDuration: TimeInterval = 5
-    private var model: SimpleRespirtoryCls {
+    private var model: RespiratoryClassifier {
         let config = MLModelConfiguration()
-        return try! SimpleRespirtoryCls(configuration: config)
+        return try! RespiratoryClassifier(configuration: config)
     }
     
     @Published var classification: Classification = .unknown
@@ -179,7 +179,7 @@ class RespitoryClassifierPub: ObservableObject {
             inputArray[idx] = NSNumber(value: e)
         }
         
-        let input = SimpleRespirtoryClsInput(flatten_input: inputArray)
+        let input = RespiratoryClassifierInput(input_input: inputArray)
         
         // predict
         guard let predMLArray = try? model.prediction(input: input).Identity else {
