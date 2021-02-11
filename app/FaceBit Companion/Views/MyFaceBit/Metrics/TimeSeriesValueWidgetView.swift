@@ -16,7 +16,7 @@ struct TimeSeriesValueWidgetView: View {
     init(
         title: String,
         unit: String,
-        dataType: TimeSeriesMeasurement.DataType,
+        dataType: TimeSeriesDataRead.DataType,
         timerInterval: TimeInterval,
         rowLimit: Int,
         timeOffset: TimeInterval

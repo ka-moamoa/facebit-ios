@@ -160,17 +160,24 @@ struct LiveLinePlot: View {
 }
 
 struct LiveLinePlot_Previews: PreviewProvider {
+    @State static var dataRead = TimeSeriesDataRead(
+        dataType: .pressure,
+        frequency: 25.0,
+        millisecondOffset: 1000,
+        startTime: Date(),
+        numSamples: 9
+    )
     @State static var timeSeries = [
-        TimeSeriesMeasurement(value: 10.0, date: Date(), type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 10, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 20, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 30, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 40, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 50, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 60, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 70, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 80, type: .pressure),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 90, type: .pressure)
+        TimeSeriesMeasurement(value: 10.0,  date: Date(), dataRead: dataRead),
+        TimeSeriesMeasurement(value: 10.0, date: Date() + 10, dataRead: dataRead),
+        TimeSeriesMeasurement(value: 10.0, date: Date() + 20, dataRead: dataRead),
+        TimeSeriesMeasurement(value: 10.0, date: Date() + 30, dataRead: dataRead),
+        TimeSeriesMeasurement(value: 10.0, date: Date() + 40, dataRead: dataRead),
+        TimeSeriesMeasurement(value: 10.0, date: Date() + 50, dataRead: dataRead),
+        TimeSeriesMeasurement(value: 10.0, date: Date() + 60, dataRead: dataRead),
+        TimeSeriesMeasurement(value: 10.0, date: Date() + 70, dataRead: dataRead),
+        TimeSeriesMeasurement(value: 10.0, date: Date() + 80, dataRead: dataRead),
+        TimeSeriesMeasurement(value: 10.0, date: Date() + 90, dataRead: dataRead)
     ]
     
     static var previews: some View {

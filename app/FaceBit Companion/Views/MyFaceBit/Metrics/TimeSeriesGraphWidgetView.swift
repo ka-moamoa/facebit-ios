@@ -11,7 +11,7 @@ struct TimeSeriesGraphWidgetView: View {
     var title: String
     @ObservedObject var publisher: TimeSeriesMeasurementPub
     
-    init(title: String, dataType: TimeSeriesMeasurement.DataType, timerInterval: TimeInterval, rowLimit: Int, timeOffset: TimeInterval) {
+    init(title: String, dataType: TimeSeriesDataRead.DataType, timerInterval: TimeInterval, rowLimit: Int, timeOffset: TimeInterval) {
         
         self.title = title
         self.publisher = TimeSeriesMeasurementPub(

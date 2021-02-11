@@ -13,7 +13,7 @@ class TimeSeriesMeasurementPub: DatabasePublisher, ObservableObject {
     
     @Published var items: [TimeSeriesMeasurement] = []
     
-    let dataType: TimeSeriesMeasurement.DataType
+    let dataType: TimeSeriesDataRead.DataType
     let rowLimit: Int
     let timerInterval: TimeInterval
     let timeOffset: TimeInterval
@@ -24,10 +24,11 @@ class TimeSeriesMeasurementPub: DatabasePublisher, ObservableObject {
         )
         
         return """
-            SELECT id, value, date, type, event_id
-            FROM \(TimeSeriesMeasurement.tableName)
-            WHERE type = '\(dataType.rawValue)'
-                AND date < '\(beforeDate)'
+            SELECT ts.id, ts.value, ts.date, ts.data_read_id, ts.event_id, read.data_type
+            FROM \(TimeSeriesMeasurement.tableName) as ts
+            JOIN \(TimeSeriesDataRead.tableName) as read ON ts.data_read_id = read.id
+            WHERE read.data_type = '\(dataType.rawValue)'
+                AND ts.date < '\(beforeDate)'
             ORDER BY date DESC
             LIMIT \(rowLimit);
         """
@@ -35,7 +36,7 @@ class TimeSeriesMeasurementPub: DatabasePublisher, ObservableObject {
     
     internal var timer: Timer?
     
-    init(dataType: TimeSeriesMeasurement.DataType, rowLimit: Int=100, timerInterval: TimeInterval=0.1, timeOffset: TimeInterval=4) {
+    init(dataType: TimeSeriesDataRead.DataType, rowLimit: Int=100, timerInterval: TimeInterval=0.1, timeOffset: TimeInterval=4) {
         self.dataType = dataType
         self.rowLimit = rowLimit
         self.timerInterval = timerInterval
@@ -72,16 +73,22 @@ class TimeSeriesMeasurementPub: DatabasePublisher, ObservableObject {
             }
             
             var measurements: [TimeSeriesMeasurement] = []
+            var dataReads = [Int:TimeSeriesDataRead]()
             
             while sqlite3_step(statement) == SQLITE_ROW {
                 let id = Int(sqlite3_column_int(statement, 0))
                 let value = sqlite3_column_double(statement, 1)
+                let dataReadId = Int(sqlite3_column_int(statement, 3))
                 
                 guard let dateCString = sqlite3_column_text(statement, 2),
-                      let typeCString = sqlite3_column_text(statement, 3),
-                      let date = SQLiteDatabase.dateFormatter.date(from: String(cString: dateCString)),
-                      let type = TimeSeriesMeasurement.DataType(rawValue: String(cString: typeCString)) else {
+                      let date = SQLiteDatabase.dateFormatter.date(from: String(cString: dateCString)) else {
                     continue
+                }
+                
+                if dataReads[dataReadId] == nil {
+                    if let dataRead = TimeSeriesDataRead.get(by: dataReadId) {
+                        dataReads[dataReadId] = dataRead
+                    } else { continue }
                 }
                 
                 measurements.append(
@@ -89,7 +96,7 @@ class TimeSeriesMeasurementPub: DatabasePublisher, ObservableObject {
                         id: id,
                         value: value,
                         date: date,
-                        type: type,
+                        dataRead: dataReads[dataReadId]!,
                         isInserted: true
                     )
                 )
