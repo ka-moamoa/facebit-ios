@@ -21,6 +21,13 @@ struct SettingsView: View {
                         })
                     ShareDatabaseButtonView()
                     PurgeDatabaseButtonView()
+                    Button(action: {
+                        let rc = RespitoryClassifierPub(timeOffset: 4)
+                        rc.fetchData()
+                    }, label: {
+                        Text("Test Classification")
+                            .padding()
+                    })
                 }
             }
             .listStyle(GroupedListStyle())

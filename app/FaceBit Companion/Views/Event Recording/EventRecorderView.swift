@@ -15,7 +15,7 @@ extension SmartPPEEventType {
         case .deepBreathing: DeepBreathingEventRecordView()
         case .talking: TalkingEventRecordView()
         case .cough: CoughEventRecordView()
-        case .other: Text("TODO:")
+        case .maskOff, .other: Text("TODO:")
         }
     }
 }

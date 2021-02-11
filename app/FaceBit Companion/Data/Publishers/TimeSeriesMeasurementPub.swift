@@ -43,24 +43,6 @@ class TimeSeriesMeasurementPub: DatabasePublisher, ObservableObject {
         self.timeOffset = timeOffset
     }
     
-    func start() {
-        timer = Timer.scheduledTimer(
-            withTimeInterval: timerInterval,
-            repeats: true,
-            block: onFire
-        )
-        timer!.fire()
-    }
-    
-    func stop() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
-    internal func onFire(_ timer: Timer) {
-        DispatchQueue.main.async { self.refresh() } 
-    }
-    
     func refresh() {
         SQLiteDatabase.queue.async {
             guard let db = SQLiteDatabase.main,
@@ -106,5 +88,25 @@ class TimeSeriesMeasurementPub: DatabasePublisher, ObservableObject {
                 self.items = measurements
             }
         }
+    }
+}
+
+extension TimeSeriesMeasurementPub: TimerPublisher {
+    func start() {
+        timer = Timer.scheduledTimer(
+            withTimeInterval: timerInterval,
+            repeats: true,
+            block: onFire
+        )
+        timer!.fire()
+    }
+    
+    func stop() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    internal func onFire(_ timer: Timer) {
+        DispatchQueue.main.async { self.refresh() }
     }
 }

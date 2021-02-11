@@ -13,8 +13,4 @@ protocol DatabasePublisher {
     
     var query: String { get }
     var items: [T] { get }
-    var timer: Timer? { get }
-    var timerInterval: TimeInterval { get }
-    
-    func onFire(_ timer: Timer)
 }
