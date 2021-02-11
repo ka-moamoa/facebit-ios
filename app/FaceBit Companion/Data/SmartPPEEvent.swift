@@ -13,6 +13,7 @@ enum SmartPPEEventType: String, CaseIterable, Codable, Identifiable {
     case deepBreathing = "deep_breathing"
     case talking = "talking"
     case cough = "cough"
+    case maskOff = "mask_off"
     case other = "other"
     
     var id: String { self.rawValue }
