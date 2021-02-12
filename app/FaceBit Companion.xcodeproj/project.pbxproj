@@ -51,6 +51,7 @@
 		018F824F25D5DA4A0037C5BE /* RespiratoryClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 018F824E25D5DA4A0037C5BE /* RespiratoryClassifier.mlmodel */; };
 		019754EF25C499D300211FE9 /* PurgeDatabaseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019754EE25C499D300211FE9 /* PurgeDatabaseButtonView.swift */; };
 		019754FD25C4AAFE00211FE9 /* StartEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019754FC25C4AAFE00211FE9 /* StartEventView.swift */; };
+		01A7638325D63F4E005EC1EF /* MetricMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7638225D63F4E005EC1EF /* MetricMeasurement.swift */; };
 		01B48FA525C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B48FA425C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift */; };
 		01EDBE7025B72659009505DC /* SmartPPEEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */; };
 		01EDBE7825B74604009505DC /* MyFaceBitMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */; };
@@ -127,6 +128,7 @@
 		018F824E25D5DA4A0037C5BE /* RespiratoryClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RespiratoryClassifier.mlmodel; sourceTree = "<group>"; };
 		019754EE25C499D300211FE9 /* PurgeDatabaseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurgeDatabaseButtonView.swift; sourceTree = "<group>"; };
 		019754FC25C4AAFE00211FE9 /* StartEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartEventView.swift; sourceTree = "<group>"; };
+		01A7638225D63F4E005EC1EF /* MetricMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricMeasurement.swift; sourceTree = "<group>"; };
 		01B48FA425C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesValueWidgetView.swift; sourceTree = "<group>"; };
 		01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartPPEEvent.swift; sourceTree = "<group>"; };
 		01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFaceBitMainView.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				01004AC225C9977F006F5670 /* Publishers */,
 				012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */,
 				01EECC2925D38C2A00225DAA /* TimeSeriesDataRead.swift */,
+				01A7638225D63F4E005EC1EF /* MetricMeasurement.swift */,
 				010862B725B2423900EAF722 /* SQLiteDatabase.swift */,
 				010862BC25B5E27800EAF722 /* SQLiteTable.swift */,
 				010862C725B5E54F00EAF722 /* Int+Id.swift */,
@@ -532,6 +535,7 @@
 				010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */,
 				010C67A125BB9C7400E0EF01 /* ValueWidgetView.swift in Sources */,
 				013B00EE25BB517A00319A42 /* FaceBit+String.swift in Sources */,
+				01A7638325D63F4E005EC1EF /* MetricMeasurement.swift in Sources */,
 				010C677A25BB82A400E0EF01 /* NormalBreathingEventRecordView.swift in Sources */,
 				019754EF25C499D300211FE9 /* PurgeDatabaseButtonView.swift in Sources */,
 				010C679925BB982900E0EF01 /* AppData.swift in Sources */,

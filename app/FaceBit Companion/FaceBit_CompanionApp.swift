@@ -11,7 +11,9 @@ import SwiftUI
 struct FaceBit_CompanionApp: App {
     let facebit = FaceBitPeripheral(readChars: [
         TemperatureCharacteristic(),
-        PressureCharacteristic()
+        PressureCharacteristic(),
+        RespiratoryRateCharacteristic(),
+        HeartRateCharacteristic()
     ])
     
     

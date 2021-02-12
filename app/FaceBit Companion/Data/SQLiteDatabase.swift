@@ -54,6 +54,7 @@ class SQLiteDatabase {
         SmartPPEEvent.self,
         TimeSeriesDataRead.self,
         TimeSeriesMeasurement.self,
+        MetricMeasurement.self
     ]
     
     deinit {

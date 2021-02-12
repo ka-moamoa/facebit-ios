@@ -34,6 +34,7 @@ protocol Peripheral {
 class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
     let mainServiceUUID = CBUUID(string: "6243FABC-23E9-4B79-BD30-1DC57B8005D6")
     private let DataReadyCharacteristicUUID = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8783")
+    private let DataReadyNoData: Data = Data([UInt8]([8]))
 
     var name = "SMARTPPE"
     
@@ -103,7 +104,7 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         
         for characteristic in characteristics {
             if characteristic.uuid == DataReadyCharacteristicUUID {
-                BLELogger.info("Discovered Read Ready Characteristic")
+                BLELogger.info("Discovered Data Ready Characteristic")
                 peripheral.setNotifyValue(true, for: characteristic)
             }
         }
@@ -116,7 +117,14 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         case DataReadyCharacteristicUUID:
             handleReadReady(value)
         case TemperatureCharacteristic.uuid, PressureCharacteristic.uuid:
+            peripheral.writeValue(DataReadyNoData, for: characteristic, type: .withoutResponse)
             recordTimeSeriesData(value, uuid: characteristic.uuid)
+        case RespiratoryRateCharacteristic.uuid:
+            if let c = readChars.first(where: { $0.uuid == RespiratoryRateCharacteristic.uuid }) {
+                peripheral.writeValue(DataReadyNoData, for: characteristic, type: .withoutResponse)
+                c.processRead(value)
+            }
+            
         default:
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }
