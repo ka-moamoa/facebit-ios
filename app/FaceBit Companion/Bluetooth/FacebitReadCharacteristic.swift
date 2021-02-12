@@ -56,7 +56,7 @@ extension MetricCharacteristic {
         }
         
         let value = bytes[8]
-        BLELogger.info("value from characteristic: \(value)")
+        BLELogger.info("value from characteristic \(dataType.rawValue): \(value)")
         
         var measurement = MetricMeasurement(
             value: Double(value),

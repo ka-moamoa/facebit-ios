@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		01004ABE25C996F0006F5670 /* DatabasePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01004ABD25C996F0006F5670 /* DatabasePublisher.swift */; };
 		01004AC425C997A4006F5670 /* TimeSeriesMeasurementPub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01004AC325C997A4006F5670 /* TimeSeriesMeasurementPub.swift */; };
+		0100B4D125D7243600898C05 /* UInt+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100B4D025D7243600898C05 /* UInt+Extension.swift */; };
 		010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862B725B2423900EAF722 /* SQLiteDatabase.swift */; };
 		010862BD25B5E27800EAF722 /* SQLiteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862BC25B5E27800EAF722 /* SQLiteTable.swift */; };
 		010862C825B5E54F00EAF722 /* Int+Id.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862C725B5E54F00EAF722 /* Int+Id.swift */; };
@@ -81,6 +82,7 @@
 /* Begin PBXFileReference section */
 		01004ABD25C996F0006F5670 /* DatabasePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabasePublisher.swift; sourceTree = "<group>"; };
 		01004AC325C997A4006F5670 /* TimeSeriesMeasurementPub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurementPub.swift; sourceTree = "<group>"; };
+		0100B4D025D7243600898C05 /* UInt+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt+Extension.swift"; sourceTree = "<group>"; };
 		010862B725B2423900EAF722 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		010862BC25B5E27800EAF722 /* SQLiteTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteTable.swift; sourceTree = "<group>"; };
 		010862C725B5E54F00EAF722 /* Int+Id.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Id.swift"; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				010862CD25B6122600EAF722 /* Logger.swift */,
 				013B00CC25BB2B6400319A42 /* FaceBit+Bundle.swift */,
 				013B00ED25BB517A00319A42 /* FaceBit+String.swift */,
+				0100B4D025D7243600898C05 /* UInt+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				01004AC425C997A4006F5670 /* TimeSeriesMeasurementPub.swift in Sources */,
 				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
 				018F822B25D5C3390037C5BE /* RespiratoryClsWidgetView.swift in Sources */,
+				0100B4D125D7243600898C05 /* UInt+Extension.swift in Sources */,
 				01325D3B25C35196000B2A05 /* ShareDatabaseButtonView.swift in Sources */,
 				010C677825BB82A400E0EF01 /* TalkingEventRecordView.swift in Sources */,
 				018F822325D5BC630037C5BE /* TimerPublisher.swift in Sources */,
