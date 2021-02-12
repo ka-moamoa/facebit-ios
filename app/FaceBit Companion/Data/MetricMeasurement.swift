@@ -37,14 +37,14 @@ class MetricMeasurement: Codable, SQLiteTable {
     
     var value: Double
     var dataType: DataType
-    var timestamp: Int
+    var timestamp: UInt64
     var date: Date
     
     init(
         id:Int=memId.next,
         value: Double,
         dataType: DataType,
-        timestamp: Int,
+        timestamp: UInt64,
         date: Date=Date(),
         isInserted: Bool=false
     ) {
@@ -61,7 +61,7 @@ class MetricMeasurement: Codable, SQLiteTable {
         return """
             INSERT INTO \(MetricMeasurement.tableName)
             (value, data_type, timestamp, date)
-            (\(self.value), '\(self.dataType),', \(self.timestamp), '\(SQLiteDatabase.dateFormatter.string(from: self.date))');
+            VALUES (\(self.value), '\(self.dataType),', \(self.timestamp), '\(SQLiteDatabase.dateFormatter.string(from: self.date))');
         """
     }
     

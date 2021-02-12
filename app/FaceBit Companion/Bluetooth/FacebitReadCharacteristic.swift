@@ -36,6 +36,14 @@ extension FaceBitReadCharacteristic {
     var name: String { return Self.name }
     var uuid: CBUUID { return Self.uuid }
     var readValue: Int { return Self.readValue }
+}
+
+protocol MetricCharacteristic {
+    static var dataType: MetricMeasurement.DataType { get }
+}
+
+extension MetricCharacteristic {
+    var dataType: MetricMeasurement.DataType { return Self.dataType }
     
     func processMetricRead(_ data: Data) {
         let bytes = [UInt8](data)
@@ -48,18 +56,19 @@ extension FaceBitReadCharacteristic {
         }
         
         let value = bytes[8]
-        BLELogger.info("value from characteristic \(self.name): \(value)")
+        BLELogger.info("value from characteristic: \(value)")
+        
+        var measurement = MetricMeasurement(
+            value: Double(value),
+            dataType: dataType,
+            timestamp: timestamp,
+            date: Date()
+        )
+        
+        SQLiteDatabase.main?.insertRecord(record: measurement)
         
         
     }
-}
-
-protocol MetricCharacteristic {
-    static var dataType: MetricMeasurement.DataType { get }
-}
-
-extension MetricCharacteristic {
-    var dataType: MetricMeasurement.DataType { return Self.dataType }
 }
 
 class PressureCharacteristic: FaceBitReadCharacteristic {
@@ -100,8 +109,8 @@ class RespiratoryRateCharacteristic: FaceBitReadCharacteristic, MetricCharacteri
     }
 }
 
-class HeartRateCharacteristic: FaceBitReadCharacteristic {
-    static let name = "Respiratory Rate"
+class HeartRateCharacteristic: FaceBitReadCharacteristic, MetricCharacteristic {
+    static let name = "Heart Rate"
     static let uuid = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8785")
     static let readValue = 7
     

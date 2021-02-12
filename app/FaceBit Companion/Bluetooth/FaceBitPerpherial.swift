@@ -104,7 +104,7 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         
         for characteristic in characteristics {
             if characteristic.uuid == DataReadyCharacteristicUUID {
-                BLELogger.info("Discovered Data Ready Characteristic")
+                BLELogger.info("Discovered Data Ready Characteristic \(characteristic)")
                 peripheral.setNotifyValue(true, for: characteristic)
             }
         }
@@ -117,11 +117,11 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         case DataReadyCharacteristicUUID:
             handleReadReady(value)
         case TemperatureCharacteristic.uuid, PressureCharacteristic.uuid:
-            peripheral.writeValue(DataReadyNoData, for: characteristic, type: .withoutResponse)
+            updateReadReady(DataReadyNoData, peripheral: peripheral)
             recordTimeSeriesData(value, uuid: characteristic.uuid)
-        case RespiratoryRateCharacteristic.uuid:
+        case RespiratoryRateCharacteristic.uuid, HeartRateCharacteristic.uuid:
             if let c = readChars.first(where: { $0.uuid == RespiratoryRateCharacteristic.uuid }) {
-                peripheral.writeValue(DataReadyNoData, for: characteristic, type: .withoutResponse)
+                updateReadReady(DataReadyNoData, peripheral: peripheral)
                 c.processRead(value)
             }
             
@@ -130,8 +130,29 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         }
     }
     
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor descriptor: CBDescriptor, error: Error?) {
+        print()
+    }
+    
+    private func updateReadReady(_ data: Data, peripheral: CBPeripheral) {
+        guard let service = peripheral.services?.first(where: { $0.uuid == mainServiceUUID }) else {
+            return
+        }
+        
+        if let readReadyChar = service.characteristics?.first(where: { $0.uuid == DataReadyCharacteristicUUID }) {
+            BLELogger.info("Updateing Read Ready: NO_DATA")
+            peripheral.writeValue(DataReadyNoData, for: readReadyChar, type: .withoutResponse)
+            peripheral.readValue(for: readReadyChar)
+        }
+    }
+    
     private func handleReadReady(_ data: Data) {
         let readValue = Int([UInt8](data)[0])
+        
+        if readValue == 8 {
+            BLELogger.info("Data Ready: NO_DATA")
+            return
+        }
         
         if var readChar = readChars.first(where: { $0.readValue == readValue }),
            let characteristics = peripheral?.services?.first(where: { $0.uuid == self.mainServiceUUID })?.characteristics {
