@@ -21,14 +21,23 @@ struct MyFaceBitMetricsDashboardView: View {
         ScrollView(.vertical, showsIndicators: false, content: {
             LazyVGrid(columns:gridItemLayout, spacing: 16.0) {
                 MaskWearTimeWidget()
-                .frame(width: widgetHeight)
+                    .frame(height: widgetHeight)
                 
-//                HeartRateWidget(
-//                    heartRate: 0.0,
-//                    readTime: Date(),
-//                    samplesLast24: 0
-//                )
-//                .frame(width: widgetHeight)
+                MetricWidget(
+                    title: "Heart Rate",
+                    unit: "beats per min",
+                    dataType: .heartRate,
+                    timerInterval: 10
+                )
+                .frame(height: widgetHeight)
+                
+                MetricWidget(
+                    title: "Respiratory Rate",
+                    unit: "breaths per min",
+                    dataType: .respiratoryRate,
+                    timerInterval: 10
+                )
+                .frame(height: widgetHeight)
                 
                 TimeSeriesGraphWidgetView(
                     title: "Temperature",

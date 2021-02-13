@@ -30,7 +30,7 @@
 		010C679925BB982900E0EF01 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C679825BB982900E0EF01 /* AppData.swift */; };
 		010C67A125BB9C7400E0EF01 /* ValueWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C67A025BB9C7400E0EF01 /* ValueWidgetView.swift */; };
 		010C67A925BB9FEC00E0EF01 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C67A825BB9FEC00E0EF01 /* WidgetView.swift */; };
-		012735BA25D7A73E00C5CF6C /* HeartRateWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012735B925D7A73E00C5CF6C /* HeartRateWidget.swift */; };
+		012735BA25D7A73E00C5CF6C /* MetricWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012735B925D7A73E00C5CF6C /* MetricWidget.swift */; };
 		012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */; };
 		012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */; };
 		01325D3B25C35196000B2A05 /* ShareDatabaseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01325D3A25C35196000B2A05 /* ShareDatabaseButtonView.swift */; };
@@ -44,6 +44,7 @@
 		013B00E625BB4B1C00319A42 /* ACarousel in Frameworks */ = {isa = PBXBuildFile; productRef = 013B00E525BB4B1C00319A42 /* ACarousel */; };
 		013B00EE25BB517A00319A42 /* FaceBit+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B00ED25BB517A00319A42 /* FaceBit+String.swift */; };
 		0145251725C917B6006106ED /* ActiveEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145251625C917B6006106ED /* ActiveEventView.swift */; };
+		0149441525D838B100FB3DEF /* MetricPub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149441425D838B100FB3DEF /* MetricPub.swift */; };
 		015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F993225AE493500BDD672 /* FaceBit_CompanionApp.swift */; };
 		015F993525AE493500BDD672 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F993425AE493500BDD672 /* ContentView.swift */; };
 		015F993725AE493500BDD672 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 015F993625AE493500BDD672 /* Assets.xcassets */; };
@@ -109,7 +110,7 @@
 		010C679825BB982900E0EF01 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		010C67A025BB9C7400E0EF01 /* ValueWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueWidgetView.swift; sourceTree = "<group>"; };
 		010C67A825BB9FEC00E0EF01 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
-		012735B925D7A73E00C5CF6C /* HeartRateWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateWidget.swift; sourceTree = "<group>"; };
+		012735B925D7A73E00C5CF6C /* MetricWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricWidget.swift; sourceTree = "<group>"; };
 		012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLinePlot.swift; sourceTree = "<group>"; };
 		012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurement.swift; sourceTree = "<group>"; };
 		01325D3A25C35196000B2A05 /* ShareDatabaseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareDatabaseButtonView.swift; sourceTree = "<group>"; };
@@ -122,6 +123,7 @@
 		013B00D625BB324700319A42 /* FaceBitNotificationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBitNotificationCardView.swift; sourceTree = "<group>"; };
 		013B00ED25BB517A00319A42 /* FaceBit+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FaceBit+String.swift"; sourceTree = "<group>"; };
 		0145251625C917B6006106ED /* ActiveEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveEventView.swift; sourceTree = "<group>"; };
+		0149441425D838B100FB3DEF /* MetricPub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricPub.swift; sourceTree = "<group>"; };
 		015F992F25AE493500BDD672 /* FaceBit Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FaceBit Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		015F993225AE493500BDD672 /* FaceBit_CompanionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBit_CompanionApp.swift; sourceTree = "<group>"; };
 		015F993425AE493500BDD672 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				018F822225D5BC630037C5BE /* TimerPublisher.swift */,
 				01004AC325C997A4006F5670 /* TimeSeriesMeasurementPub.swift */,
 				018F821725D576610037C5BE /* RespitoryClassifierPub.swift */,
+				0149441425D838B100FB3DEF /* MetricPub.swift */,
 			);
 			path = Publishers;
 			sourceTree = "<group>";
@@ -219,7 +222,7 @@
 				010C67A825BB9FEC00E0EF01 /* WidgetView.swift */,
 				018F822A25D5C3390037C5BE /* RespiratoryClsWidgetView.swift */,
 				0100B4EE25D7996900898C05 /* MaskWearTimeWidget.swift */,
-				012735B925D7A73E00C5CF6C /* HeartRateWidget.swift */,
+				012735B925D7A73E00C5CF6C /* MetricWidget.swift */,
 			);
 			path = Metrics;
 			sourceTree = "<group>";
@@ -531,11 +534,12 @@
 				018F822B25D5C3390037C5BE /* RespiratoryClsWidgetView.swift in Sources */,
 				0100B4D125D7243600898C05 /* UInt+Extension.swift in Sources */,
 				01325D3B25C35196000B2A05 /* ShareDatabaseButtonView.swift in Sources */,
+				0149441525D838B100FB3DEF /* MetricPub.swift in Sources */,
 				010C677825BB82A400E0EF01 /* TalkingEventRecordView.swift in Sources */,
 				018F822325D5BC630037C5BE /* TimerPublisher.swift in Sources */,
 				01B48FA525C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift in Sources */,
 				0100B4D725D74FB900898C05 /* FaceBitIcon.swift in Sources */,
-				012735BA25D7A73E00C5CF6C /* HeartRateWidget.swift in Sources */,
+				012735BA25D7A73E00C5CF6C /* MetricWidget.swift in Sources */,
 				01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */,
 				012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */,
 				01004ABE25C996F0006F5670 /* DatabasePublisher.swift in Sources */,
@@ -744,7 +748,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hesterlab.smartppe.facebit-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -771,7 +775,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2;
+				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hesterlab.smartppe.facebit-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;

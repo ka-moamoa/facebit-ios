@@ -61,7 +61,7 @@ class MetricMeasurement: Codable, SQLiteTable {
         return """
             INSERT INTO \(MetricMeasurement.tableName)
             (value, data_type, timestamp, date)
-            VALUES (\(self.value), '\(self.dataType)', \(self.timestamp), '\(SQLiteDatabase.dateFormatter.string(from: self.date))');
+            VALUES (\(self.value), '\(self.dataType.rawValue)', \(self.timestamp), '\(SQLiteDatabase.dateFormatter.string(from: self.date))');
         """
     }
     
