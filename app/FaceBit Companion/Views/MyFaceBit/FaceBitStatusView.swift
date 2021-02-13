@@ -29,38 +29,39 @@ struct FaceBitStatusView: View {
         return activeMsg
     }
     
+    var activeImageName: String {
+        switch activeMsg {
+        case "Inactive":
+            return "exclamationmark.circle"
+        default:
+            return "checkmark"
+        }
+    }
+    
     var body: some View {
         HStack(alignment: .center, spacing: 8.0) {
-            Image("face-mask")
-                .resizable()
-                .padding(2.0)
+            FaceBitIcon()
                 .frame(width: 75, height: 75, alignment: .center)
-                .scaledToFill()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10.0)
-                        .stroke(lineWidth: 2.0)
-                        .foregroundColor(.gray)
-                )
             
             VStack(alignment: .leading, spacing: 4.0) {
                 HStack {
                     Image(systemName: "tag")
                         .font(.system(size: 18.0))
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color("PrimaryOrange"))
                     Text(facebit.name)
                 }
                 HStack {
-                    Image(systemName: "checkmark")
+                    Image(systemName: activeImageName)
                         .font(.system(size: 18))
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color("PrimaryOrange"))
                     Text(activeMsg)
                 }
-                HStack {
-                    Image(systemName: "clock")
-                        .font(.system(size: 18))
-                        .foregroundColor(.blue)
-                    Text("43 minutes wear time")
-                }
+//                HStack {
+//                    Image(systemName: "clock")
+//                        .font(.system(size: 18))
+//                        .foregroundColor(Color("PrimaryOrange"))
+//                    Text("43 minutes wear time")
+//                }
             }
             .font(.system(size: 14.0))
             
@@ -69,7 +70,6 @@ struct FaceBitStatusView: View {
             Image(systemName: "chevron.right")
                 .font(.system(size: 30))
         }
-        
     }
 }
 

@@ -80,7 +80,7 @@ struct LiveLinePlot: View {
                         )
                     }
                 }
-                .stroke(Color.red, lineWidth: 2)
+                .stroke(Color("PrimaryBrown"), lineWidth: 2)
                 
                 if showAxis {
                     

@@ -20,11 +20,21 @@ struct MyFaceBitMetricsDashboardView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false, content: {
             LazyVGrid(columns:gridItemLayout, spacing: 16.0) {
+                MaskWearTimeWidget()
+                .frame(width: widgetHeight)
+                
+//                HeartRateWidget(
+//                    heartRate: 0.0,
+//                    readTime: Date(),
+//                    samplesLast24: 0
+//                )
+//                .frame(width: widgetHeight)
+                
                 TimeSeriesGraphWidgetView(
                     title: "Temperature",
                     dataType: .temperature,
                     timerInterval: 1,
-                    rowLimit: 100,
+                    rowLimit: 250,
                     timeOffset: 5
                 )
                 .frame(height: widgetHeight)
@@ -32,7 +42,7 @@ struct MyFaceBitMetricsDashboardView: View {
                     title: "Pressure",
                     dataType: .pressure,
                     timerInterval: 1,
-                    rowLimit: 100,
+                    rowLimit: 250,
                     timeOffset: 4
                 )
                 .frame(height: widgetHeight)
@@ -45,6 +55,7 @@ struct MyFaceBitMetricsDashboardView: View {
                     timeOffset: 4
                 )
                 .frame(height: widgetHeight)
+                
                 TimeSeriesValueWidgetView(
                     title: "Pressure",
                     unit: "mBar",
@@ -56,7 +67,7 @@ struct MyFaceBitMetricsDashboardView: View {
                 RespiratoryClsWidgetView()
                     .frame(height: widgetHeight)
                 }
-                .padding()
+            .padding(16.0)
         })
     }
 }
@@ -64,5 +75,6 @@ struct MyFaceBitMetricsDashboardView: View {
 struct MyFaceBitMetricsDashboardView_Previews: PreviewProvider {
     static var previews: some View {
         MyFaceBitMetricsDashboardView()
+            .environmentObject(FaceBitPeripheral(readChars: []))
     }
 }

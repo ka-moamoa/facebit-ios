@@ -27,7 +27,9 @@ class BluetoothConnectionManager: NSObject, ObservableObject {
     }
     
     func searchFor(peripheral: Peripheral) {
-        peripherals.append(peripheral)
+        if !peripherals.contains(where: { $0.name == peripheral.name }) {
+            peripherals.append(peripheral)
+        }
         
         guard centralManager.state == .poweredOn else { return }
         
@@ -41,9 +43,15 @@ class BluetoothConnectionManager: NSObject, ObservableObject {
         isScanning = centralManager.isScanning
     }
     
-    private func stopScan() {
+    func stopScan() {
         centralManager.stopScan()
         isScanning = centralManager.isScanning
+    }
+    
+    func disconnect(_ peripheral: Peripheral) {
+        guard let p = peripheral.peripheral else { return }
+        
+        centralManager.cancelPeripheralConnection(p)
     }
     
     private func connect(_ peripheral: CBPeripheral) {
