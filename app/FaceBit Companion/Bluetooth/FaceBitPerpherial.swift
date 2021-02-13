@@ -54,7 +54,7 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
     
     private var currentEvent: SmartPPEEvent?
     
-    private var readChars: [FaceBitReadCharacteristic]
+    var readChars: [FaceBitReadCharacteristic]
     
     
     required init(readChars: [FaceBitReadCharacteristic]) {

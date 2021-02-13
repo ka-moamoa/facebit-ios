@@ -17,15 +17,22 @@ struct MyFaceBitMainViewMacOS: View {
     var body: some View {
         NavigationView {
             VStack {
-                FaceBitStatusView()
-                    .padding()
+                VStack {
+                    NavigationLink(
+                        destination: FaceBitDetailsView(),
+                        label: {
+                            FaceBitStatusView()
+                                .padding()
+                        })
+                    
+                    if cards.count > 0 {
+                        FaceBitNotificationView(cards: cards)
+                            .frame(height: 100.0)
+                    }
+                }
                 
-                FaceBitNotificationView(cards: cards)
-                    .frame(height: 100.0)
-                
-                Divider()
-
                 MyFaceBitMetricsDashboardView()
+                    .background(Color("PrimaryWhite"))
                 
                 Spacer()
             }
@@ -38,6 +45,7 @@ struct MyFaceBitMainViewMacOS: View {
             Spacer()
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .accentColor(Color("PrimaryPurple"))
     }
     
     private func searchForFaceBit() {

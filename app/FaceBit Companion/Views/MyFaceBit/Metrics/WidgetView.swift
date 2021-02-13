@@ -10,6 +10,8 @@ import SwiftUI
 struct WidgetView<Content: View>: View {
     let content: Content
     
+    @State private var showDetails: Bool = false
+    
     init(@ViewBuilder content: @escaping () -> Content) {
         self.content = content()
     }
@@ -19,12 +21,12 @@ struct WidgetView<Content: View>: View {
             content
                 .padding()
                 .frame(width: geometry.size.width, height: geometry.size.height)
-                .overlay(
+                .background(
                     RoundedRectangle(cornerRadius: 10.0)
-                        .stroke(lineWidth: 1.0)
+                        .fill(Color("PrimaryPurple"))
                 )
+                .foregroundColor(Color("PrimaryWhite"))
         }
-        
     }
 }
 

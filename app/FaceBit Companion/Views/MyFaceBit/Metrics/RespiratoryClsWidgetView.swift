@@ -16,8 +16,10 @@ struct RespiratoryClsWidgetView: View {
             VStack {
                 Text("Resp. Class.")
                     .bold()
+                Spacer()
                 Text(pub.classification.label)
                     .font(.system(size: 32.0))
+                Spacer()
             }
         }
         .onAppear(perform: { setRefresh(facebit.state) })

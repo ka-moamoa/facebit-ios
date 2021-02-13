@@ -37,11 +37,14 @@ struct TimeSeriesValueWidgetView: View {
             VStack {
                 Text(title)
                     .bold()
+                Spacer()
                 Text("\(String(format: "%.2f", publisher.items.first?.value ?? 0.0))")
                     .font(.system(size: 32.0))
+                Spacer()
                 Text(unit)
             }
         }
+        .background(Image("temperature-icon"))
         .onAppear(perform: { setRefresh(facebit.state) })
         .onDisappear(perform: { publisher.stop() })
         .onReceive(facebit.$state, perform: { state in
