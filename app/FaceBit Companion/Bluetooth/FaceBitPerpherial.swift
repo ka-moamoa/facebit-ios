@@ -141,12 +141,16 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
     }
     
     private func updateTimeSync(peripheral: CBPeripheral, characteristic: CBCharacteristic) {
-        let timestamp: UInt64 = UInt64(Date().timeIntervalSince1970.rounded())
+        let now = Date()
+        let timestamp: UInt64 = UInt64(now.timeIntervalSince1970.rounded())
         let data = Data(timestamp.toBytes)
         
         BLELogger.info("Writting Timestamp: \(timestamp)")
         
         peripheral.writeValue(data, for: characteristic, type: .withoutResponse)
+        SQLiteDatabase.main?.insertRecord(
+            record: Timestamp(dataType: .peripheralSync, date: now)
+        )
         
     }
     

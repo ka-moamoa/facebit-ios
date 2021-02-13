@@ -66,6 +66,7 @@ class MetricMeasurement: Codable, SQLiteTable {
     }
     
     func didInsert(id: Int) {
+        self.id = id
         self.isInserted = true
     }
     

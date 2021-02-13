@@ -51,6 +51,7 @@ class SQLiteDatabase {
     }
     
     static var tables: [SQLiteTable.Type] = [
+        Timestamp.self,
         SmartPPEEvent.self,
         TimeSeriesDataRead.self,
         TimeSeriesMeasurement.self,

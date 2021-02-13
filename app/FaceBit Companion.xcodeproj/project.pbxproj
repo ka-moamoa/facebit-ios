@@ -14,6 +14,7 @@
 		0100B4DC25D7581900898C05 /* FaceBitDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100B4DB25D7581900898C05 /* FaceBitDetailsView.swift */; };
 		0100B4E725D7907300898C05 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100B4E625D7907300898C05 /* PrimaryButton.swift */; };
 		0100B4EF25D7996900898C05 /* MaskWearTimeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100B4EE25D7996900898C05 /* MaskWearTimeWidget.swift */; };
+		0100B4F425D7A1B800898C05 /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100B4F325D7A1B800898C05 /* Timestamp.swift */; };
 		010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862B725B2423900EAF722 /* SQLiteDatabase.swift */; };
 		010862BD25B5E27800EAF722 /* SQLiteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862BC25B5E27800EAF722 /* SQLiteTable.swift */; };
 		010862C825B5E54F00EAF722 /* Int+Id.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862C725B5E54F00EAF722 /* Int+Id.swift */; };
@@ -29,6 +30,7 @@
 		010C679925BB982900E0EF01 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C679825BB982900E0EF01 /* AppData.swift */; };
 		010C67A125BB9C7400E0EF01 /* ValueWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C67A025BB9C7400E0EF01 /* ValueWidgetView.swift */; };
 		010C67A925BB9FEC00E0EF01 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C67A825BB9FEC00E0EF01 /* WidgetView.swift */; };
+		012735BA25D7A73E00C5CF6C /* HeartRateWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012735B925D7A73E00C5CF6C /* HeartRateWidget.swift */; };
 		012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */; };
 		012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */; };
 		01325D3B25C35196000B2A05 /* ShareDatabaseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01325D3A25C35196000B2A05 /* ShareDatabaseButtonView.swift */; };
@@ -91,6 +93,7 @@
 		0100B4DB25D7581900898C05 /* FaceBitDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBitDetailsView.swift; sourceTree = "<group>"; };
 		0100B4E625D7907300898C05 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		0100B4EE25D7996900898C05 /* MaskWearTimeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskWearTimeWidget.swift; sourceTree = "<group>"; };
+		0100B4F325D7A1B800898C05 /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		010862B725B2423900EAF722 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		010862BC25B5E27800EAF722 /* SQLiteTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteTable.swift; sourceTree = "<group>"; };
 		010862C725B5E54F00EAF722 /* Int+Id.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Id.swift"; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 		010C679825BB982900E0EF01 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		010C67A025BB9C7400E0EF01 /* ValueWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueWidgetView.swift; sourceTree = "<group>"; };
 		010C67A825BB9FEC00E0EF01 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
+		012735B925D7A73E00C5CF6C /* HeartRateWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateWidget.swift; sourceTree = "<group>"; };
 		012C91B325B1ECFE00274F82 /* LiveLinePlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveLinePlot.swift; sourceTree = "<group>"; };
 		012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurement.swift; sourceTree = "<group>"; };
 		01325D3A25C35196000B2A05 /* ShareDatabaseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareDatabaseButtonView.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 				010C67A825BB9FEC00E0EF01 /* WidgetView.swift */,
 				018F822A25D5C3390037C5BE /* RespiratoryClsWidgetView.swift */,
 				0100B4EE25D7996900898C05 /* MaskWearTimeWidget.swift */,
+				012735B925D7A73E00C5CF6C /* HeartRateWidget.swift */,
 			);
 			path = Metrics;
 			sourceTree = "<group>";
@@ -233,8 +238,9 @@
 				018F824E25D5DA4A0037C5BE /* RespiratoryClassifier.mlmodel */,
 				01004AC225C9977F006F5670 /* Publishers */,
 				012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */,
-				01EECC2925D38C2A00225DAA /* TimeSeriesDataRead.swift */,
 				01A7638225D63F4E005EC1EF /* MetricMeasurement.swift */,
+				01EECC2925D38C2A00225DAA /* TimeSeriesDataRead.swift */,
+				0100B4F325D7A1B800898C05 /* Timestamp.swift */,
 				010862B725B2423900EAF722 /* SQLiteDatabase.swift */,
 				010862BC25B5E27800EAF722 /* SQLiteTable.swift */,
 				010862C725B5E54F00EAF722 /* Int+Id.swift */,
@@ -519,6 +525,7 @@
 				013B00BC25BB289B00319A42 /* SettingsView.swift in Sources */,
 				015F993525AE493500BDD672 /* ContentView.swift in Sources */,
 				010C675D25BB6C9A00E0EF01 /* TimeSeriesGraphWidgetView.swift in Sources */,
+				0100B4F425D7A1B800898C05 /* Timestamp.swift in Sources */,
 				01004AC425C997A4006F5670 /* TimeSeriesMeasurementPub.swift in Sources */,
 				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
 				018F822B25D5C3390037C5BE /* RespiratoryClsWidgetView.swift in Sources */,
@@ -528,6 +535,7 @@
 				018F822325D5BC630037C5BE /* TimerPublisher.swift in Sources */,
 				01B48FA525C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift in Sources */,
 				0100B4D725D74FB900898C05 /* FaceBitIcon.swift in Sources */,
+				012735BA25D7A73E00C5CF6C /* HeartRateWidget.swift in Sources */,
 				01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */,
 				012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */,
 				01004ABE25C996F0006F5670 /* DatabasePublisher.swift in Sources */,
@@ -741,7 +749,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -768,7 +776,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

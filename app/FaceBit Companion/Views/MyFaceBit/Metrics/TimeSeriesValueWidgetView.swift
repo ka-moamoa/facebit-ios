@@ -44,7 +44,6 @@ struct TimeSeriesValueWidgetView: View {
                 Text(unit)
             }
         }
-        .background(Image("temperature-icon"))
         .onAppear(perform: { setRefresh(facebit.state) })
         .onDisappear(perform: { publisher.stop() })
         .onReceive(facebit.$state, perform: { state in

@@ -58,7 +58,7 @@ extension MetricCharacteristic {
         let value = bytes[8]
         BLELogger.info("value from characteristic \(dataType.rawValue): \(value)")
         
-        var measurement = MetricMeasurement(
+        let measurement = MetricMeasurement(
             value: Double(value),
             dataType: dataType,
             timestamp: timestamp,
@@ -66,8 +66,6 @@ extension MetricCharacteristic {
         )
         
         SQLiteDatabase.main?.insertRecord(record: measurement)
-        
-        
     }
 }
 
