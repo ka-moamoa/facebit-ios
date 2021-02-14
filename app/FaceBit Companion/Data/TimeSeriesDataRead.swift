@@ -73,7 +73,7 @@ class TimeSeriesDataRead: Codable, SQLiteTable {
 }
 
 extension TimeSeriesDataRead {
-    static func get(by id: Int) -> TimeSeriesDataRead? {
+    static func get(by id: Int, dbPointer: OpaquePointer?) -> TimeSeriesDataRead? {
         let query = """
             SELECT id, data_type, frequency, millisecond_offset, num_samples, start_time
             FROM \(TimeSeriesDataRead.tableName)
@@ -81,7 +81,7 @@ extension TimeSeriesDataRead {
         """
         
         guard let db = SQLiteDatabase.main,
-              let statement = try? db.prepareStatement(sql: query) else {
+              let statement = try? db.prepareStatement(sql: query, dbPointer: dbPointer) else {
             return nil
         }
         

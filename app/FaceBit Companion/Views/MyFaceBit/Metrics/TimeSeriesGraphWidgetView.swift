@@ -10,6 +10,7 @@ import SwiftUI
 struct TimeSeriesGraphWidgetView: View {
     var title: String
     @ObservedObject var publisher: TimeSeriesMeasurementPub
+    @EnvironmentObject var facebit: FaceBitPeripheral
     
     init(title: String, dataType: TimeSeriesDataRead.DataType, timerInterval: TimeInterval, rowLimit: Int, timeOffset: TimeInterval) {
         
@@ -20,6 +21,8 @@ struct TimeSeriesGraphWidgetView: View {
             timerInterval: timerInterval,
             timeOffset: timeOffset
         )
+        
+        publisher.refresh()
     }
     
     var body: some View {
@@ -30,12 +33,19 @@ struct TimeSeriesGraphWidgetView: View {
                 LiveLinePlot(timeSeries: $publisher.items, showAxis: false)
             }
         }
-        .onAppear(perform: {
+        .onAppear(perform: { setRefresh(facebit.state) })
+        .onDisappear(perform: { publisher.stop() })
+        .onReceive(facebit.$state.dropFirst(), perform: { state in
+            setRefresh(state)
+        })
+    }
+    
+    func setRefresh(_ state: PeripheralState) {
+        if state == .connected {
             publisher.start()
-        })
-        .onDisappear(perform: {
+        } else {
             publisher.stop()
-        })
+        }
     }
 }
 

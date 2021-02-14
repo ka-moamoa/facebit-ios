@@ -92,6 +92,8 @@ extension BluetoothConnectionManager: CBCentralManagerDelegate {
         guard let peri = peripherals.first(where: { $0.name == peripheral.name }) else { return }
         BLELogger.info("\(peri.name) disconnected")
         peri.didUpdateState()
+        
+        startScan()
     }
 }
 

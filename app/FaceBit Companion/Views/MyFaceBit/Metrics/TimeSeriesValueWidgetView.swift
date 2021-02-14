@@ -30,6 +30,8 @@ struct TimeSeriesValueWidgetView: View {
             timerInterval: timerInterval,
             timeOffset: timeOffset
         )
+        
+        publisher.refresh()
     }
     
     var body: some View {
@@ -46,7 +48,7 @@ struct TimeSeriesValueWidgetView: View {
         }
         .onAppear(perform: { setRefresh(facebit.state) })
         .onDisappear(perform: { publisher.stop() })
-        .onReceive(facebit.$state, perform: { state in
+        .onReceive(facebit.$state.dropFirst(), perform: { state in
             setRefresh(state)
         })
     }
@@ -56,7 +58,6 @@ struct TimeSeriesValueWidgetView: View {
             publisher.start()
         } else {
             publisher.stop()
-            publisher.refresh()
         }
     }
 }

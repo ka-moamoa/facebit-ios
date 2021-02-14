@@ -9,7 +9,8 @@ import Foundation
 import Combine
 import SQLite3
 
-class MetricPub: DatabasePublisher, ObservableObject {
+class MetricPub: ObservableObject {
+    
     @Published var items: [MetricMeasurement] = []
     
     var query: String {
@@ -39,7 +40,7 @@ class MetricPub: DatabasePublisher, ObservableObject {
     func refresh() {
         SQLiteDatabase.queue.async {
             guard let db = SQLiteDatabase.main,
-                  let statement = try? db.prepareStatement(sql: self.query) else{
+                let statement = try? db.prepareStatement(sql: self.query, dbPointer: db.dbPointer) else{
                 return
             }
             

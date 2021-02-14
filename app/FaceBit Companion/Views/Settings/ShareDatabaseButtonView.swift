@@ -29,9 +29,7 @@ struct ShareDatabaseButtonView: View {
     private func shareDatabase() {
         #if targetEnvironment(macCatalyst)
             print("macOS")
-            if let url = SQLiteDatabase.dbPath {
-                UIApplication.shared.open(url)
-            }
+            UIApplication.shared.open(SQLiteDatabase.dbPath)
         #elseif os(iOS) || os(watchOS) || os(tvOS)
             print("iOS")
             guard let data = SQLiteDatabase.dbPath else { return }

@@ -9,8 +9,7 @@ import Foundation
 import Combine
 import SQLite3
 
-class TimeSeriesMeasurementPub: DatabasePublisher, ObservableObject {
-    
+class TimeSeriesMeasurementPub: ObservableObject {
     @Published var items: [TimeSeriesMeasurement] = []
     
     let dataType: TimeSeriesDataRead.DataType
@@ -46,7 +45,7 @@ class TimeSeriesMeasurementPub: DatabasePublisher, ObservableObject {
     func refresh() {
         SQLiteDatabase.queue.async {
             guard let db = SQLiteDatabase.main,
-                  let statement = try? db.prepareStatement(sql: self.query) else {
+                let statement = try? db.prepareStatement(sql: self.query, dbPointer: db.dbPointer) else {
                 return
             }
             
@@ -68,7 +67,7 @@ class TimeSeriesMeasurementPub: DatabasePublisher, ObservableObject {
                 }
                 
                 if dataReads[dataReadId] == nil {
-                    if let dataRead = TimeSeriesDataRead.get(by: dataReadId) {
+                    if let dataRead = TimeSeriesDataRead.get(by: dataReadId, dbPointer: db.dbPointer) {
                         dataReads[dataReadId] = dataRead
                     } else { continue }
                 }

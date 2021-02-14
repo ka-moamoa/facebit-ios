@@ -18,7 +18,7 @@ enum SQLiteError: Error {
 }
 
 class SQLiteDatabase {
-    private let dbPointer: OpaquePointer?
+    let dbPointer: OpaquePointer?
     
     private init(dbPointer: OpaquePointer?) {
         self.dbPointer = dbPointer
@@ -26,9 +26,9 @@ class SQLiteDatabase {
     
     private static var _main: SQLiteDatabase?
     
-    static var dbPath: URL? {
-        let dirURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        let dbPath = dirURL?.appendingPathComponent("db.sqlite")
+    static var dbPath: URL {
+        let dirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let dbPath = dirURL.appendingPathComponent("db.sqlite")
         return dbPath
     }
     
@@ -72,11 +72,11 @@ class SQLiteDatabase {
       }
     }
     
-    static func open(path: String) throws -> SQLiteDatabase {
+    static func open(path: String) throws -> OpaquePointer? {
         var db: OpaquePointer?
         
         if sqlite3_open(path, &db) == SQLITE_OK {
-            return SQLiteDatabase(dbPointer: db)
+            return db
         } else {
             defer {
                 if db != nil {
@@ -95,25 +95,25 @@ class SQLiteDatabase {
     
     static func openDatabase(purge: Bool=false) {
         do {
-            guard let path = SQLiteDatabase.dbPath?.relativePath else { return }
+            let path = SQLiteDatabase.dbPath.relativePath
            
-            if purge, let dbPath = SQLiteDatabase.dbPath?.relativePath,
-               FileManager.default.fileExists(atPath: dbPath) {
+            if purge,
+               FileManager.default.fileExists(atPath: path) {
                 
-                try FileManager.default.removeItem(atPath: dbPath)
+                try FileManager.default.removeItem(atPath: path)
             }
             
             let db = try SQLiteDatabase.open(path: path)
             PersistanceLogger.debug("Database Path: \(path)")
             PersistanceLogger.info("Successfully opened connection to database.")
-            _main = db
+            _main = SQLiteDatabase(dbPointer: db)
         } catch {
             PersistanceLogger.error("Unable to open database.")
             return
         }
     }
     
-    func prepareStatement(sql: String) throws -> OpaquePointer? {
+    func prepareStatement(sql: String, dbPointer: OpaquePointer?) throws -> OpaquePointer? {
         var statement: OpaquePointer?
         
         guard sqlite3_prepare_v2(dbPointer, sql, -1, &statement, nil) == SQLITE_OK else {
@@ -127,7 +127,7 @@ class SQLiteDatabase {
     func executeSQL(sql: String) {
         SQLiteDatabase.queue.async { [weak self] in
             guard let self = self else { return }
-            let statement = try? self.prepareStatement(sql: sql)
+            let statement = try? self.prepareStatement(sql: sql, dbPointer: self.dbPointer)
             
             defer {
                 sqlite3_finalize(statement)
@@ -144,7 +144,7 @@ class SQLiteDatabase {
         SQLiteDatabase.queue.async { [weak self] in
             guard let self = self else { return }
             
-            let createTableSQL = try? self.prepareStatement(sql: table.createSQL)
+            let createTableSQL = try? self.prepareStatement(sql: table.createSQL, dbPointer: self.dbPointer)
             
             defer {
                 sqlite3_finalize(createTableSQL)
@@ -165,7 +165,7 @@ class SQLiteDatabase {
                 return
             }
             
-            let insertStatement = try? self.prepareStatement(sql: record.insertSQL())
+            let insertStatement = try? self.prepareStatement(sql: record.insertSQL(), dbPointer: self.dbPointer)
             
             defer {
                 sqlite3_finalize(insertStatement)
@@ -190,7 +190,7 @@ class SQLiteDatabase {
         SQLiteDatabase.queue.async { [weak self] in
             guard let self = self else { return }
             
-            let updateStatement = try? self.prepareStatement(sql: updateSQL)
+            let updateStatement = try? self.prepareStatement(sql: updateSQL, dbPointer: self.dbPointer)
             
             defer {
                 sqlite3_finalize(updateStatement)
@@ -223,7 +223,7 @@ class SQLiteDatabase {
 
     func lastInsertedId() throws -> Int {
         let sql = "SELECT last_insert_rowid()"
-        let statement = try? prepareStatement(sql: sql)
+        let statement = try? prepareStatement(sql: sql, dbPointer: self.dbPointer)
         
         defer {
             sqlite3_finalize(statement)

@@ -119,7 +119,7 @@ class SmartPPEEvent: Codable, SQLiteTable {
                 ORDER BY start_date DESC
                 LIMIT 1
             """
-            guard let statement = try? db.prepareStatement(sql: sql) else {
+            guard let statement = try? db.prepareStatement(sql: sql, dbPointer: db.dbPointer) else {
                 DispatchQueue.main.async { callback(nil) }
                 return
             }

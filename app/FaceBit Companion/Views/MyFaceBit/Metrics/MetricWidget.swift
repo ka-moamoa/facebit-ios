@@ -28,6 +28,7 @@ struct MetricWidget: View {
             rowLimit: 1,
             timerInterval: timerInterval
         )
+        self.publisher.refresh()
     }
     
     private var dateFormatter: DateFormatter {
@@ -54,20 +55,22 @@ struct MetricWidget: View {
                 Text(title)
                     .bold()
                 Spacer()
-                Text("\(String(format: "%.2f", lastValue))")
-                    .font(.system(size: 28.0))
+                Text("\(String(format: "%.0f", lastValue))")
+                    .font(.system(size: 34.0))
+                    .fontWeight(.bold)
+                    .padding(8)
                 Text(unit)
                     .font(.system(size: 16.0))
                 Spacer()
                 
                 Text(lastReadDate)
-                        .font(.system(size: 11.0))
+                    .font(.system(size: 11.0))
                     
             }
         }
         .onAppear(perform: { setRefresh(facebit.state) })
         .onDisappear(perform: { publisher.stop() })
-        .onReceive(facebit.$state, perform: { state in
+        .onReceive(facebit.$state.dropFirst(), perform: { state in
             setRefresh(state)
         })
     }
@@ -77,7 +80,6 @@ struct MetricWidget: View {
             publisher.start()
         } else {
             publisher.stop()
-            publisher.refresh()
         }
     }
 }

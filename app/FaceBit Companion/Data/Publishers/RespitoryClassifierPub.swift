@@ -14,6 +14,7 @@ import CoreML
 import Accelerate
 
 class RespitoryClassifierPub: ObservableObject {
+    
     enum Classification: Int, CaseIterable, Identifiable {
         case maskOff = 0
         case normalBreathing
@@ -36,7 +37,7 @@ class RespitoryClassifierPub: ObservableObject {
     
     let timeOffset: TimeInterval
     var timer: Timer?
-    var timerInterval: TimeInterval = 10
+    var timerInterval: TimeInterval
     
     private let baseFrequency = 17
     private var sampleSize: Int { return baseFrequency * 3 }
@@ -69,7 +70,7 @@ class RespitoryClassifierPub: ObservableObject {
             """
             
             guard let db = SQLiteDatabase.main,
-                  let statement = try? db.prepareStatement(sql: query) else {
+                  let statement = try? db.prepareStatement(sql: query, dbPointer: db.dbPointer) else {
                 return
             }
             
@@ -91,7 +92,7 @@ class RespitoryClassifierPub: ObservableObject {
                 }
                 
                 if dataReads[dataReadId] == nil {
-                    if let dataRead = TimeSeriesDataRead.get(by: dataReadId) {
+                    if let dataRead = TimeSeriesDataRead.get(by: dataReadId, dbPointer: db.dbPointer) {
                         dataReads[dataReadId] = dataRead
                     } else { continue }
                 }
@@ -107,7 +108,7 @@ class RespitoryClassifierPub: ObservableObject {
                 )
             }
             
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .utility).async {
                 self.infer(measurements)
             }
         }
@@ -273,6 +274,6 @@ extension RespitoryClassifierPub: TimerPublisher {
     }
     
     internal func onFire(_ timer: Timer) {
-        DispatchQueue.main.async { self.fetchData() }
+        self.fetchData()
     }
 }
