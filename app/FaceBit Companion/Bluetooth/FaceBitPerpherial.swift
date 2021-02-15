@@ -169,7 +169,7 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         }
         
         if let readReadyChar = service.characteristics?.first(where: { $0.uuid == DataReadyCharacteristicUUID }) {
-            BLELogger.info("Updateing Read Ready: NO_DATA")
+            BLELogger.info("Writing Read Ready: NO_DATA")
             peripheral.writeValue(DataReadyNoData, for: readReadyChar, type: .withoutResponse)
 //            peripheral.readValue(for: readReadyChar)
         }
@@ -273,6 +273,9 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
             }
 
             PersistanceLogger.info("Inserting \(measurements.count) \(readChar.name) time series records.")
+            
+            guard !measurements.isEmpty else { return }
+            
             SQLiteDatabase.main?.executeSQL(sql: measurements.insertSQL())
         }
     }
