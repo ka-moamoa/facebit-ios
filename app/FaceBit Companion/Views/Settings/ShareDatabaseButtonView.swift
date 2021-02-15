@@ -32,8 +32,10 @@ struct ShareDatabaseButtonView: View {
             UIApplication.shared.open(SQLiteDatabase.dbPath)
         #elseif os(iOS) || os(watchOS) || os(tvOS)
             print("iOS")
-            guard let data = SQLiteDatabase.dbPath else { return }
-            let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+            let av = UIActivityViewController(
+                activityItems: [SQLiteDatabase.dbPath],
+                applicationActivities: nil
+            )
             UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
         #else
             // unknown os

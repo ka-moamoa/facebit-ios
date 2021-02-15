@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MyFaceBitMetricsDashboardView: View {
     @EnvironmentObject var facebit: FaceBitPeripheral
+    @EnvironmentObject var maskVM: MaskViewModel
+    
     
     private var gridItemLayout = [
         GridItem(.flexible()),

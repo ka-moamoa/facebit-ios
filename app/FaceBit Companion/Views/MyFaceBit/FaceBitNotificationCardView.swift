@@ -58,7 +58,6 @@ struct FaceBitNotificationCardView: View, Identifiable {
             }
             Text(card.message)
                 .font(.system(size: 14.0))
-            Spacer()
         }
         .padding()
         .overlay(

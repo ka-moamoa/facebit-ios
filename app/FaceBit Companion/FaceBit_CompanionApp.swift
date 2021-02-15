@@ -13,14 +13,18 @@ struct FaceBit_CompanionApp: App {
         TemperatureCharacteristic(),
         PressureCharacteristic(),
         RespiratoryRateCharacteristic(),
-        HeartRateCharacteristic()
+        HeartRateCharacteristic(),
+        MaskOnOffCharacteristic()
     ])
+    
+    let maskVM: MaskViewModel = MaskViewModel()
     
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(facebit)
+                .environmentObject(maskVM)
                 .onAppear(perform: {
                    setupDatabase()
                 })

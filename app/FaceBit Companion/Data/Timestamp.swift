@@ -10,10 +10,8 @@ import Foundation
 class Timestamp: SQLiteTable {
     enum DataType: String, CaseIterable, Identifiable {
         case peripheralSync = "peripheral_sync"
-        case onStart = "mask_on_start"
-        case onEnd = "mask_on_end"
-        case newMask = "new_mask"
-        case maskDisposal = "mask_disposal"
+        case maskOn = "mask_on"
+        case maskOff = "mask_off"
         
         var id: String { return self.rawValue }
     }

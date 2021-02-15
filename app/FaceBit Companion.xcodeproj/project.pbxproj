@@ -62,6 +62,11 @@
 		01A7638325D63F4E005EC1EF /* MetricMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A7638225D63F4E005EC1EF /* MetricMeasurement.swift */; };
 		01B48FA525C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B48FA425C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift */; };
 		01C7ADE425D8565000237300 /* DatabaseConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C7ADE325D8565000237300 /* DatabaseConnection.swift */; };
+		01E9276B25D97AAA00873BD8 /* MaskWearTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E9276A25D97AAA00873BD8 /* MaskWearTimeView.swift */; };
+		01E9277325D97C7700873BD8 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E9277225D97C7700873BD8 /* ProgressBar.swift */; };
+		01E9277825D98B0500873BD8 /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E9277725D98B0500873BD8 /* Mask.swift */; };
+		01E9277D25D99D2500873BD8 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E9277C25D99D2500873BD8 /* View+Extension.swift */; };
+		01E9278225D9AD0D00873BD8 /* MaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E9278125D9AD0D00873BD8 /* MaskViewModel.swift */; };
 		01EDBE7025B72659009505DC /* SmartPPEEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */; };
 		01EDBE7825B74604009505DC /* MyFaceBitMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */; };
 		01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */; };
@@ -148,6 +153,11 @@
 		01A7638225D63F4E005EC1EF /* MetricMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricMeasurement.swift; sourceTree = "<group>"; };
 		01B48FA425C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesValueWidgetView.swift; sourceTree = "<group>"; };
 		01C7ADE325D8565000237300 /* DatabaseConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseConnection.swift; sourceTree = "<group>"; };
+		01E9276A25D97AAA00873BD8 /* MaskWearTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskWearTimeView.swift; sourceTree = "<group>"; };
+		01E9277225D97C7700873BD8 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		01E9277725D98B0500873BD8 /* Mask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mask.swift; sourceTree = "<group>"; };
+		01E9277C25D99D2500873BD8 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		01E9278125D9AD0D00873BD8 /* MaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskViewModel.swift; sourceTree = "<group>"; };
 		01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartPPEEvent.swift; sourceTree = "<group>"; };
 		01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFaceBitMainView.swift; sourceTree = "<group>"; };
 		01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBitStatusView.swift; sourceTree = "<group>"; };
@@ -190,6 +200,7 @@
 				018F822225D5BC630037C5BE /* TimerPublisher.swift */,
 				01004AC325C997A4006F5670 /* TimeSeriesMeasurementPub.swift */,
 				018F821725D576610037C5BE /* RespitoryClassifierPub.swift */,
+				01E9278125D9AD0D00873BD8 /* MaskViewModel.swift */,
 				0149441425D838B100FB3DEF /* MetricPub.swift */,
 				01C7ADE325D8565000237300 /* DatabaseConnection.swift */,
 			);
@@ -201,6 +212,7 @@
 			children = (
 				0100B4D625D74FB900898C05 /* FaceBitIcon.swift */,
 				0100B4E625D7907300898C05 /* PrimaryButton.swift */,
+				01E9277225D97C7700873BD8 /* ProgressBar.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -212,6 +224,7 @@
 				013B00CC25BB2B6400319A42 /* FaceBit+Bundle.swift */,
 				013B00ED25BB517A00319A42 /* FaceBit+String.swift */,
 				0100B4D025D7243600898C05 /* UInt+Extension.swift */,
+				01E9277C25D99D2500873BD8 /* View+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -225,6 +238,7 @@
 				010C67A825BB9FEC00E0EF01 /* WidgetView.swift */,
 				018F822A25D5C3390037C5BE /* RespiratoryClsWidgetView.swift */,
 				0100B4EE25D7996900898C05 /* MaskWearTimeWidget.swift */,
+				01E9276A25D97AAA00873BD8 /* MaskWearTimeView.swift */,
 				012735B925D7A73E00C5CF6C /* MetricWidget.swift */,
 			);
 			path = Metrics;
@@ -251,6 +265,7 @@
 				010862BC25B5E27800EAF722 /* SQLiteTable.swift */,
 				010862C725B5E54F00EAF722 /* Int+Id.swift */,
 				01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */,
+				01E9277725D98B0500873BD8 /* Mask.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -531,6 +546,7 @@
 				013B00BC25BB289B00319A42 /* SettingsView.swift in Sources */,
 				015F993525AE493500BDD672 /* ContentView.swift in Sources */,
 				010C675D25BB6C9A00E0EF01 /* TimeSeriesGraphWidgetView.swift in Sources */,
+				01E9276B25D97AAA00873BD8 /* MaskWearTimeView.swift in Sources */,
 				0100B4F425D7A1B800898C05 /* Timestamp.swift in Sources */,
 				01004AC425C997A4006F5670 /* TimeSeriesMeasurementPub.swift in Sources */,
 				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
@@ -548,6 +564,7 @@
 				012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */,
 				01004ABE25C996F0006F5670 /* DatabasePublisher.swift in Sources */,
 				013B00CD25BB2B6400319A42 /* FaceBit+Bundle.swift in Sources */,
+				01E9277D25D99D2500873BD8 /* View+Extension.swift in Sources */,
 				0100B4EF25D7996900898C05 /* MaskWearTimeWidget.swift in Sources */,
 				01EECC2A25D38C2A00225DAA /* TimeSeriesDataRead.swift in Sources */,
 				013B00D225BB315C00319A42 /* FaceBitNotificationView.swift in Sources */,
@@ -570,6 +587,7 @@
 				010C677925BB82A400E0EF01 /* DeepBreathingEventRecordView.swift in Sources */,
 				01EDBE7025B72659009505DC /* SmartPPEEvent.swift in Sources */,
 				01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */,
+				01E9277325D97C7700873BD8 /* ProgressBar.swift in Sources */,
 				018F824F25D5DA4A0037C5BE /* RespiratoryClassifier.mlmodel in Sources */,
 				018F821825D576610037C5BE /* RespitoryClassifierPub.swift in Sources */,
 				010C675725BB5AFC00E0EF01 /* FaceBitConnectionStatusButtonView.swift in Sources */,
@@ -579,8 +597,10 @@
 				010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */,
 				010C67A125BB9C7400E0EF01 /* ValueWidgetView.swift in Sources */,
 				013B00EE25BB517A00319A42 /* FaceBit+String.swift in Sources */,
+				01E9278225D9AD0D00873BD8 /* MaskViewModel.swift in Sources */,
 				01A7638325D63F4E005EC1EF /* MetricMeasurement.swift in Sources */,
 				010C677A25BB82A400E0EF01 /* NormalBreathingEventRecordView.swift in Sources */,
+				01E9277825D98B0500873BD8 /* Mask.swift in Sources */,
 				019754EF25C499D300211FE9 /* PurgeDatabaseButtonView.swift in Sources */,
 				010C679925BB982900E0EF01 /* AppData.swift in Sources */,
 			);

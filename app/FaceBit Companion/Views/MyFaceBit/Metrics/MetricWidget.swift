@@ -68,11 +68,15 @@ struct MetricWidget: View {
                     
             }
         }
-        .onAppear(perform: { setRefresh(facebit.state) })
-        .onDisappear(perform: { publisher.stop() })
-        .onReceive(facebit.$state.dropFirst(), perform: { state in
+        .onLoad() {
+            setRefresh(facebit.state)
+            publisher.refresh()
+        }
+        .onAppear() { setRefresh(facebit.state) }
+        .onDisappear() { publisher.stop() }
+        .onReceive(facebit.$state.dropFirst()) { state in
             setRefresh(state)
-        })
+        }
     }
     
     func setRefresh(_ state: PeripheralState) {

@@ -119,20 +119,21 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         guard let value = characteristic.value else { return }
         
+        BLELogger.debug("Did update value for characteristic: \(characteristic.uuid.uuidString)")
+        
         switch characteristic.uuid {
         case DataReadyCharacteristicUUID:
             handleReadReady(value)
         case TemperatureCharacteristic.uuid, PressureCharacteristic.uuid:
             updateReadReady(DataReadyNoData, peripheral: peripheral)
             recordTimeSeriesData(value, uuid: characteristic.uuid)
-        case RespiratoryRateCharacteristic.uuid, HeartRateCharacteristic.uuid:
+        default:
             if let c = readChars.first(where: { $0.uuid == characteristic.uuid }) {
                 updateReadReady(DataReadyNoData, peripheral: peripheral)
                 c.processRead(value)
+            } else {
+                print("Unhandled Characteristic UUID: \(characteristic.uuid)")
             }
-            
-        default:
-            print("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }
     }
     
@@ -154,6 +155,14 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         
     }
     
+    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+        BLELogger.debug("Did update notification state for: \(characteristic.uuid.uuidString), \(error?.localizedDescription ?? "no error")")
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        BLELogger.debug("Did write value for \(characteristic.uuid.uuidString), \(error?.localizedDescription ?? "no error")")
+    }
+    
     private func updateReadReady(_ data: Data, peripheral: CBPeripheral) {
         guard let service = peripheral.services?.first(where: { $0.uuid == mainServiceUUID }) else {
             return
@@ -169,10 +178,7 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
     private func handleReadReady(_ data: Data) {
         let readValue = Int([UInt8](data)[0])
         
-        if readValue == 8 {
-            BLELogger.info("Data Ready: NO_DATA")
-            return
-        }
+        BLELogger.info("Data Ready Value: \(readValue)")
         
         if var readChar = readChars.first(where: { $0.readValue == readValue }),
            let characteristics = peripheral?.services?.first(where: { $0.uuid == self.mainServiceUUID })?.characteristics {

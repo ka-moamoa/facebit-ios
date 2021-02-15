@@ -9,11 +9,9 @@ import SwiftUI
 
 struct MaskWearTimeWidget: View {
     @EnvironmentObject var facebit: FaceBitPeripheral
-    @State private var showModal: Bool = false
+    @EnvironmentObject var maskVM: MaskViewModel
     
-    var timeString: String {
-        return "00:00:00"
-    }
+    @State private var showModal: Bool = false
     
     var body: some View {
         Button(
@@ -24,8 +22,13 @@ struct MaskWearTimeWidget: View {
                         Text("Wear Time")
                             .bold()
                         Spacer()
-                        Text(timeString)
-                            .font(.system(size: 28.0))
+                        Text(maskVM.mask?.wearTimeString ?? "")
+                            .font(.system(size: 48.0))
+                        ProgressBar(
+                            value: maskVM.mask?.percentValue ?? 0.0,
+                            backgroundColor: Color("PrimaryWhite"),
+                            progressColor: Color("PrimaryOrange")
+                        )
                         Spacer()
                     }
                 })
@@ -35,7 +38,19 @@ struct MaskWearTimeWidget: View {
             isPresented: $showModal,
             onDismiss: nil,
             content: {
-                PrimaryButton(action: {}, content: { Text("Dispose Mask") })
+                VStack {
+                    HStack {
+                        Spacer()
+                        Text("Mask Wear Time")
+                            .font(.title)
+                            .padding(16)
+                        Spacer()
+                    }
+                    Divider()
+                    MaskWearTimeView()
+                    Spacer()
+                    
+                }
             }
         )
     }

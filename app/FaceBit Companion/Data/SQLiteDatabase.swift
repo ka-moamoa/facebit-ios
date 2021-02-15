@@ -32,7 +32,7 @@ class SQLiteDatabase {
         return dbPath
     }
     
-    static let queue = DispatchQueue(label: "sqlite-queue", qos: .userInitiated)
+    static let queue = DispatchQueue(label: "sqlite-queue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .never, target: nil)
     
     static var main: SQLiteDatabase? {
         guard SQLiteDatabase._main == nil else {
@@ -51,6 +51,7 @@ class SQLiteDatabase {
     }
     
     static var tables: [SQLiteTable.Type] = [
+        Mask.self,
         Timestamp.self,
         SmartPPEEvent.self,
         TimeSeriesDataRead.self,

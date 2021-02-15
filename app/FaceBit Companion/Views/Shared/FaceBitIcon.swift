@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FaceBitIcon: View {
     var body: some View {
-        Image("face-mask")
+        Image("face-mask_3")
             .resizable()
             .padding(10.0)
             .scaledToFit()

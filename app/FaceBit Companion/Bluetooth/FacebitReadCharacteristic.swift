@@ -120,3 +120,43 @@ class HeartRateCharacteristic: FaceBitReadCharacteristic, MetricCharacteristic {
         processMetricRead(data)
     }
 }
+
+class MaskOnOffCharacteristic: FaceBitReadCharacteristic {
+    enum State: Int, CaseIterable, Identifiable {
+        case offInactive = 0
+        case offActive
+        case on
+        case uninitialized
+        
+        var id: Int { return self.rawValue }
+    }
+    
+    static let name = "Mask On/Off"
+    static let uuid = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8786")
+    static let readValue = 5
+    
+    static let dataType: MetricMeasurement.DataType = .heartRate
+    
+    var readStart: Date = Date()
+    
+    func processRead(_ data: Data) {
+        let bytes = [UInt8](data)
+        
+        let timestampBytes = Array(bytes[0..<8])
+        var timestamp: UInt64 = 0
+        for byte in timestampBytes.reversed() {
+            timestamp = timestamp << 8
+            timestamp = timestamp | UInt64(byte)
+        }
+        
+        let value = bytes[8]
+        BLELogger.info("value from mask on/off characteristic: \(value), timestamp: \(timestamp)")
+        
+        let timeRecord = Timestamp(
+            dataType: value == 1 ? .maskOff : .maskOn,
+            date: Date()
+        )
+        
+        SQLiteDatabase.main?.insertRecord(record: timeRecord)
+    }
+}
