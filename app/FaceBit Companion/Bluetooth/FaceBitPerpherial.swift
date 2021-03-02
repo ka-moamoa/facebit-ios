@@ -169,7 +169,7 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         }
         
         if let readReadyChar = service.characteristics?.first(where: { $0.uuid == DataReadyCharacteristicUUID }) {
-            BLELogger.info("Writing Read Ready: NO_DATA")
+            BLELogger.info("Writing Data Ready: NO_DATA")
             peripheral.writeValue(DataReadyNoData, for: readReadyChar, type: .withoutResponse)
 //            peripheral.readValue(for: readReadyChar)
         }

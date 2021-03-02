@@ -50,7 +50,7 @@ struct MyFaceBitMainViewMacOS: View {
         .onReceive(maskVM.$mask, perform: { mask in
             guard let mask = mask else { return }
             
-            if mask.percentValue >= 0.75 {
+            if mask.percentValue >= 0.9 {
                 cards.append(
                     FaceBitNotificationCard(
                         title: "About time to Replace Your Mask",
@@ -58,11 +58,11 @@ struct MyFaceBitMainViewMacOS: View {
                         notificationType: .alert
                     )
                 )
-            } else if mask.percentValue >= 0.01 {
+            } else if mask.percentValue >= 0.5 {
                 cards.append(
                     FaceBitNotificationCard(
                         title: "Time to Replace Mask",
-                        message: "Your mask is at the end of it's suggest wear time. Replace to ensure quality of protection.",
+                        message: "Your mask is at the end of its suggested wear time. Replace to ensure quality of protection.",
                         notificationType: .warning
                     )
                 )
