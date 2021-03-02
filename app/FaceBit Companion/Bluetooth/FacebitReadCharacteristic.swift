@@ -55,11 +55,17 @@ extension MetricCharacteristic {
             timestamp = timestamp | UInt64(byte)
         }
         
-        let value = bytes[8]
+        var value = Double(bytes[8])
+        
+        if self.dataType == .respiratoryRate {
+            value = value / 10.0
+        }
+        
         BLELogger.info("value from characteristic \(dataType.rawValue): \(value)")
+            
         
         let measurement = MetricMeasurement(
-            value: Double(value),
+            value: value,
             dataType: dataType,
             timestamp: timestamp,
             date: Date()
@@ -150,10 +156,11 @@ class MaskOnOffCharacteristic: FaceBitReadCharacteristic {
         }
         
         let value = bytes[8]
+        let state = State(rawValue: Int(value))
         BLELogger.info("value from mask on/off characteristic: \(value), timestamp: \(timestamp)")
         
         let timeRecord = Timestamp(
-            dataType: value == 1 ? .maskOff : .maskOn,
+            dataType: state == .on ? .maskOn : .maskOff,
             date: Date()
         )
         

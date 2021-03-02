@@ -21,7 +21,7 @@ struct FaceBitDetailsView: View {
     
     private var lastDateText: String {
         if facebit.state == .connected {
-            return "Now"
+        return "Now"
         }
         
         if let lastContact = facebit.lastContact {
