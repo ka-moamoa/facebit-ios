@@ -1,0 +1,66 @@
+//
+//  TimeSeriesMeasurement.swift
+//  FaceBit Companion
+//
+//  Created by blaine on 3/12/21.
+//
+
+import Foundation
+import GRDB
+
+class TimeSeriesMeasurement_New: Identifiable, Equatable, Codable {
+    var id: Int64?
+    var value: Double
+    var date: Date
+    var dataReadId: Int64?
+    var eventId: Int64?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case value = "value"
+        case date = "date"
+        case dataReadId = "data_read_id"
+        case eventId = "event_id"
+    }
+
+    static func == (lhs: TimeSeriesMeasurement_New, rhs: TimeSeriesMeasurement_New) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+extension TimeSeriesMeasurement_New: TableRecord {
+    static var databaseTableName: String = "time_series_measurement"
+    
+    static let dataRead = belongsTo(TimeSeriesDataRead_New.self)
+    var dataRead: QueryInterfaceRequest<TimeSeriesDataRead_New> {
+        request(for: TimeSeriesMeasurement_New.dataRead)
+    }
+}
+
+extension TimeSeriesMeasurement_New: FetchableRecord, MutablePersistableRecord {
+    fileprivate enum Columns {
+        static let value = Column(CodingKeys.value)
+        static let date = Column(CodingKeys.date)
+        static let dataReadId = Column(CodingKeys.dataReadId)
+        static let eventId = Column(CodingKeys.eventId)
+    }
+    
+    func didInsert(with rowID: Int64, for column: String?) {
+        self.id = rowID
+    }
+}
+
+extension TimeSeriesMeasurement_New: SQLSchema {
+    static func create(in db: Database) throws {
+        try db.create(table: Self.databaseTableName, body: { (t) in
+            t.autoIncrementedPrimaryKey(CodingKeys.id.rawValue)
+            t.column(CodingKeys.value.rawValue, .double).notNull()
+            t.column(CodingKeys.date.rawValue, .datetime).notNull()
+            t.column(CodingKeys.dataReadId.rawValue, .integer)
+                .references(TimeSeriesDataRead_New.databaseTableName)
+                .notNull()
+            t.column(CodingKeys.eventId.rawValue, .integer)
+                .references(Event.databaseTableName)
+        })
+    }
+}

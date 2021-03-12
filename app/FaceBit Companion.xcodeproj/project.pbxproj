@@ -15,6 +15,9 @@
 		0100B4E725D7907300898C05 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100B4E625D7907300898C05 /* PrimaryButton.swift */; };
 		0100B4EF25D7996900898C05 /* MaskWearTimeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100B4EE25D7996900898C05 /* MaskWearTimeWidget.swift */; };
 		0100B4F425D7A1B800898C05 /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100B4F325D7A1B800898C05 /* Timestamp.swift */; };
+		0103210925FA951B00EC81B4 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 0103210825FA951B00EC81B4 /* GRDB */; };
+		0103210E25FA97A100EC81B4 /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103210D25FA97A100EC81B4 /* AppDatabase.swift */; };
+		0103211425FAABCE00EC81B4 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103211325FAABCE00EC81B4 /* Event.swift */; };
 		010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862B725B2423900EAF722 /* SQLiteDatabase.swift */; };
 		010862BD25B5E27800EAF722 /* SQLiteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862BC25B5E27800EAF722 /* SQLiteTable.swift */; };
 		010862C825B5E54F00EAF722 /* Int+Id.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862C725B5E54F00EAF722 /* Int+Id.swift */; };
@@ -27,7 +30,6 @@
 		010C677825BB82A400E0EF01 /* TalkingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677325BB82A400E0EF01 /* TalkingEventRecordView.swift */; };
 		010C677925BB82A400E0EF01 /* DeepBreathingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677425BB82A400E0EF01 /* DeepBreathingEventRecordView.swift */; };
 		010C677A25BB82A400E0EF01 /* NormalBreathingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677525BB82A400E0EF01 /* NormalBreathingEventRecordView.swift */; };
-		010C679925BB982900E0EF01 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C679825BB982900E0EF01 /* AppData.swift */; };
 		010C67A125BB9C7400E0EF01 /* ValueWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C67A025BB9C7400E0EF01 /* ValueWidgetView.swift */; };
 		010C67A925BB9FEC00E0EF01 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C67A825BB9FEC00E0EF01 /* WidgetView.swift */; };
 		012735BA25D7A73E00C5CF6C /* MetricWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012735B925D7A73E00C5CF6C /* MetricWidget.swift */; };
@@ -53,6 +55,9 @@
 		015F995025AE493500BDD672 /* FaceBit_CompanionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */; };
 		015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */; };
 		018B2F3625CCAE7C00178E6C /* FacebitReadCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018B2F3525CCAE7C00178E6C /* FacebitReadCharacteristic.swift */; };
+		018D6FB425FBB0BC00E5AD09 /* SQLSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D6FB325FBB0BC00E5AD09 /* SQLSchema.swift */; };
+		018D6FBC25FBB26000E5AD09 /* TimeSeriesMeasurement_New.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D6FBB25FBB26000E5AD09 /* TimeSeriesMeasurement_New.swift */; };
+		018D6FC125FBB30000E5AD09 /* TimeSeriesDataRead_New.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D6FC025FBB30000E5AD09 /* TimeSeriesDataRead_New.swift */; };
 		018F821825D576610037C5BE /* RespitoryClassifierPub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F821725D576610037C5BE /* RespitoryClassifierPub.swift */; };
 		018F822325D5BC630037C5BE /* TimerPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F822225D5BC630037C5BE /* TimerPublisher.swift */; };
 		018F822B25D5C3390037C5BE /* RespiratoryClsWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018F822A25D5C3390037C5BE /* RespiratoryClsWidgetView.swift */; };
@@ -101,6 +106,8 @@
 		0100B4E625D7907300898C05 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		0100B4EE25D7996900898C05 /* MaskWearTimeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskWearTimeWidget.swift; sourceTree = "<group>"; };
 		0100B4F325D7A1B800898C05 /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
+		0103210D25FA97A100EC81B4 /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
+		0103211325FAABCE00EC81B4 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		010862B725B2423900EAF722 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		010862BC25B5E27800EAF722 /* SQLiteTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteTable.swift; sourceTree = "<group>"; };
 		010862C725B5E54F00EAF722 /* Int+Id.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Id.swift"; sourceTree = "<group>"; };
@@ -113,7 +120,6 @@
 		010C677325BB82A400E0EF01 /* TalkingEventRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkingEventRecordView.swift; sourceTree = "<group>"; };
 		010C677425BB82A400E0EF01 /* DeepBreathingEventRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepBreathingEventRecordView.swift; sourceTree = "<group>"; };
 		010C677525BB82A400E0EF01 /* NormalBreathingEventRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalBreathingEventRecordView.swift; sourceTree = "<group>"; };
-		010C679825BB982900E0EF01 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		010C67A025BB9C7400E0EF01 /* ValueWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueWidgetView.swift; sourceTree = "<group>"; };
 		010C67A825BB9FEC00E0EF01 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		012735B925D7A73E00C5CF6C /* MetricWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricWidget.swift; sourceTree = "<group>"; };
@@ -144,6 +150,9 @@
 		015F995125AE493500BDD672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnectionManager.swift; sourceTree = "<group>"; };
 		018B2F3525CCAE7C00178E6C /* FacebitReadCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebitReadCharacteristic.swift; sourceTree = "<group>"; };
+		018D6FB325FBB0BC00E5AD09 /* SQLSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLSchema.swift; sourceTree = "<group>"; };
+		018D6FBB25FBB26000E5AD09 /* TimeSeriesMeasurement_New.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurement_New.swift; sourceTree = "<group>"; };
+		018D6FC025FBB30000E5AD09 /* TimeSeriesDataRead_New.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesDataRead_New.swift; sourceTree = "<group>"; };
 		018F821725D576610037C5BE /* RespitoryClassifierPub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespitoryClassifierPub.swift; sourceTree = "<group>"; };
 		018F822225D5BC630037C5BE /* TimerPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPublisher.swift; sourceTree = "<group>"; };
 		018F822A25D5C3390037C5BE /* RespiratoryClsWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespiratoryClsWidgetView.swift; sourceTree = "<group>"; };
@@ -173,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				013B00E625BB4B1C00319A42 /* ACarousel in Frameworks */,
+				0103210925FA951B00EC81B4 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +227,17 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		0103211225FAABB700EC81B4 /* GRDB Tables */ = {
+			isa = PBXGroup;
+			children = (
+				018D6FB325FBB0BC00E5AD09 /* SQLSchema.swift */,
+				0103211325FAABCE00EC81B4 /* Event.swift */,
+				018D6FBB25FBB26000E5AD09 /* TimeSeriesMeasurement_New.swift */,
+				018D6FC025FBB30000E5AD09 /* TimeSeriesDataRead_New.swift */,
+			);
+			path = "GRDB Tables";
+			sourceTree = "<group>";
+		};
 		010862CC25B6120200EAF722 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +276,7 @@
 		012C91BB25B1ED2300274F82 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0103211225FAABB700EC81B4 /* GRDB Tables */,
 				018F824E25D5DA4A0037C5BE /* RespiratoryClassifier.mlmodel */,
 				01004AC225C9977F006F5670 /* Publishers */,
 				012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */,
@@ -324,7 +346,7 @@
 				015F993625AE493500BDD672 /* Assets.xcassets */,
 				015F993B25AE493500BDD672 /* Info.plist */,
 				015F993825AE493500BDD672 /* Preview Content */,
-				010C679825BB982900E0EF01 /* AppData.swift */,
+				0103210D25FA97A100EC81B4 /* AppDatabase.swift */,
 			);
 			path = "FaceBit Companion";
 			sourceTree = "<group>";
@@ -425,6 +447,7 @@
 			name = "FaceBit Companion";
 			packageProductDependencies = (
 				013B00E525BB4B1C00319A42 /* ACarousel */,
+				0103210825FA951B00EC81B4 /* GRDB */,
 			);
 			productName = "FaceBit Companion";
 			productReference = 015F992F25AE493500BDD672 /* FaceBit Companion.app */;
@@ -499,6 +522,7 @@
 			mainGroup = 015F992625AE493500BDD672;
 			packageReferences = (
 				013B00E425BB4B1C00319A42 /* XCRemoteSwiftPackageReference "ACarousel" */,
+				0103210725FA951B00EC81B4 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 			);
 			productRefGroup = 015F993025AE493500BDD672 /* Products */;
 			projectDirPath = "";
@@ -549,6 +573,7 @@
 				01E9276B25D97AAA00873BD8 /* MaskWearTimeView.swift in Sources */,
 				0100B4F425D7A1B800898C05 /* Timestamp.swift in Sources */,
 				01004AC425C997A4006F5670 /* TimeSeriesMeasurementPub.swift in Sources */,
+				018D6FC125FBB30000E5AD09 /* TimeSeriesDataRead_New.swift in Sources */,
 				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
 				018F822B25D5C3390037C5BE /* RespiratoryClsWidgetView.swift in Sources */,
 				01C7ADE425D8565000237300 /* DatabaseConnection.swift in Sources */,
@@ -558,9 +583,11 @@
 				010C677825BB82A400E0EF01 /* TalkingEventRecordView.swift in Sources */,
 				018F822325D5BC630037C5BE /* TimerPublisher.swift in Sources */,
 				01B48FA525C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift in Sources */,
+				018D6FB425FBB0BC00E5AD09 /* SQLSchema.swift in Sources */,
 				0100B4D725D74FB900898C05 /* FaceBitIcon.swift in Sources */,
 				012735BA25D7A73E00C5CF6C /* MetricWidget.swift in Sources */,
 				01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */,
+				0103211425FAABCE00EC81B4 /* Event.swift in Sources */,
 				012C91BD25B1ED3600274F82 /* TimeSeriesMeasurement.swift in Sources */,
 				01004ABE25C996F0006F5670 /* DatabasePublisher.swift in Sources */,
 				013B00CD25BB2B6400319A42 /* FaceBit+Bundle.swift in Sources */,
@@ -594,6 +621,7 @@
 				013B00B725BB278100319A42 /* GenericSettingsRow.swift in Sources */,
 				019754FD25C4AAFE00211FE9 /* StartEventView.swift in Sources */,
 				010862C825B5E54F00EAF722 /* Int+Id.swift in Sources */,
+				018D6FBC25FBB26000E5AD09 /* TimeSeriesMeasurement_New.swift in Sources */,
 				010862B825B2423900EAF722 /* SQLiteDatabase.swift in Sources */,
 				010C67A125BB9C7400E0EF01 /* ValueWidgetView.swift in Sources */,
 				013B00EE25BB517A00319A42 /* FaceBit+String.swift in Sources */,
@@ -602,7 +630,7 @@
 				010C677A25BB82A400E0EF01 /* NormalBreathingEventRecordView.swift in Sources */,
 				01E9277825D98B0500873BD8 /* Mask.swift in Sources */,
 				019754EF25C499D300211FE9 /* PurgeDatabaseButtonView.swift in Sources */,
-				010C679925BB982900E0EF01 /* AppData.swift in Sources */,
+				0103210E25FA97A100EC81B4 /* AppDatabase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -934,6 +962,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0103210725FA951B00EC81B4 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.5.0;
+			};
+		};
 		013B00E425BB4B1C00319A42 /* XCRemoteSwiftPackageReference "ACarousel" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JWAutumn/ACarousel";
@@ -945,6 +981,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0103210825FA951B00EC81B4 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0103210725FA951B00EC81B4 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
+		};
 		013B00E525BB4B1C00319A42 /* ACarousel */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 013B00E425BB4B1C00319A42 /* XCRemoteSwiftPackageReference "ACarousel" */;

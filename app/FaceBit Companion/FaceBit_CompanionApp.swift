@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GRDB
 
 @main
 struct FaceBit_CompanionApp: App {
@@ -18,6 +19,8 @@ struct FaceBit_CompanionApp: App {
     ])
     
     let maskVM: MaskViewModel = MaskViewModel()
+    
+    let appDatabase = AppDatabase.shared
     
     
     var body: some Scene {
@@ -33,6 +36,13 @@ struct FaceBit_CompanionApp: App {
     }
     
     func setupDatabase() {
+        var event = Event(id: nil, eventType: "none", otherEventLabel: "none", startDate: Date(), endDate: Date())
+        do {
+            try appDatabase.insert(&event)
+        } catch {
+            print()
+        }
+        
         if let db = SQLiteDatabase.main {
             for table in SQLiteDatabase.tables {
                 db.createTable(table: table)
