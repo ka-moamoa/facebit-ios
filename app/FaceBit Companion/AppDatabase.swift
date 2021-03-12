@@ -10,7 +10,7 @@ import Combine
 import GRDB
 
 struct AppDatabase {
-    private let dbWriter: DatabaseWriter
+    let dbWriter: DatabaseWriter
     
     init(_ dbWriter: DatabaseWriter) throws {
         self.dbWriter = dbWriter
@@ -29,12 +29,10 @@ struct AppDatabase {
             try Event.create(in: db)
             try TimeSeriesDataRead_New.create(in: db)
             try TimeSeriesMeasurement_New.create(in: db)
+            try Timestamp_New.create(in: db)
+            try Mask_New.create(in: db)
+            try MetricMeasurement_New.create(in: db)
         }
-        
-//        TODO: TimeSeriesMeasurement Table
-//        TODO: Metric Measurement Table
-//        TODO: Timestamp Table
-//        TODO: Mask Table
         
         return migrator
     }
@@ -74,6 +72,12 @@ extension AppDatabase {
 
 extension AppDatabase {
     func insert(_ record: inout Event) throws {
+        try dbWriter.write({ (db) in
+            try record.save(db)
+        })
+    }
+    
+    func insert(_ record: inout MutablePersistableRecord) throws {
         try dbWriter.write({ (db) in
             try record.save(db)
         })

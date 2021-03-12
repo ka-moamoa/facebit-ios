@@ -36,9 +36,49 @@ struct FaceBit_CompanionApp: App {
     }
     
     func setupDatabase() {
-        var event = Event(id: nil, eventType: "none", otherEventLabel: "none", startDate: Date(), endDate: Date())
+        var event = Event(
+            id: nil,
+            eventType: "none",
+            otherEventLabel: "none",
+            startDate: Date(),
+            endDate: Date()
+        )
+        
+        var dataRead = TimeSeriesDataRead_New(
+            id: nil,
+            dataType: .pressure,
+            frequency: 25.0,
+            millisecondOffset: 0,
+            startTime: Date(),
+            numSamples: 100
+        )
+        
+        var tsM = TimeSeriesMeasurement_New(
+            id: nil,
+            value: 10.0,
+            date: Date(),
+            dataReadId: nil, eventId: nil
+        )
+        
         do {
-            try appDatabase.insert(&event)
+            try event.save()
+            try dataRead.save()
+            
+            tsM.eventId = event.id
+            tsM.dataReadId = dataRead.id
+            try tsM.save()
+            
+            let request = TimeSeriesMeasurement_New
+                .including(optional: TimeSeriesMeasurement_New.dataRead)
+                .including(optional: TimeSeriesMeasurement_New.event)
+            
+            try appDatabase.dbWriter.read { (db) in
+                var tsMs = try TimeSeriesMeasurement_New.fetchAll(db, request)
+                print(tsMs)
+            }
+            
+            
+            
         } catch {
             print()
         }

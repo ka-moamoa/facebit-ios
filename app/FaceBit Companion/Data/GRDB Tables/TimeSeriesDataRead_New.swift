@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-class TimeSeriesDataRead_New: Identifiable, Equatable, Codable {
+struct TimeSeriesDataRead_New: Identifiable, Equatable, Codable {
     var id: Int64?
     let dataType: DataType
     let frequency: Double
@@ -32,10 +32,6 @@ class TimeSeriesDataRead_New: Identifiable, Equatable, Codable {
         case startTime = "start_time"
         case numSamples = "num_samples"
     }
-    
-    static func == (lhs: TimeSeriesDataRead_New, rhs: TimeSeriesDataRead_New) -> Bool {
-        return lhs.id == rhs.id
-    }
 }
 
 extension TimeSeriesDataRead_New: TableRecord {
@@ -51,7 +47,7 @@ extension TimeSeriesDataRead_New: FetchableRecord, MutablePersistableRecord {
         static let numSamples = Column(CodingKeys.numSamples)
     }
     
-    func didInsert(with rowID: Int64, for column: String?) {
+    mutating func didInsert(with rowID: Int64, for column: String?) {
         self.id = rowID
     }
 }

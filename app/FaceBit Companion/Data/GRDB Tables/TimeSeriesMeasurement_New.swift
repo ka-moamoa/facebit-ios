@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-class TimeSeriesMeasurement_New: Identifiable, Equatable, Codable {
+struct TimeSeriesMeasurement_New: Identifiable, Equatable, Codable {
     var id: Int64?
     var value: Double
     var date: Date
@@ -22,10 +22,6 @@ class TimeSeriesMeasurement_New: Identifiable, Equatable, Codable {
         case dataReadId = "data_read_id"
         case eventId = "event_id"
     }
-
-    static func == (lhs: TimeSeriesMeasurement_New, rhs: TimeSeriesMeasurement_New) -> Bool {
-        lhs.id == rhs.id
-    }
 }
 
 extension TimeSeriesMeasurement_New: TableRecord {
@@ -34,6 +30,11 @@ extension TimeSeriesMeasurement_New: TableRecord {
     static let dataRead = belongsTo(TimeSeriesDataRead_New.self)
     var dataRead: QueryInterfaceRequest<TimeSeriesDataRead_New> {
         request(for: TimeSeriesMeasurement_New.dataRead)
+    }
+    
+    static let event = belongsTo(Event.self)
+    var event: QueryInterfaceRequest<Event> {
+        request(for: TimeSeriesMeasurement_New.event)
     }
 }
 
@@ -45,7 +46,7 @@ extension TimeSeriesMeasurement_New: FetchableRecord, MutablePersistableRecord {
         static let eventId = Column(CodingKeys.eventId)
     }
     
-    func didInsert(with rowID: Int64, for column: String?) {
+    mutating func didInsert(with rowID: Int64, for column: String?) {
         self.id = rowID
     }
 }
