@@ -22,6 +22,7 @@ struct MetricMeasurement_New: Identifiable, Equatable, Codable {
         case dataType = "data_type"
         case timestamp = "timestamp"
         case date = "date"
+        case eventId = "event_id"
     }
     
     var id: Int64?
@@ -29,10 +30,16 @@ struct MetricMeasurement_New: Identifiable, Equatable, Codable {
     let dataType: DataType
     let timestamp: Int64
     let date: Date
+    let eventId: Int64?
 }
 
 extension MetricMeasurement_New: TableRecord {
     static var databaseTableName: String = "metric_measurement"
+    
+    static let event = belongsTo(Event.self)
+    var event: QueryInterfaceRequest<Event> {
+        request(for: MetricMeasurement_New.event)
+    }
 }
 
 
@@ -42,6 +49,7 @@ extension MetricMeasurement_New: FetchableRecord, MutablePersistableRecord {
         static let dataType = Column(CodingKeys.dataType)
         static let timestamp = Column(CodingKeys.timestamp)
         static let date = Column(CodingKeys.date)
+        static let eventId = Column(CodingKeys.eventId)
     }
     
     mutating func didInsert(with rowID: Int64, for column: String?) {

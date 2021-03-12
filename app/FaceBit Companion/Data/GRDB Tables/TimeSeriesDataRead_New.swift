@@ -36,6 +36,12 @@ struct TimeSeriesDataRead_New: Identifiable, Equatable, Codable {
 
 extension TimeSeriesDataRead_New: TableRecord {
     static var databaseTableName: String = "time_series_data_read"
+    
+    static var measurementForeignKey = ForeignKey([TimeSeriesMeasurement_New.CodingKeys.dataReadId.rawValue])
+    static var measurements = hasMany(TimeSeriesMeasurement_New.self, using: measurementForeignKey)
+    var measurements: QueryInterfaceRequest<TimeSeriesMeasurement_New> {
+        request(for: TimeSeriesDataRead_New.measurements)
+    }
 }
 
 extension TimeSeriesDataRead_New: FetchableRecord, MutablePersistableRecord {

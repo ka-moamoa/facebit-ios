@@ -73,7 +73,7 @@ struct FaceBit_CompanionApp: App {
                 .including(optional: TimeSeriesMeasurement_New.event)
             
             try appDatabase.dbWriter.read { (db) in
-                var tsMs = try TimeSeriesMeasurement_New.fetchAll(db, request)
+                var tsMs = try event.measurements.fetchAll(db)
                 print(tsMs)
             }
             
