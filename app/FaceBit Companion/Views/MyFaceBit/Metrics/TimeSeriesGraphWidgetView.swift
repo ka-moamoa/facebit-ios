@@ -16,6 +16,7 @@ struct TimeSeriesGraphWidgetView: View {
         
         self.title = title
         self.publisher = TimeSeriesMeasurementPub(
+            appDatabase: AppDatabase.shared,
             dataType: dataType,
             rowLimit: rowLimit,
             timerInterval: timerInterval,

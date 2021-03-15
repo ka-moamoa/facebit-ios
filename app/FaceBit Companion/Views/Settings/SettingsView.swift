@@ -22,7 +22,10 @@ struct SettingsView: View {
                     ShareDatabaseButtonView()
                     PurgeDatabaseButtonView()
                     Button(action: {
-                        let rc = RespitoryClassifierPub(timeOffset: 4)
+                        let rc = RespitoryClassifierPub(
+                            appDatabase: AppDatabase.shared,
+                            timeOffset: 4
+                        )
                         rc.fetchData()
                     }, label: {
                         Text("Test Classification")

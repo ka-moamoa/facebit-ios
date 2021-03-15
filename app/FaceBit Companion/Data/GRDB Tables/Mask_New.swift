@@ -9,7 +9,7 @@ import Foundation
 import GRDB
 
 struct Mask_New: Identifiable, Equatable, Codable {
-    enum MaskType: String, Identifiable, CaseIterable, Codable {
+    enum MaskType: String, Identifiable, CaseIterable, Codable, DatabaseValueConvertible {
         case n95 = "N95"
         case surgical = "Surgical"
         case cloth = "Cloth"
@@ -21,7 +21,7 @@ struct Mask_New: Identifiable, Equatable, Codable {
     var id: Int64?
     let maskType: MaskType
     let startDate: Date
-    var disposeDate: Date
+    var disposeDate: Date?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -47,6 +47,13 @@ struct Mask_New: Identifiable, Equatable, Codable {
         let percent = Float(elapsedTime) / Float(8 * 60 * 60)
         return min(1.0, percent)
     }
+    
+    // MARK: - Mutating Methods
+    
+    mutating func dispose() {
+        self.disposeDate = Date()
+        try? self.save()
+    }
 }
 
 extension Mask_New: TableRecord {
@@ -54,7 +61,7 @@ extension Mask_New: TableRecord {
 }
 
 extension Mask_New: FetchableRecord, MutablePersistableRecord {
-    fileprivate enum Columns {
+    enum Columns {
         static let maskType = Column(CodingKeys.maskType)
         static let startDate = Column(CodingKeys.startDate)
         static let disposeDate = Column(CodingKeys.disposeDate)

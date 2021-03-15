@@ -17,10 +17,9 @@ struct FaceBit_CompanionApp: App {
         HeartRateCharacteristic(),
         MaskOnOffCharacteristic()
     ])
-    
-    let maskVM: MaskViewModel = MaskViewModel()
-    
+        
     let appDatabase = AppDatabase.shared
+    let maskVM: MaskViewModel = MaskViewModel(db: AppDatabase.shared)
     
     
     var body: some Scene {
@@ -31,19 +30,18 @@ struct FaceBit_CompanionApp: App {
                 .onAppear(perform: {
                    setupDatabase()
                 })
-                
         }
     }
     
     func setupDatabase() {
         var event = Event(
             id: nil,
-            eventType: "none",
+            eventType: .other,
             otherEventLabel: "none",
             startDate: Date(),
             endDate: Date()
         )
-        
+
         var dataRead = TimeSeriesDataRead_New(
             id: nil,
             dataType: .pressure,
@@ -52,7 +50,7 @@ struct FaceBit_CompanionApp: App {
             startTime: Date(),
             numSamples: 100
         )
-        
+
         var tsM = TimeSeriesMeasurement_New(
             id: nil,
             value: 10.0,
@@ -60,28 +58,29 @@ struct FaceBit_CompanionApp: App {
             dataReadId: nil, eventId: nil
         )
         
-        do {
-            try event.save()
-            try dataRead.save()
-            
-            tsM.eventId = event.id
-            tsM.dataReadId = dataRead.id
-            try tsM.save()
-            
-            let request = TimeSeriesMeasurement_New
-                .including(optional: TimeSeriesMeasurement_New.dataRead)
-                .including(optional: TimeSeriesMeasurement_New.event)
-            
-            try appDatabase.dbWriter.read { (db) in
-                var tsMs = try event.measurements.fetchAll(db)
-                print(tsMs)
-            }
-            
-            
-            
-        } catch {
-            print()
-        }
+//        do {
+//            try event.save()
+//            try dataRead.save()
+//
+//            tsM.eventId = event.id
+//            tsM.dataReadId = dataRead.id
+//            try tsM.save()
+//
+//            let req = TimeSeriesMeasurement_New
+//                .including(optional: TimeSeriesMeasurement_New.event)
+//                .including(optional: TimeSeriesMeasurement_New.dataRead)
+//                .asRequest(of: TimeSeriesMeasurementInfo.self)
+//
+//            let tsMs = try appDatabase.dbWriter.read { (db) in
+//                try req.fetchAll(db)
+//            }
+//
+//            print(tsMs)
+//
+//
+//        } catch {
+//            print()
+//        }
         
         if let db = SQLiteDatabase.main {
             for table in SQLiteDatabase.tables {

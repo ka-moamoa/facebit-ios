@@ -9,7 +9,7 @@ import Foundation
 import GRDB
 
 struct Timestamp_New: Identifiable, Equatable, Codable {
-    enum DataType: String, CaseIterable, Identifiable, Codable {
+    enum DataType: String, CaseIterable, Identifiable, Codable, DatabaseValueConvertible {
         case peripheralSync = "peripheral_sync"
         case maskOn = "mask_on"
         case maskOff = "mask_off"
@@ -33,7 +33,7 @@ extension Timestamp_New: TableRecord {
 }
 
 extension Timestamp_New: FetchableRecord, MutablePersistableRecord {
-    fileprivate enum Columns {
+    enum Columns {
         static let dataType = Column(CodingKeys.dataType)
         static let date = Column(CodingKeys.date)
     }

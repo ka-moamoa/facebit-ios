@@ -13,6 +13,7 @@ struct RespiratoryClsWidgetView: View {
     
     init(timeOffset: TimeInterval=5, timerInterval: TimeInterval = 25) {
         self.publisher = RespitoryClassifierPub(
+            appDatabase: AppDatabase.shared,
             timeOffset: timeOffset,
             timerInterval: timerInterval
         )

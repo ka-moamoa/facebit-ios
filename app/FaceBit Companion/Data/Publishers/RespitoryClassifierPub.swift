@@ -12,6 +12,7 @@ import Combine
 import SQLite3
 import CoreML
 import Accelerate
+import GRDB
 
 class RespitoryClassifierPub: ObservableObject {
     
@@ -35,6 +36,7 @@ class RespitoryClassifierPub: ObservableObject {
         var id: Int { return self.rawValue }
     }
     
+    let appDatabase: AppDatabase
     let timeOffset: TimeInterval
     var timer: Timer?
     var timerInterval: TimeInterval
@@ -50,84 +52,105 @@ class RespitoryClassifierPub: ObservableObject {
     
     @Published var classification: Classification = .unknown
     
-    init(timeOffset: TimeInterval=20, timerInterval: TimeInterval=10) {
+    init(appDatabase: AppDatabase, timeOffset: TimeInterval=20, timerInterval: TimeInterval=10) {
+        self.appDatabase = appDatabase
         self.timeOffset = timeOffset
         self.timerInterval = timerInterval
     }
     
     func fetchData() {
-        SQLiteDatabase.queue.async {
-            let endDate = Date().addingTimeInterval(-self.timeOffset)
-            let startDate = endDate.addingTimeInterval(-self.queryDuration)
-            
-            
-            let query = """
-                SELECT ts.id, ts.value, ts.date, ts.data_read_id, ts.event_id
-                FROM \(TimeSeriesMeasurement.tableName) as ts
-                WHERE ts.date > '\(SQLiteDatabase.dateFormatter.string(from: startDate))'
-                AND ts.date < '\(SQLiteDatabase.dateFormatter.string(from: endDate))'
-                ORDER BY date DESC
-            """
-            
-            guard let db = SQLiteDatabase.main,
-                  let statement = try? db.prepareStatement(sql: query, dbPointer: db.dbPointer) else {
-                return
-            }
-            
-            defer {
-                sqlite3_finalize(statement)
-            }
-            
-            var measurements: [TimeSeriesMeasurement] = []
-            var dataReads = [Int:TimeSeriesDataRead]()
-            
-            while sqlite3_step(statement) == SQLITE_ROW {
-                let id = Int(sqlite3_column_int(statement, 0))
-                let value = sqlite3_column_double(statement, 1)
-                let dataReadId = Int(sqlite3_column_int(statement, 3))
-                
-                guard let dateCString = sqlite3_column_text(statement, 2),
-                      let date = SQLiteDatabase.dateFormatter.date(from: String(cString: dateCString)) else {
-                    continue
-                }
-                
-                if dataReads[dataReadId] == nil {
-                    if let dataRead = TimeSeriesDataRead.get(by: dataReadId, dbPointer: db.dbPointer) {
-                        dataReads[dataReadId] = dataRead
-                    } else { continue }
-                }
-                
-                measurements.append(
-                    TimeSeriesMeasurement(
-                        id: id,
-                        value: value,
-                        date: date,
-                        dataRead: dataReads[dataReadId]!,
-                        isInserted: true
-                    )
-                )
-            }
-            
-            DispatchQueue.global(qos: .utility).async {
-                self.infer(measurements)
-            }
+        
+        let endDate = Date().addingTimeInterval(-self.timeOffset)
+        let startDate = endDate.addingTimeInterval(-self.queryDuration)
+        
+        do {
+            let measurements = try appDatabase.dbWriter.read({ (db) in
+                try TimeSeriesMeasurement_New
+                    .filter(TimeSeriesMeasurement_New.Columns.date > startDate)
+                    .filter(TimeSeriesMeasurement_New.Columns.date < endDate)
+                    .order(TimeSeriesMeasurement_New.Columns.date.desc)
+                    .including(required: TimeSeriesMeasurement_New.dataRead)
+                    .asRequest(of: TimeSeriesMeasurementInfo.self)
+                    .fetchAll(db)
+            })
+            self.infer(measurements)
+        } catch {
+            PersistanceLogger.error("unable to complete query: \(error.localizedDescription)")
         }
+        
+        
+//        SQLiteDatabase.queue.async {
+//            let endDate = Date().addingTimeInterval(-self.timeOffset)
+//            let startDate = endDate.addingTimeInterval(-self.queryDuration)
+//
+//
+//            let query = """
+//                SELECT ts.id, ts.value, ts.date, ts.data_read_id, ts.event_id
+//                FROM \(TimeSeriesMeasurement.tableName) as ts
+//                WHERE ts.date > '\(SQLiteDatabase.dateFormatter.string(from: startDate))'
+//                AND ts.date < '\(SQLiteDatabase.dateFormatter.string(from: endDate))'
+//                ORDER BY date DESC
+//            """
+//
+//            guard let db = SQLiteDatabase.main,
+//                  let statement = try? db.prepareStatement(sql: query, dbPointer: db.dbPointer) else {
+//                return
+//            }
+//
+//            defer {
+//                sqlite3_finalize(statement)
+//            }
+//
+//            var measurements: [TimeSeriesMeasurement] = []
+//            var dataReads = [Int:TimeSeriesDataRead]()
+//
+//            while sqlite3_step(statement) == SQLITE_ROW {
+//                let id = Int(sqlite3_column_int(statement, 0))
+//                let value = sqlite3_column_double(statement, 1)
+//                let dataReadId = Int(sqlite3_column_int(statement, 3))
+//
+//                guard let dateCString = sqlite3_column_text(statement, 2),
+//                      let date = SQLiteDatabase.dateFormatter.date(from: String(cString: dateCString)) else {
+//                    continue
+//                }
+//
+//                if dataReads[dataReadId] == nil {
+//                    if let dataRead = TimeSeriesDataRead.get(by: dataReadId, dbPointer: db.dbPointer) {
+//                        dataReads[dataReadId] = dataRead
+//                    } else { continue }
+//                }
+//
+//                measurements.append(
+//                    TimeSeriesMeasurement(
+//                        id: id,
+//                        value: value,
+//                        date: date,
+//                        dataRead: dataReads[dataReadId]!,
+//                        isInserted: true
+//                    )
+//                )
+//            }
+//
+//            DispatchQueue.global(qos: .utility).async {
+//                self.infer(measurements)
+//            }
+//        }
     }
     
     // MARK: - Inference
-    private func infer(_ measurements: [TimeSeriesMeasurement]) {
+    private func infer(_ measurements: [TimeSeriesMeasurementInfo]) {
         let tempMeasurements = measurements.filter({ $0.dataRead.dataType == .temperature })
         let tempFreqMean = tempMeasurements.reduce(0.0, { return $0 + $1.dataRead.frequency }) / Double(tempMeasurements.count)
-        let tempStartTime = tempMeasurements.first?.date ?? Date()
-        let tempEndTime = tempMeasurements.last?.date ?? Date()
+        let tempStartTime = tempMeasurements.first?.timeseriesMeasurement.date ?? Date()
+        let tempEndTime = tempMeasurements.last?.timeseriesMeasurement.date ?? Date()
         
         let pressureMeasurements = measurements.filter({ $0.dataRead.dataType == .pressure })
         let pressureFreqMean = pressureMeasurements.reduce(0.0, { return $0 + $1.dataRead.frequency }) / Double(pressureMeasurements.count)
-        let pressureStartTime = pressureMeasurements.first?.date ?? Date()
-        let pressureEndTime = pressureMeasurements.last?.date ?? Date()
+        let pressureStartTime = pressureMeasurements.first?.timeseriesMeasurement.date ?? Date()
+        let pressureEndTime = pressureMeasurements.last?.timeseriesMeasurement.date ?? Date()
         
-        let tempSignal: [Float] = tempMeasurements.map({ Float($0.value) })
-        let pressureSignal: [Float] = pressureMeasurements.map({ Float($0.value) })
+        let tempSignal: [Float] = tempMeasurements.map({ Float($0.timeseriesMeasurement.value) })
+        let pressureSignal: [Float] = pressureMeasurements.map({ Float($0.timeseriesMeasurement.value) })
         
         // check dates of queried time series data
         guard

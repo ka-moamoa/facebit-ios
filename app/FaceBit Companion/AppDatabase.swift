@@ -21,7 +21,7 @@ struct AppDatabase {
         var migrator = DatabaseMigrator()
         
         #if DEBUG
-        // in develoopment, delete everything on database change
+        // in development, delete everything on database change
         migrator.eraseDatabaseOnSchemaChange = true
         #endif
         
@@ -67,19 +67,5 @@ extension AppDatabase {
         // See https://github.com/groue/GRDB.swift/blob/master/README.md#database-connections
         let dbQueue = DatabaseQueue()
         return try! AppDatabase(dbQueue)
-    }
-}
-
-extension AppDatabase {
-    func insert(_ record: inout Event) throws {
-        try dbWriter.write({ (db) in
-            try record.save(db)
-        })
-    }
-    
-    func insert(_ record: inout MutablePersistableRecord) throws {
-        try dbWriter.write({ (db) in
-            try record.save(db)
-        })
     }
 }

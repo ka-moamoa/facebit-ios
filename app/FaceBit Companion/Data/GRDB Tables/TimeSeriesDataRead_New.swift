@@ -16,7 +16,7 @@ struct TimeSeriesDataRead_New: Identifiable, Equatable, Codable {
     let startTime: Date
     let numSamples: Int
     
-    enum DataType: String, Identifiable, Equatable, Codable {
+    enum DataType: String, Identifiable, Equatable, Codable, DatabaseValueConvertible {
         case none = "none"
         case pressure = "pressure"
         case temperature = "temperature"

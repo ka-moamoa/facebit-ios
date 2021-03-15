@@ -10,11 +10,23 @@ import GRDB
 
 struct Event: Identifiable, Equatable, Codable {
     var id: Int64?
-    var eventType: String
+    var eventType: EventType
     var otherEventLabel: String?
     var notes: String?
     var startDate: Date
     var endDate: Date?
+    
+    enum EventType: String, CaseIterable, Codable, Identifiable, DatabaseValueConvertible {
+        case normalBreathing = "normal_breathing"
+        case deepBreathing = "deep_breathing"
+        case talking = "talking"
+        case cough = "cough"
+        case maskOff = "mask_off"
+        case other = "other"
+        
+        var id: String { self.rawValue }
+    }
+
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -43,7 +55,7 @@ extension Event: TableRecord {
 }
 
 extension Event: FetchableRecord, MutablePersistableRecord {
-    fileprivate enum Columns {
+    enum Columns {
         static let eventType = Column(CodingKeys.eventType)
         static let otherEventType = Column(CodingKeys.otherEventLabel)
         static let notes = Column(CodingKeys.notes)
@@ -66,5 +78,21 @@ extension Event: SQLSchema {
             t.column(CodingKeys.startDate.rawValue, .datetime)
             t.column(CodingKeys.endDate.rawValue, .datetime)
         })
+    }
+}
+
+extension Event {
+    static func activeEvent(appDatabase: AppDatabase=AppDatabase.shared) throws -> Event? {
+        return try appDatabase.dbWriter.read({ (db) in
+            try Event
+                .filter(Event.Columns.endDate == nil)
+                .order(Event.Columns.startDate.desc)
+                .fetchOne(db)
+        })
+    }
+    
+    mutating func end(appDatabase: AppDatabase=AppDatabase.shared, endDate: Date=Date()) throws {
+        self.endDate = endDate
+        try self.save()
     }
 }

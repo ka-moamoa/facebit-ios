@@ -25,6 +25,7 @@ struct TimeSeriesValueWidgetView: View {
         self.title = title
         self.unit = unit
         self.publisher = TimeSeriesMeasurementPub(
+            appDatabase: AppDatabase.shared,
             dataType: dataType,
             rowLimit: rowLimit,
             timerInterval: timerInterval,
@@ -40,7 +41,7 @@ struct TimeSeriesValueWidgetView: View {
                 Text(title)
                     .bold()
                 Spacer()
-                Text("\(String(format: "%.2f", publisher.items.first?.value ?? 0.0))")
+                Text("\(String(format: "%.2f", publisher.items.first?.timeseriesMeasurement.value ?? 0.0))")
                     .font(.system(size: 32.0))
                 Spacer()
                 Text(unit)

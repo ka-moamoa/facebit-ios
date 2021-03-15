@@ -9,8 +9,8 @@ import SwiftUI
 
 struct FaceBitDetailsView: View {
     
-    @EnvironmentObject var facebit: FaceBitPeripheral
-    @ObservedObject var bleManager: BluetoothConnectionManager = BluetoothConnectionManager.shared
+    @ObservedObject var facebit: FaceBitPeripheral
+    @ObservedObject var bleManager: BluetoothConnectionManager
     
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -96,6 +96,8 @@ struct FaceBitDetailsView: View {
 
 struct FaceBitDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        FaceBitDetailsView()
+        FaceBitDetailsView(
+            facebit: FaceBitPeripheral(readChars: []),
+            bleManager: BluetoothConnectionManager.shared)
     }
 }

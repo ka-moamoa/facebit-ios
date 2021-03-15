@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct MyFaceBitMetricsDashboardView: View {
-    @EnvironmentObject var facebit: FaceBitPeripheral
-    @EnvironmentObject var maskVM: MaskViewModel
+    @ObservedObject var facebit: FaceBitPeripheral
+    @ObservedObject var maskVM: MaskViewModel
     
     
-    private var gridItemLayout = [
+    let gridItemLayout = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
-    private let widgetHeight: CGFloat = 135.0 + 32.0
+    let widgetHeight: CGFloat = 135.0 + 32.0
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false, content: {
@@ -85,7 +85,10 @@ struct MyFaceBitMetricsDashboardView: View {
 
 struct MyFaceBitMetricsDashboardView_Previews: PreviewProvider {
     static var previews: some View {
-        MyFaceBitMetricsDashboardView()
+        MyFaceBitMetricsDashboardView(
+            facebit: FaceBitPeripheral(readChars: []),
+            maskVM: MaskViewModel(db: AppDatabase.shared)
+        )
             .environmentObject(FaceBitPeripheral(readChars: []))
     }
 }

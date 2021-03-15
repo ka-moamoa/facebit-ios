@@ -8,6 +8,18 @@
 import Foundation
 import GRDB
 
+struct TimeSeriesMeasurementInfo: FetchableRecord, Decodable {
+    var timeseriesMeasurement: TimeSeriesMeasurement_New
+    var dataRead: TimeSeriesDataRead_New
+    var event: Event?
+    
+    enum CodingKeys: String, CodingKey {
+        case timeseriesMeasurement = "time_series_measurement"
+        case dataRead = "time_series_data_read"
+        case event = "event"
+    }
+}
+
 struct TimeSeriesMeasurement_New: Identifiable, Equatable, Codable {
     var id: Int64?
     var value: Double
@@ -39,7 +51,7 @@ extension TimeSeriesMeasurement_New: TableRecord {
 }
 
 extension TimeSeriesMeasurement_New: FetchableRecord, MutablePersistableRecord {
-    fileprivate enum Columns {
+    enum Columns {
         static let value = Column(CodingKeys.value)
         static let date = Column(CodingKeys.date)
         static let dataReadId = Column(CodingKeys.dataReadId)
@@ -57,10 +69,14 @@ extension TimeSeriesMeasurement_New: SQLSchema {
             t.autoIncrementedPrimaryKey(CodingKeys.id.rawValue)
             t.column(CodingKeys.value.rawValue, .double).notNull()
             t.column(CodingKeys.date.rawValue, .datetime).notNull()
+            
             t.column(CodingKeys.dataReadId.rawValue, .integer)
-                .references(TimeSeriesDataRead_New.databaseTableName)
+                .indexed()
                 .notNull()
+                .references(TimeSeriesDataRead_New.databaseTableName)
+            
             t.column(CodingKeys.eventId.rawValue, .integer)
+                .indexed()
                 .references(Event.databaseTableName)
         })
     }

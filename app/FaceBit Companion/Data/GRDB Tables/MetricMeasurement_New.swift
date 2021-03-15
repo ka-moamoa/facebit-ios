@@ -8,8 +8,19 @@
 import Foundation
 import GRDB
 
+struct MetricMeasurementInfo: FetchableRecord, Decodable {
+    let metric: MetricMeasurement_New
+    let event: Event
+    
+    enum CodingKeys: String, CodingKey {
+        case metric = "metric_measurement"
+        case event = "event"
+    }
+}
+
+
 struct MetricMeasurement_New: Identifiable, Equatable, Codable {
-    enum DataType: String, CaseIterable, Identifiable, Codable {
+    enum DataType: String, CaseIterable, Identifiable, Codable, DatabaseValueConvertible {
         case respiratoryRate = "respiratory_rate"
         case heartRate = "heart_rate"
         
@@ -44,7 +55,7 @@ extension MetricMeasurement_New: TableRecord {
 
 
 extension MetricMeasurement_New: FetchableRecord, MutablePersistableRecord {
-    fileprivate enum Columns {
+    enum Columns {
         static let value = Column(CodingKeys.value)
         static let dataType = Column(CodingKeys.dataType)
         static let timestamp = Column(CodingKeys.timestamp)
@@ -62,8 +73,12 @@ extension MetricMeasurement_New: SQLSchema {
         try db.create(table: Self.databaseTableName, body: { (t) in
             t.autoIncrementedPrimaryKey(CodingKeys.id.rawValue)
             t.column(CodingKeys.value.rawValue, .double).notNull()
+            t.column(CodingKeys.dataType.rawValue, .text).notNull()
             t.column(CodingKeys.timestamp.rawValue, .integer).notNull()
             t.column(CodingKeys.date.rawValue, .datetime).notNull()
+            t.column(CodingKeys.eventId.rawValue, .integer)
+                .indexed()
+                .references(Event.databaseTableName)
         })
     }
 }

@@ -17,13 +17,14 @@ struct MetricWidget: View {
     init(
         title: String,
         unit: String,
-        dataType: MetricMeasurement.DataType,
+        dataType: MetricMeasurement_New.DataType,
         timerInterval: TimeInterval
     ) {
         
         self.title = title
         self.unit = unit
         self.publisher = MetricPub(
+            appDatabase: AppDatabase.shared,
             dataType: dataType,
             rowLimit: 1,
             timerInterval: timerInterval
@@ -38,7 +39,7 @@ struct MetricWidget: View {
     }
     
     private var lastReadDate: String {
-        if let date = publisher.items.last?.date {
+        if let date = publisher.items.last?.metric.date {
             return dateFormatter.string(from: date)
         }
         
@@ -46,7 +47,7 @@ struct MetricWidget: View {
     }
     
     private var lastValue: Double {
-        return publisher.items.last?.value ?? 0.0
+        return publisher.items.last?.metric.value ?? 0.0
     }
     
     var body: some View {

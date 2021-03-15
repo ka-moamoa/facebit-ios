@@ -68,6 +68,7 @@
 		01AB3B8025FBD1780027C918 /* Timestamp_New.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AB3B7F25FBD1780027C918 /* Timestamp_New.swift */; };
 		01AB3B8525FBD3260027C918 /* Mask_New.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AB3B8425FBD3260027C918 /* Mask_New.swift */; };
 		01AB3B8A25FBD9B00027C918 /* MetricMeasurement_New.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AB3B8925FBD9B00027C918 /* MetricMeasurement_New.swift */; };
+		01AB3B9725FBF7B50027C918 /* MyFaceBitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AB3B9625FBF7B50027C918 /* MyFaceBitViewModel.swift */; };
 		01B48FA525C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B48FA425C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift */; };
 		01C7ADE425D8565000237300 /* DatabaseConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C7ADE325D8565000237300 /* DatabaseConnection.swift */; };
 		01E9276B25D97AAA00873BD8 /* MaskWearTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E9276A25D97AAA00873BD8 /* MaskWearTimeView.swift */; };
@@ -166,6 +167,7 @@
 		01AB3B7F25FBD1780027C918 /* Timestamp_New.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp_New.swift; sourceTree = "<group>"; };
 		01AB3B8425FBD3260027C918 /* Mask_New.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mask_New.swift; sourceTree = "<group>"; };
 		01AB3B8925FBD9B00027C918 /* MetricMeasurement_New.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricMeasurement_New.swift; sourceTree = "<group>"; };
+		01AB3B9625FBF7B50027C918 /* MyFaceBitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFaceBitViewModel.swift; sourceTree = "<group>"; };
 		01B48FA425C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesValueWidgetView.swift; sourceTree = "<group>"; };
 		01C7ADE325D8565000237300 /* DatabaseConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseConnection.swift; sourceTree = "<group>"; };
 		01E9276A25D97AAA00873BD8 /* MaskWearTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskWearTimeView.swift; sourceTree = "<group>"; };
@@ -216,7 +218,6 @@
 				018F822225D5BC630037C5BE /* TimerPublisher.swift */,
 				01004AC325C997A4006F5670 /* TimeSeriesMeasurementPub.swift */,
 				018F821725D576610037C5BE /* RespitoryClassifierPub.swift */,
-				01E9278125D9AD0D00873BD8 /* MaskViewModel.swift */,
 				0149441425D838B100FB3DEF /* MetricPub.swift */,
 				01C7ADE325D8565000237300 /* DatabaseConnection.swift */,
 			);
@@ -285,18 +286,10 @@
 		012C91BB25B1ED2300274F82 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				01AB3B8E25FBF1A50027C918 /* SQLite C Tables */,
 				0103211225FAABB700EC81B4 /* GRDB Tables */,
 				018F824E25D5DA4A0037C5BE /* RespiratoryClassifier.mlmodel */,
 				01004AC225C9977F006F5670 /* Publishers */,
-				012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */,
-				01A7638225D63F4E005EC1EF /* MetricMeasurement.swift */,
-				01EECC2925D38C2A00225DAA /* TimeSeriesDataRead.swift */,
-				0100B4F325D7A1B800898C05 /* Timestamp.swift */,
-				010862B725B2423900EAF722 /* SQLiteDatabase.swift */,
-				010862BC25B5E27800EAF722 /* SQLiteTable.swift */,
-				010862C725B5E54F00EAF722 /* Int+Id.swift */,
-				01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */,
-				01E9277725D98B0500873BD8 /* Mask.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -344,6 +337,7 @@
 		015F993125AE493500BDD672 /* FaceBit Companion */ = {
 			isa = PBXGroup;
 			children = (
+				01AB3B9525FBF7980027C918 /* ViewModels */,
 				01EDBE7425B745D6009505DC /* Views */,
 				010862CC25B6120200EAF722 /* Utils */,
 				012C91BB25B1ED2300274F82 /* Data */,
@@ -384,6 +378,31 @@
 				015F995125AE493500BDD672 /* Info.plist */,
 			);
 			path = "FaceBit CompanionUITests";
+			sourceTree = "<group>";
+		};
+		01AB3B8E25FBF1A50027C918 /* SQLite C Tables */ = {
+			isa = PBXGroup;
+			children = (
+				010862C725B5E54F00EAF722 /* Int+Id.swift */,
+				012C91BC25B1ED3600274F82 /* TimeSeriesMeasurement.swift */,
+				01A7638225D63F4E005EC1EF /* MetricMeasurement.swift */,
+				01EECC2925D38C2A00225DAA /* TimeSeriesDataRead.swift */,
+				01E9277725D98B0500873BD8 /* Mask.swift */,
+				0100B4F325D7A1B800898C05 /* Timestamp.swift */,
+				01EDBE6F25B72659009505DC /* SmartPPEEvent.swift */,
+				010862B725B2423900EAF722 /* SQLiteDatabase.swift */,
+				010862BC25B5E27800EAF722 /* SQLiteTable.swift */,
+			);
+			path = "SQLite C Tables";
+			sourceTree = "<group>";
+		};
+		01AB3B9525FBF7980027C918 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				01E9278125D9AD0D00873BD8 /* MaskViewModel.swift */,
+				01AB3B9625FBF7B50027C918 /* MyFaceBitViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		01EAD74C25AF711A00ACFAAA /* Bluetooth */ = {
@@ -629,6 +648,7 @@
 				01E9277325D97C7700873BD8 /* ProgressBar.swift in Sources */,
 				018F824F25D5DA4A0037C5BE /* RespiratoryClassifier.mlmodel in Sources */,
 				018F821825D576610037C5BE /* RespitoryClassifierPub.swift in Sources */,
+				01AB3B9725FBF7B50027C918 /* MyFaceBitViewModel.swift in Sources */,
 				010C675725BB5AFC00E0EF01 /* FaceBitConnectionStatusButtonView.swift in Sources */,
 				013B00B725BB278100319A42 /* GenericSettingsRow.swift in Sources */,
 				019754FD25C4AAFE00211FE9 /* StartEventView.swift in Sources */,

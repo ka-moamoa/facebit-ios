@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct LiveLinePlot: View {
-    @Binding var timeSeries: [TimeSeriesMeasurement]
+    @Binding var timeSeries: [TimeSeriesMeasurementInfo]
     @State var showAxis: Bool
     @State var maxTicks: Int = 25
     @State var xOffset: CGFloat = 0.1
     @State var yOffset: CGFloat = 0.1
     
-    func NormalizedTimeSeries() -> [(point: CGPoint, measurement: TimeSeriesMeasurement)] {
+    func NormalizedTimeSeries() -> [(point: CGPoint, measurement: TimeSeriesMeasurement_New)] {
         
         let series = Array(timeSeries.reversed().prefix(maxTicks).reversed())
         
-        let values = Array(Array(series.map({ $0.value }).reversed().prefix(maxTicks)).reversed())
-        let dates = Array(Array(series.map({ $0.date }).reversed().prefix(maxTicks)).reversed())
+        let values = Array(Array(series.map({ $0.timeseriesMeasurement.value }).reversed().prefix(maxTicks)).reversed())
+        let dates = Array(Array(series.map({ $0.timeseriesMeasurement.date }).reversed().prefix(maxTicks)).reversed())
         
         guard values.count > 0 else { return [] }
          
@@ -32,16 +32,16 @@ struct LiveLinePlot: View {
         let timeStart = 0.0
         let timeEnd = startDate.distance(to: endDate)
         
-        var normalized: [(point: CGPoint, measurement: TimeSeriesMeasurement)] = []
+        var normalized: [(point: CGPoint, measurement: TimeSeriesMeasurement_New)] = []
         
         series.forEach({ (m) in
             normalized.append(
                 (
                     point: CGPoint(
-                        x: (startDate.distance(to: m.date) - timeStart) / (timeEnd - timeStart),
-                        y: (m.value - minValue) / ((maxValue - minValue) + Double.leastNonzeroMagnitude)
+                        x: (startDate.distance(to: m.timeseriesMeasurement.date) - timeStart) / (timeEnd - timeStart),
+                        y: (m.timeseriesMeasurement.value - minValue) / ((maxValue - minValue) + Double.leastNonzeroMagnitude)
                     ),
-                    measurement: m
+                    measurement: m.timeseriesMeasurement
                 )
             )
         })
@@ -167,18 +167,7 @@ struct LiveLinePlot_Previews: PreviewProvider {
         startTime: Date(),
         numSamples: 9
     )
-    @State static var timeSeries = [
-        TimeSeriesMeasurement(value: 10.0,  date: Date(), dataRead: dataRead),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 10, dataRead: dataRead),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 20, dataRead: dataRead),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 30, dataRead: dataRead),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 40, dataRead: dataRead),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 50, dataRead: dataRead),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 60, dataRead: dataRead),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 70, dataRead: dataRead),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 80, dataRead: dataRead),
-        TimeSeriesMeasurement(value: 10.0, date: Date() + 90, dataRead: dataRead)
-    ]
+    @State static var timeSeries: [TimeSeriesMeasurementInfo] = []
     
     static var previews: some View {
         LiveLinePlot(
