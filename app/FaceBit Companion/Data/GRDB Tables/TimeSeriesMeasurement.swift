@@ -10,7 +10,7 @@ import GRDB
 
 struct TimeSeriesMeasurementInfo: FetchableRecord, Decodable {
     var timeseriesMeasurement: TimeSeriesMeasurement
-    var dataRead: TimeSeriesDataRead_New
+    var dataRead: TimeSeriesDataRead
     var event: Event?
     
     enum CodingKeys: String, CodingKey {
@@ -39,8 +39,8 @@ struct TimeSeriesMeasurement: Identifiable, Equatable, Codable {
 extension TimeSeriesMeasurement: TableRecord {
     static var databaseTableName: String = "time_series_measurement"
     
-    static let dataRead = belongsTo(TimeSeriesDataRead_New.self)
-    var dataRead: QueryInterfaceRequest<TimeSeriesDataRead_New> {
+    static let dataRead = belongsTo(TimeSeriesDataRead.self)
+    var dataRead: QueryInterfaceRequest<TimeSeriesDataRead> {
         request(for: TimeSeriesMeasurement.dataRead)
     }
     
@@ -73,7 +73,7 @@ extension TimeSeriesMeasurement: SQLSchema {
             t.column(CodingKeys.dataReadId.rawValue, .integer)
                 .indexed()
                 .notNull()
-                .references(TimeSeriesDataRead_New.databaseTableName, onDelete: .cascade)
+                .references(TimeSeriesDataRead.databaseTableName, onDelete: .cascade)
             
             t.column(CodingKeys.eventId.rawValue, .integer)
                 .indexed()

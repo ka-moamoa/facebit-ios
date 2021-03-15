@@ -12,9 +12,9 @@ import GRDB
 
 class MaskViewModel: ObservableObject {
     private let appDatabase: AppDatabase
-    @Published var mask: Mask_New?
+    @Published var mask: Mask?
     
-    private var timestamps: [Timestamp_New] = []
+    private var timestamps: [Timestamp] = []
     
     init(db: AppDatabase) {
         self.appDatabase = db
@@ -24,9 +24,9 @@ class MaskViewModel: ObservableObject {
     func loadMask() {
         do {
             self.mask = try appDatabase.dbWriter.read { (db) in
-                try Mask_New
-                    .filter(Mask_New.Columns.disposeDate == nil)
-                    .order(Mask_New.Columns.startDate.desc)
+                try Mask
+                    .filter(Mask.Columns.disposeDate == nil)
+                    .order(Mask.Columns.startDate.desc)
                     .fetchOne(db)
             }
         } catch {
@@ -40,8 +40,8 @@ class MaskViewModel: ObservableObject {
 //        }
     }
     
-    func createMask(of maskType: Mask_New.MaskType) {
-        var mask = Mask_New(
+    func createMask(of maskType: Mask.MaskType) {
+        var mask = Mask(
             id: nil,
             maskType: maskType,
             startDate: Date(),
@@ -64,16 +64,16 @@ class MaskViewModel: ObservableObject {
         self.mask = nil
     }
     
-    func loadTimestamps(for mask: Mask_New) {
+    func loadTimestamps(for mask: Mask) {
         
         self.mask = mask
         do {
             self.timestamps = try appDatabase.dbWriter.read({ (db) in
-                try Timestamp_New
-                    .filter(Timestamp_New.Columns.date > mask.startDate &&
-                    (Timestamp_New.Columns.dataType == Timestamp_New.DataType.maskOn.rawValue ||
-                        Timestamp_New.Columns.dataType == Timestamp_New.DataType.maskOff.rawValue))
-                    .order(Timestamp_New.Columns.date.asc)
+                try Timestamp
+                    .filter(Timestamp.Columns.date > mask.startDate &&
+                    (Timestamp.Columns.dataType == Timestamp.DataType.maskOn.rawValue ||
+                        Timestamp.Columns.dataType == Timestamp.DataType.maskOff.rawValue))
+                    .order(Timestamp.Columns.date.asc)
                     .fetchAll(db)
             })
         } catch {

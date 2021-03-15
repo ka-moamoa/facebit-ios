@@ -14,7 +14,7 @@ struct LiveLinePlot: View {
     @State var xOffset: CGFloat = 0.1
     @State var yOffset: CGFloat = 0.1
     
-    func NormalizedTimeSeries() -> [(point: CGPoint, measurement: TimeSeriesMeasurement_New)] {
+    func NormalizedTimeSeries() -> [(point: CGPoint, measurement: TimeSeriesMeasurement)] {
         
         let series = Array(timeSeries.reversed().prefix(maxTicks).reversed())
         
@@ -32,7 +32,7 @@ struct LiveLinePlot: View {
         let timeStart = 0.0
         let timeEnd = startDate.distance(to: endDate)
         
-        var normalized: [(point: CGPoint, measurement: TimeSeriesMeasurement_New)] = []
+        var normalized: [(point: CGPoint, measurement: TimeSeriesMeasurement)] = []
         
         series.forEach({ (m) in
             normalized.append(
@@ -160,13 +160,6 @@ struct LiveLinePlot: View {
 }
 
 struct LiveLinePlot_Previews: PreviewProvider {
-    @State static var dataRead = TimeSeriesDataRead(
-        dataType: .pressure,
-        frequency: 25.0,
-        millisecondOffset: 1000,
-        startTime: Date(),
-        numSamples: 9
-    )
     @State static var timeSeries: [TimeSeriesMeasurementInfo] = []
     
     static var previews: some View {

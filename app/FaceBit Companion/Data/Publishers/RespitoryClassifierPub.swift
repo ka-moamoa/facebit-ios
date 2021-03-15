@@ -65,11 +65,11 @@ class RespitoryClassifierPub: ObservableObject {
         
         do {
             let measurements = try appDatabase.dbWriter.read({ (db) in
-                try TimeSeriesMeasurement_New
-                    .filter(TimeSeriesMeasurement_New.Columns.date > startDate)
-                    .filter(TimeSeriesMeasurement_New.Columns.date < endDate)
-                    .order(TimeSeriesMeasurement_New.Columns.date.desc)
-                    .including(required: TimeSeriesMeasurement_New.dataRead)
+                try TimeSeriesMeasurement
+                    .filter(TimeSeriesMeasurement.Columns.date > startDate)
+                    .filter(TimeSeriesMeasurement.Columns.date < endDate)
+                    .order(TimeSeriesMeasurement.Columns.date.desc)
+                    .including(required: TimeSeriesMeasurement.dataRead)
                     .asRequest(of: TimeSeriesMeasurementInfo.self)
                     .fetchAll(db)
             })
@@ -77,64 +77,6 @@ class RespitoryClassifierPub: ObservableObject {
         } catch {
             PersistanceLogger.error("unable to complete query: \(error.localizedDescription)")
         }
-        
-        
-//        SQLiteDatabase.queue.async {
-//            let endDate = Date().addingTimeInterval(-self.timeOffset)
-//            let startDate = endDate.addingTimeInterval(-self.queryDuration)
-//
-//
-//            let query = """
-//                SELECT ts.id, ts.value, ts.date, ts.data_read_id, ts.event_id
-//                FROM \(TimeSeriesMeasurement.tableName) as ts
-//                WHERE ts.date > '\(SQLiteDatabase.dateFormatter.string(from: startDate))'
-//                AND ts.date < '\(SQLiteDatabase.dateFormatter.string(from: endDate))'
-//                ORDER BY date DESC
-//            """
-//
-//            guard let db = SQLiteDatabase.main,
-//                  let statement = try? db.prepareStatement(sql: query, dbPointer: db.dbPointer) else {
-//                return
-//            }
-//
-//            defer {
-//                sqlite3_finalize(statement)
-//            }
-//
-//            var measurements: [TimeSeriesMeasurement] = []
-//            var dataReads = [Int:TimeSeriesDataRead]()
-//
-//            while sqlite3_step(statement) == SQLITE_ROW {
-//                let id = Int(sqlite3_column_int(statement, 0))
-//                let value = sqlite3_column_double(statement, 1)
-//                let dataReadId = Int(sqlite3_column_int(statement, 3))
-//
-//                guard let dateCString = sqlite3_column_text(statement, 2),
-//                      let date = SQLiteDatabase.dateFormatter.date(from: String(cString: dateCString)) else {
-//                    continue
-//                }
-//
-//                if dataReads[dataReadId] == nil {
-//                    if let dataRead = TimeSeriesDataRead.get(by: dataReadId, dbPointer: db.dbPointer) {
-//                        dataReads[dataReadId] = dataRead
-//                    } else { continue }
-//                }
-//
-//                measurements.append(
-//                    TimeSeriesMeasurement(
-//                        id: id,
-//                        value: value,
-//                        date: date,
-//                        dataRead: dataReads[dataReadId]!,
-//                        isInserted: true
-//                    )
-//                )
-//            }
-//
-//            DispatchQueue.global(qos: .utility).async {
-//                self.infer(measurements)
-//            }
-//        }
     }
     
     // MARK: - Inference

@@ -17,7 +17,7 @@ struct MetricWidget: View {
     init(
         title: String,
         unit: String,
-        dataType: MetricMeasurement_New.DataType,
+        dataType: MetricMeasurement.DataType,
         timerInterval: TimeInterval
     ) {
         

@@ -17,14 +17,12 @@ struct PurgeDatabaseButtonView: View {
         })
     }
     
+    // FIXME: move to viewmodel
     private func purge() {
-                
-        SQLiteDatabase.openDatabase(purge: true)
-        
-        if let db = SQLiteDatabase.main {
-            for table in SQLiteDatabase.tables {
-                db.createTable(table: table)
-            }
+        do {
+            try AppDatabase.shared.purge()
+        } catch {
+            PersistanceLogger.error("Unable to purge database: \(error.localizedDescription)")
         }
     }
 }

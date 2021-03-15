@@ -42,7 +42,7 @@ struct FaceBit_CompanionApp: App {
             endDate: Date()
         )
 
-        var dataRead = TimeSeriesDataRead_New(
+        var dataRead = TimeSeriesDataRead(
             id: nil,
             dataType: .pressure,
             frequency: 25.0,
@@ -51,7 +51,7 @@ struct FaceBit_CompanionApp: App {
             numSamples: 100
         )
 
-        var tsM = TimeSeriesMeasurement_New(
+        var tsM = TimeSeriesMeasurement(
             id: nil,
             value: 10.0,
             date: Date(),
@@ -82,10 +82,10 @@ struct FaceBit_CompanionApp: App {
 //            print()
 //        }
         
-        if let db = SQLiteDatabase.main {
-            for table in SQLiteDatabase.tables {
-                db.createTable(table: table)
-            }
-        }
+//        if let db = SQLiteDatabase.main {
+//            for table in SQLiteDatabase.tables {
+//                db.createTable(table: table)
+//            }
+//        }
     }
 }

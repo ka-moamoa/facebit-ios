@@ -40,13 +40,12 @@ struct ActiveEventView: View {
             try AppDatabase.shared.dbWriter.write { (db) in
                 try db.execute(
                     sql: """
-                        UPDATE :tablename
+                        UPDATE \(TimeSeriesMeasurement.databaseTableName)
                         SET event_id = :eventId
                         WHERE date >= :startDate
                         AND date <= :endDate;
                     """,
                     arguments: [
-                        "tableName": TimeSeriesMeasurement_New.databaseTableName,
                         "eventId": eventId,
                         "startDate": event.startDate,
                         "endDate": endDate

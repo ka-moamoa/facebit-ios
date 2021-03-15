@@ -69,7 +69,7 @@ struct MaskWearTimeView: View {
                 Text("There is currently no mask being tracked, let's create one")
                     .font(.subheadline)
                 VStack(spacing: 32.0) {
-                    ForEach(Mask_New.MaskType.allCases, id: \.self) { (maskType) in
+                    ForEach(Mask.MaskType.allCases, id: \.self) { (maskType) in
                         PrimaryButton(
                             action: { maskVM.createMask(of: maskType) },
                             content: { Text(maskType.rawValue) }

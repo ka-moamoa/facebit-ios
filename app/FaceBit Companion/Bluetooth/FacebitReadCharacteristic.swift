@@ -39,11 +39,11 @@ extension FaceBitReadCharacteristic {
 }
 
 protocol MetricCharacteristic {
-    static var dataType: MetricMeasurement_New.DataType { get }
+    static var dataType: MetricMeasurement.DataType { get }
 }
 
 extension MetricCharacteristic where Self:FaceBitReadCharacteristic {
-    var dataType: MetricMeasurement_New.DataType { return Self.dataType }
+    var dataType: MetricMeasurement.DataType { return Self.dataType }
     
     func processMetricRead(_ data: Data) {
         let bytes = [UInt8](data)
@@ -64,7 +64,7 @@ extension MetricCharacteristic where Self:FaceBitReadCharacteristic {
         BLELogger.info("value from characteristic \(dataType.rawValue): \(value)")
             
         
-        var measurement = MetricMeasurement_New(
+        var measurement = MetricMeasurement(
             value: value,
             dataType: dataType,
             timestamp: Int64(timestamp),
@@ -81,11 +81,11 @@ extension MetricCharacteristic where Self:FaceBitReadCharacteristic {
 }
 
 protocol TimeSeriesCharacteristic {
-    static var dataType: TimeSeriesDataRead_New.DataType { get }
+    static var dataType: TimeSeriesDataRead.DataType { get }
 }
 
 extension TimeSeriesCharacteristic where Self:FaceBitReadCharacteristic {
-    var dataType: TimeSeriesDataRead_New.DataType { return Self.dataType }
+    var dataType: TimeSeriesDataRead.DataType { return Self.dataType }
     
     func processTimeSeriesRead(_ data: Data) {
         let bytes = [UInt8](data)
@@ -124,7 +124,7 @@ extension TimeSeriesCharacteristic where Self:FaceBitReadCharacteristic {
                 - Frequency: \(freq)
         """)
         
-        var dataRead = TimeSeriesDataRead_New(
+        var dataRead = TimeSeriesDataRead(
             dataType: dataType,
             frequency: freq,
             millisecondOffset: Int(millisecondOffset),
@@ -146,7 +146,7 @@ extension TimeSeriesCharacteristic where Self:FaceBitReadCharacteristic {
                     val = Double(rawVal)
                 }
                 
-                var measurement = TimeSeriesMeasurement_New(
+                var measurement = TimeSeriesMeasurement(
                     id: nil,
                     value: val,
                     date: start.addingTimeInterval(-(period*Double(i))),
@@ -165,7 +165,7 @@ extension TimeSeriesCharacteristic where Self:FaceBitReadCharacteristic {
 }
 
 class PressureCharacteristic: FaceBitReadCharacteristic, TimeSeriesCharacteristic {
-    static var dataType: TimeSeriesDataRead_New.DataType = .pressure
+    static var dataType: TimeSeriesDataRead.DataType = .pressure
     
     static let name = "Pressure"
     static let uuid = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8781")
@@ -179,7 +179,7 @@ class PressureCharacteristic: FaceBitReadCharacteristic, TimeSeriesCharacteristi
 }
 
 class TemperatureCharacteristic: FaceBitReadCharacteristic, TimeSeriesCharacteristic {
-    static var dataType: TimeSeriesDataRead_New.DataType = .temperature
+    static var dataType: TimeSeriesDataRead.DataType = .temperature
     
     static let name = "Temperature"
     static let uuid = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8782")
@@ -197,7 +197,7 @@ class RespiratoryRateCharacteristic: FaceBitReadCharacteristic, MetricCharacteri
     static let uuid = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8784")
     static let readValue = 4
     
-    static let dataType: MetricMeasurement_New.DataType = .respiratoryRate
+    static let dataType: MetricMeasurement.DataType = .respiratoryRate
     
     var readStart: Date = Date()
     
@@ -211,7 +211,7 @@ class HeartRateCharacteristic: FaceBitReadCharacteristic, MetricCharacteristic {
     static let uuid = CBUUID(string: "0F1F34A3-4567-484C-ACA2-CC8F662E8785")
     static let readValue = 7
     
-    static let dataType: MetricMeasurement_New.DataType = .heartRate
+    static let dataType: MetricMeasurement.DataType = .heartRate
     
     var readStart: Date = Date()
     
@@ -251,12 +251,17 @@ class MaskOnOffCharacteristic: FaceBitReadCharacteristic {
         let value = bytes[8]
         let state = State(rawValue: Int(value))
         BLELogger.info("value from mask on/off characteristic: \(value), timestamp: \(timestamp)")
-        
-        let timeRecord = Timestamp(
+
+        var ts = Timestamp(
+            id: nil,
             dataType: state == .on ? .maskOn : .maskOff,
             date: Date()
         )
-        
-        SQLiteDatabase.main?.insertRecord(record: timeRecord)
+        do {
+            try ts.save()
+        } catch {
+            PersistanceLogger.error("unable to save timestamp: \(error.localizedDescription)")
+        }
+       
     }
 }

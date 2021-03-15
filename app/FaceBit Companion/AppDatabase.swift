@@ -9,6 +9,8 @@ import Foundation
 import Combine
 import GRDB
 
+class DatabaseCreationError: Error { }
+
 struct AppDatabase {
     let dbWriter: DatabaseWriter
     
@@ -27,11 +29,11 @@ struct AppDatabase {
         
         migrator.registerMigration("create-event") { (db) in
             try Event.create(in: db)
-            try TimeSeriesDataRead_New.create(in: db)
-            try TimeSeriesMeasurement_New.create(in: db)
-            try Timestamp_New.create(in: db)
-            try Mask_New.create(in: db)
-            try MetricMeasurement_New.create(in: db)
+            try TimeSeriesDataRead.create(in: db)
+            try TimeSeriesMeasurement.create(in: db)
+            try Timestamp.create(in: db)
+            try Mask.create(in: db)
+            try MetricMeasurement.create(in: db)
         }
         
         return migrator
@@ -41,15 +43,28 @@ struct AppDatabase {
 extension AppDatabase {
     static let shared = makeShared()
     
+    static var dbFolderPath: URL? {
+        let fileManager = FileManager()
+        let folderPath = try? fileManager
+            .url(for: .applicationDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            .appendingPathComponent("database", isDirectory: true)
+        
+        return folderPath
+    }
+    
+    static var dbPath: URL? {
+        guard let folderPath = dbFolderPath else { return nil }
+        let dbPath = folderPath.appendingPathComponent("db.sqlite")
+        return dbPath
+    }
+    
     private static func makeShared() -> AppDatabase {
         do {
-            let fileManager = FileManager()
-            let folderPath = try fileManager
-                .url(for: .applicationDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                .appendingPathComponent("database", isDirectory: true)
-            try fileManager.createDirectory(at: folderPath, withIntermediateDirectories: true)
+            guard let folderPath = dbFolderPath,
+                  let dbPath = dbPath else { throw DatabaseCreationError() }
             
-            let dbPath = folderPath.appendingPathComponent("db.sqlite")
+            let fileManager = FileManager()
+            try fileManager.createDirectory(at: folderPath, withIntermediateDirectories: true)
             PersistanceLogger.info("Database Path: \(dbPath)")
             
             let dbPool = try DatabasePool(path: dbPath.path)
@@ -67,5 +82,16 @@ extension AppDatabase {
         // See https://github.com/groue/GRDB.swift/blob/master/README.md#database-connections
         let dbQueue = DatabaseQueue()
         return try! AppDatabase(dbQueue)
+    }
+    
+    func purge() throws {
+        try dbWriter.write { (db) in
+            try Event.deleteAll(db)
+            try TimeSeriesDataRead.deleteAll(db)
+            try TimeSeriesMeasurement.deleteAll(db)
+            try Timestamp.deleteAll(db)
+            try Mask.deleteAll(db)
+            try MetricMeasurement.deleteAll(db)
+        }
     }
 }

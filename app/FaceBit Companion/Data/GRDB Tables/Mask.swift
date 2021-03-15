@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-struct Mask_New: Identifiable, Equatable, Codable {
+struct Mask: Identifiable, Equatable, Codable {
     enum MaskType: String, Identifiable, CaseIterable, Codable, DatabaseValueConvertible {
         case n95 = "N95"
         case surgical = "Surgical"
@@ -56,11 +56,11 @@ struct Mask_New: Identifiable, Equatable, Codable {
     }
 }
 
-extension Mask_New: TableRecord {
+extension Mask: TableRecord {
     static var databaseTableName: String = "mask"
 }
 
-extension Mask_New: FetchableRecord, MutablePersistableRecord {
+extension Mask: FetchableRecord, MutablePersistableRecord {
     enum Columns {
         static let maskType = Column(CodingKeys.maskType)
         static let startDate = Column(CodingKeys.startDate)
@@ -72,7 +72,7 @@ extension Mask_New: FetchableRecord, MutablePersistableRecord {
     }
 }
 
-extension Mask_New: SQLSchema {
+extension Mask: SQLSchema {
     static func create(in db: Database) throws {
         try db.create(table: Self.databaseTableName, body: { (t) in
             t.autoIncrementedPrimaryKey(CodingKeys.id.rawValue)

@@ -9,7 +9,7 @@ import Foundation
 import GRDB
 
 struct MetricMeasurementInfo: FetchableRecord, Decodable {
-    let metric: MetricMeasurement_New
+    let metric: MetricMeasurement
     let event: Event
     
     enum CodingKeys: String, CodingKey {
@@ -19,7 +19,7 @@ struct MetricMeasurementInfo: FetchableRecord, Decodable {
 }
 
 
-struct MetricMeasurement_New: Identifiable, Equatable, Codable {
+struct MetricMeasurement: Identifiable, Equatable, Codable {
     enum DataType: String, CaseIterable, Identifiable, Codable, DatabaseValueConvertible {
         case respiratoryRate = "respiratory_rate"
         case heartRate = "heart_rate"
@@ -44,17 +44,17 @@ struct MetricMeasurement_New: Identifiable, Equatable, Codable {
     let eventId: Int64?
 }
 
-extension MetricMeasurement_New: TableRecord {
+extension MetricMeasurement: TableRecord {
     static var databaseTableName: String = "metric_measurement"
     
     static let event = belongsTo(Event.self)
     var event: QueryInterfaceRequest<Event> {
-        request(for: MetricMeasurement_New.event)
+        request(for: MetricMeasurement.event)
     }
 }
 
 
-extension MetricMeasurement_New: FetchableRecord, MutablePersistableRecord {
+extension MetricMeasurement: FetchableRecord, MutablePersistableRecord {
     enum Columns {
         static let value = Column(CodingKeys.value)
         static let dataType = Column(CodingKeys.dataType)
@@ -68,7 +68,7 @@ extension MetricMeasurement_New: FetchableRecord, MutablePersistableRecord {
     }
 }
 
-extension MetricMeasurement_New: SQLSchema {
+extension MetricMeasurement: SQLSchema {
     static func create(in db: Database) throws {
         try db.create(table: Self.databaseTableName, body: { (t) in
             t.autoIncrementedPrimaryKey(CodingKeys.id.rawValue)

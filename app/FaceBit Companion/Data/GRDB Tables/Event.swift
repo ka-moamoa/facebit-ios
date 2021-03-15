@@ -41,15 +41,15 @@ struct Event: Identifiable, Equatable, Codable {
 extension Event: TableRecord {
     static var databaseTableName: String = "event"
     
-    static let measurementForeignKey = ForeignKey([TimeSeriesMeasurement_New.CodingKeys.eventId.rawValue])
-    static let measurements = hasMany(TimeSeriesMeasurement_New.self, using: measurementForeignKey)
-    var measurements: QueryInterfaceRequest<TimeSeriesMeasurement_New> {
+    static let measurementForeignKey = ForeignKey([TimeSeriesMeasurement.CodingKeys.eventId.rawValue])
+    static let measurements = hasMany(TimeSeriesMeasurement.self, using: measurementForeignKey)
+    var measurements: QueryInterfaceRequest<TimeSeriesMeasurement> {
         request(for: Event.measurements)
     }
     
-    static let metricForeignKey = ForeignKey([MetricMeasurement_New.CodingKeys.eventId.rawValue])
-    static var metrics = hasMany(MetricMeasurement_New.self, using: metricForeignKey)
-    var metrics: QueryInterfaceRequest<MetricMeasurement_New> {
+    static let metricForeignKey = ForeignKey([MetricMeasurement.CodingKeys.eventId.rawValue])
+    static var metrics = hasMany(MetricMeasurement.self, using: metricForeignKey)
+    var metrics: QueryInterfaceRequest<MetricMeasurement> {
         request(for: Event.metrics)
     }
 }

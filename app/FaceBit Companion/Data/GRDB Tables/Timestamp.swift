@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-struct Timestamp_New: Identifiable, Equatable, Codable {
+struct Timestamp: Identifiable, Equatable, Codable {
     enum DataType: String, CaseIterable, Identifiable, Codable, DatabaseValueConvertible {
         case peripheralSync = "peripheral_sync"
         case maskOn = "mask_on"
@@ -28,11 +28,11 @@ struct Timestamp_New: Identifiable, Equatable, Codable {
     }
 }
 
-extension Timestamp_New: TableRecord {
+extension Timestamp: TableRecord {
     static var databaseTableName: String = "timestamp"
 }
 
-extension Timestamp_New: FetchableRecord, MutablePersistableRecord {
+extension Timestamp: FetchableRecord, MutablePersistableRecord {
     enum Columns {
         static let dataType = Column(CodingKeys.dataType)
         static let date = Column(CodingKeys.date)
@@ -43,7 +43,7 @@ extension Timestamp_New: FetchableRecord, MutablePersistableRecord {
     }
 }
 
-extension Timestamp_New: SQLSchema {
+extension Timestamp: SQLSchema {
     static func create(in db: Database) throws {
         try db.create(table: Self.databaseTableName, body: { (t) in
             t.autoIncrementedPrimaryKey(CodingKeys.id.rawValue)

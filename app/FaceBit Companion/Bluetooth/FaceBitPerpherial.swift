@@ -52,7 +52,7 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
         }
     }
     
-    private var currentEvent: SmartPPEEvent?
+    private var currentEvent: Event?
     
     var readChars: [FaceBitReadCharacteristic]
     
@@ -78,7 +78,7 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
         }
     }
     
-    func setEvent(_ event: SmartPPEEvent?=nil) {
+    func setEvent(_ event: Event?=nil) {
         self.currentEvent = event
     }
 }
@@ -146,9 +146,18 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         BLELogger.info("Writting Timestamp: \(timestamp)")
         
         peripheral.writeValue(data, for: characteristic, type: .withoutResponse)
-        SQLiteDatabase.main?.insertRecord(
-            record: Timestamp(dataType: .peripheralSync, date: now)
+        
+        var ts = Timestamp(
+            id: nil,
+            dataType: .peripheralSync,
+            date: now
         )
+        
+        do {
+            try ts.save()
+        } catch {
+            PersistanceLogger.error("unable to save timestamp: \(error.localizedDescription)")
+        }
         
     }
     

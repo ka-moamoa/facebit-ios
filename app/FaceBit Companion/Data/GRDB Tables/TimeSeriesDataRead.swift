@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-struct TimeSeriesDataRead_New: Identifiable, Equatable, Codable {
+struct TimeSeriesDataRead: Identifiable, Equatable, Codable {
     var id: Int64?
     let dataType: DataType
     let frequency: Double
@@ -34,17 +34,17 @@ struct TimeSeriesDataRead_New: Identifiable, Equatable, Codable {
     }
 }
 
-extension TimeSeriesDataRead_New: TableRecord {
+extension TimeSeriesDataRead: TableRecord {
     static var databaseTableName: String = "time_series_data_read"
     
-    static var measurementForeignKey = ForeignKey([TimeSeriesMeasurement_New.CodingKeys.dataReadId.rawValue])
-    static var measurements = hasMany(TimeSeriesMeasurement_New.self, using: measurementForeignKey)
-    var measurements: QueryInterfaceRequest<TimeSeriesMeasurement_New> {
-        request(for: TimeSeriesDataRead_New.measurements)
+    static var measurementForeignKey = ForeignKey([TimeSeriesMeasurement.CodingKeys.dataReadId.rawValue])
+    static var measurements = hasMany(TimeSeriesMeasurement.self, using: measurementForeignKey)
+    var measurements: QueryInterfaceRequest<TimeSeriesMeasurement> {
+        request(for: TimeSeriesDataRead.measurements)
     }
 }
 
-extension TimeSeriesDataRead_New: FetchableRecord, MutablePersistableRecord {
+extension TimeSeriesDataRead: FetchableRecord, MutablePersistableRecord {
     fileprivate enum Columns {
         static let dataType = Column(CodingKeys.dataType)
         static let frequency = Column(CodingKeys.frequency)
@@ -58,7 +58,7 @@ extension TimeSeriesDataRead_New: FetchableRecord, MutablePersistableRecord {
     }
 }
 
-extension TimeSeriesDataRead_New: SQLSchema {
+extension TimeSeriesDataRead: SQLSchema {
     static func create(in db: Database) throws {
         try db.create(table: "time_series_data_read", body: { (t) in
             t.autoIncrementedPrimaryKey(CodingKeys.id.rawValue)

@@ -29,14 +29,19 @@ struct ShareDatabaseButtonView: View {
     private func shareDatabase() {
         #if targetEnvironment(macCatalyst)
             print("macOS")
-            UIApplication.shared.open(SQLiteDatabase.dbPath)
+            if let dbPath = AppDatabase.dbPath {
+                UIApplication.shared.open(dbPath)
+            }
+            
         #elseif os(iOS) || os(watchOS) || os(tvOS)
             print("iOS")
-            let av = UIActivityViewController(
-                activityItems: [SQLiteDatabase.dbPath],
-                applicationActivities: nil
-            )
-            UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+            if let dbPath = AppDatabase.dbPath {
+                let av = UIActivityViewController(
+                    activityItems: [dbPath],
+                    applicationActivities: nil
+                )
+                UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+            }
         #else
             // unknown os
         #endif
