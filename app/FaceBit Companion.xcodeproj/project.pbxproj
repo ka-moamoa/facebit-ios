@@ -48,6 +48,10 @@
 		015F994525AE493500BDD672 /* FaceBit_CompanionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F994425AE493500BDD672 /* FaceBit_CompanionTests.swift */; };
 		015F995025AE493500BDD672 /* FaceBit_CompanionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */; };
 		015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */; };
+		016895F52601564200F48A82 /* TimeSeriesDataReadSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016895F42601564200F48A82 /* TimeSeriesDataReadSummaryView.swift */; };
+		016895FD260156CC00F48A82 /* MetricMeasurementSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016895FC260156CC00F48A82 /* MetricMeasurementSummaryView.swift */; };
+		016896022601571E00F48A82 /* TimestampSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016896012601571E00F48A82 /* TimestampSummaryView.swift */; };
+		0168960A2601577600F48A82 /* EventSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016896092601577600F48A82 /* EventSummaryView.swift */; };
 		018B2F3625CCAE7C00178E6C /* FacebitReadCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018B2F3525CCAE7C00178E6C /* FacebitReadCharacteristic.swift */; };
 		018D6FB425FBB0BC00E5AD09 /* SQLSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D6FB325FBB0BC00E5AD09 /* SQLSchema.swift */; };
 		018D6FBC25FBB26000E5AD09 /* TimeSeriesMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D6FBB25FBB26000E5AD09 /* TimeSeriesMeasurement.swift */; };
@@ -62,8 +66,8 @@
 		01AB3B8A25FBD9B00027C918 /* MetricMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AB3B8925FBD9B00027C918 /* MetricMeasurement.swift */; };
 		01AB3B9725FBF7B50027C918 /* MyFaceBitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AB3B9625FBF7B50027C918 /* MyFaceBitViewModel.swift */; };
 		01B48FA525C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B48FA425C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift */; };
-		01BC52E226010DD400040149 /* DataLoggerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BC52E126010DD400040149 /* DataLoggerViewModel.swift */; };
-		01BC52E72601152800040149 /* DatabaseLoggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BC52E62601152800040149 /* DatabaseLoggerView.swift */; };
+		01BC52E226010DD400040149 /* DataViewerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BC52E126010DD400040149 /* DataViewerViewModel.swift */; };
+		01BC52E72601152800040149 /* DatabaseViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BC52E62601152800040149 /* DatabaseViewerView.swift */; };
 		01E9276B25D97AAA00873BD8 /* MaskWearTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E9276A25D97AAA00873BD8 /* MaskWearTimeView.swift */; };
 		01E9277325D97C7700873BD8 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E9277225D97C7700873BD8 /* ProgressBar.swift */; };
 		01E9277D25D99D2500873BD8 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E9277C25D99D2500873BD8 /* View+Extension.swift */; };
@@ -137,6 +141,10 @@
 		015F994F25AE493500BDD672 /* FaceBit_CompanionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBit_CompanionUITests.swift; sourceTree = "<group>"; };
 		015F995125AE493500BDD672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		015F996325AE49A000BDD672 /* BluetoothConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnectionManager.swift; sourceTree = "<group>"; };
+		016895F42601564200F48A82 /* TimeSeriesDataReadSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesDataReadSummaryView.swift; sourceTree = "<group>"; };
+		016895FC260156CC00F48A82 /* MetricMeasurementSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricMeasurementSummaryView.swift; sourceTree = "<group>"; };
+		016896012601571E00F48A82 /* TimestampSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampSummaryView.swift; sourceTree = "<group>"; };
+		016896092601577600F48A82 /* EventSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSummaryView.swift; sourceTree = "<group>"; };
 		018B2F3525CCAE7C00178E6C /* FacebitReadCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebitReadCharacteristic.swift; sourceTree = "<group>"; };
 		018D6FB325FBB0BC00E5AD09 /* SQLSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLSchema.swift; sourceTree = "<group>"; };
 		018D6FBB25FBB26000E5AD09 /* TimeSeriesMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurement.swift; sourceTree = "<group>"; };
@@ -151,8 +159,8 @@
 		01AB3B8925FBD9B00027C918 /* MetricMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricMeasurement.swift; sourceTree = "<group>"; };
 		01AB3B9625FBF7B50027C918 /* MyFaceBitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFaceBitViewModel.swift; sourceTree = "<group>"; };
 		01B48FA425C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesValueWidgetView.swift; sourceTree = "<group>"; };
-		01BC52E126010DD400040149 /* DataLoggerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoggerViewModel.swift; sourceTree = "<group>"; };
-		01BC52E62601152800040149 /* DatabaseLoggerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseLoggerView.swift; sourceTree = "<group>"; };
+		01BC52E126010DD400040149 /* DataViewerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewerViewModel.swift; sourceTree = "<group>"; };
+		01BC52E62601152800040149 /* DatabaseViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewerView.swift; sourceTree = "<group>"; };
 		01E9276A25D97AAA00873BD8 /* MaskWearTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskWearTimeView.swift; sourceTree = "<group>"; };
 		01E9277225D97C7700873BD8 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		01E9277C25D99D2500873BD8 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
@@ -266,7 +274,6 @@
 				013B00BB25BB289B00319A42 /* SettingsView.swift */,
 				019754EE25C499D300211FE9 /* PurgeDatabaseButtonView.swift */,
 				01325D3A25C35196000B2A05 /* ShareDatabaseButtonView.swift */,
-				01BC52E62601152800040149 /* DatabaseLoggerView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -346,6 +353,18 @@
 			path = "FaceBit CompanionUITests";
 			sourceTree = "<group>";
 		};
+		016895F32601561300F48A82 /* DataViewer */ = {
+			isa = PBXGroup;
+			children = (
+				01BC52E62601152800040149 /* DatabaseViewerView.swift */,
+				016895F42601564200F48A82 /* TimeSeriesDataReadSummaryView.swift */,
+				016895FC260156CC00F48A82 /* MetricMeasurementSummaryView.swift */,
+				016896012601571E00F48A82 /* TimestampSummaryView.swift */,
+				016896092601577600F48A82 /* EventSummaryView.swift */,
+			);
+			path = DataViewer;
+			sourceTree = "<group>";
+		};
 		01AB3B9525FBF7980027C918 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,7 +373,7 @@
 				018F821725D576610037C5BE /* RespitoryClassifierViewModel.swift */,
 				01E9278125D9AD0D00873BD8 /* MaskViewModel.swift */,
 				01AB3B9625FBF7B50027C918 /* MyFaceBitViewModel.swift */,
-				01BC52E126010DD400040149 /* DataLoggerViewModel.swift */,
+				01BC52E126010DD400040149 /* DataViewerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -372,6 +391,7 @@
 		01EDBE7425B745D6009505DC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				016895F32601561300F48A82 /* DataViewer */,
 				0100B4D525D74FA600898C05 /* Shared */,
 				013B00B525BB276B00319A42 /* Settings */,
 				01EDBE8B25B77022009505DC /* Event Recording */,
@@ -561,14 +581,14 @@
 				01325D3B25C35196000B2A05 /* ShareDatabaseButtonView.swift in Sources */,
 				0149441525D838B100FB3DEF /* MetricViewModel.swift in Sources */,
 				010C677825BB82A400E0EF01 /* TalkingEventRecordView.swift in Sources */,
-				01BC52E226010DD400040149 /* DataLoggerViewModel.swift in Sources */,
+				01BC52E226010DD400040149 /* DataViewerViewModel.swift in Sources */,
 				01B48FA525C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift in Sources */,
 				018D6FB425FBB0BC00E5AD09 /* SQLSchema.swift in Sources */,
 				0100B4D725D74FB900898C05 /* FaceBitIcon.swift in Sources */,
 				012735BA25D7A73E00C5CF6C /* MetricWidget.swift in Sources */,
 				01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */,
 				0103211425FAABCE00EC81B4 /* Event.swift in Sources */,
-				01BC52E72601152800040149 /* DatabaseLoggerView.swift in Sources */,
+				01BC52E72601152800040149 /* DatabaseViewerView.swift in Sources */,
 				013B00CD25BB2B6400319A42 /* FaceBit+Bundle.swift in Sources */,
 				01E9277D25D99D2500873BD8 /* View+Extension.swift in Sources */,
 				0100B4EF25D7996900898C05 /* MaskWearTimeWidget.swift in Sources */,
@@ -595,12 +615,16 @@
 				01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */,
 				01E9277325D97C7700873BD8 /* ProgressBar.swift in Sources */,
 				018F824F25D5DA4A0037C5BE /* RespiratoryClassifier.mlmodel in Sources */,
+				016895F52601564200F48A82 /* TimeSeriesDataReadSummaryView.swift in Sources */,
+				0168960A2601577600F48A82 /* EventSummaryView.swift in Sources */,
 				018F821825D576610037C5BE /* RespitoryClassifierViewModel.swift in Sources */,
 				01AB3B9725FBF7B50027C918 /* MyFaceBitViewModel.swift in Sources */,
+				016896022601571E00F48A82 /* TimestampSummaryView.swift in Sources */,
 				010C675725BB5AFC00E0EF01 /* FaceBitConnectionStatusButtonView.swift in Sources */,
 				013B00B725BB278100319A42 /* GenericSettingsRow.swift in Sources */,
 				019754FD25C4AAFE00211FE9 /* StartEventView.swift in Sources */,
 				018D6FBC25FBB26000E5AD09 /* TimeSeriesMeasurement.swift in Sources */,
+				016895FD260156CC00F48A82 /* MetricMeasurementSummaryView.swift in Sources */,
 				010C67A125BB9C7400E0EF01 /* ValueWidgetView.swift in Sources */,
 				013B00EE25BB517A00319A42 /* FaceBit+String.swift in Sources */,
 				01E9278225D9AD0D00873BD8 /* MaskViewModel.swift in Sources */,

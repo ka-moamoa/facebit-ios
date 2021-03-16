@@ -46,7 +46,7 @@ extension AppDatabase {
     static var dbFolderPath: URL? {
         let fileManager = FileManager()
         let folderPath = try? fileManager
-            .url(for: .applicationDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             .appendingPathComponent("database", isDirectory: true)
         
         return folderPath
@@ -67,7 +67,10 @@ extension AppDatabase {
             try fileManager.createDirectory(at: folderPath, withIntermediateDirectories: true)
             PersistanceLogger.info("Database Path: \(dbPath)")
             
-            let dbPool = try DatabasePool(path: dbPath.path)
+            var configuration = Configuration()
+            configuration.qos = DispatchQoS.userInitiated
+            
+            let dbPool = try DatabasePool(path: dbPath.path, configuration: configuration)
             
             let appDatabase = try AppDatabase(dbPool)
             

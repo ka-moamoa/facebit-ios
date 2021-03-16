@@ -23,7 +23,7 @@ struct SettingsView: View {
                     ShareDatabaseButtonView()
                     PurgeDatabaseButtonView()
                     NavigationLink(
-                        destination: DatabaseLoggerView(viewModel: DataLoggerViewModel(appDatabase: AppDatabase.shared, facebit: facebit)),
+                        destination: DatabaseViewerView(viewModel: DataViewerViewModel(appDatabase: AppDatabase.shared, facebit: facebit)),
                         label: {
                             GenericSettingsRow(text: "Database Log")
                         }
