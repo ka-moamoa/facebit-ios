@@ -10,7 +10,7 @@ import SwiftUI
 struct TimeSeriesValueWidgetView: View {
     private var title: String
     private var unit: String
-    @ObservedObject var publisher: TimeSeriesMeasurementPub
+    @ObservedObject var publisher: TimeSeriesMeasurementViewModel
     @EnvironmentObject var facebit: FaceBitPeripheral
     
     init(
@@ -24,15 +24,12 @@ struct TimeSeriesValueWidgetView: View {
         
         self.title = title
         self.unit = unit
-        self.publisher = TimeSeriesMeasurementPub(
+        self.publisher = TimeSeriesMeasurementViewModel(
             appDatabase: AppDatabase.shared,
             dataType: dataType,
             rowLimit: rowLimit,
-            timerInterval: timerInterval,
             timeOffset: timeOffset
         )
-        
-        publisher.refresh()
     }
     
     var body: some View {
@@ -46,23 +43,6 @@ struct TimeSeriesValueWidgetView: View {
                 Spacer()
                 Text(unit)
             }
-        }
-        .onLoad() {
-            setRefresh(facebit.state)
-            publisher.refresh()
-        }
-        .onAppear() { setRefresh(facebit.state) }
-        .onDisappear() { publisher.stop() }
-        .onReceive(facebit.$state.dropFirst()) { state in
-            setRefresh(state)
-        }
-    }
-    
-    func setRefresh(_ state: PeripheralState) {
-        if state == .connected {
-            publisher.start()
-        } else {
-            publisher.stop()
         }
     }
 }

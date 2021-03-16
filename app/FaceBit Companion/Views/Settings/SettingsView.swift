@@ -18,15 +18,21 @@ struct SettingsView: View {
                         destination: GenericEventRecordingView(),
                         label: {
                             GenericSettingsRow(text: "Record Events")
-                        })
+                        }
+                    )
                     ShareDatabaseButtonView()
                     PurgeDatabaseButtonView()
+                    NavigationLink(
+                        destination: DatabaseLoggerView(viewModel: DataLoggerViewModel(appDatabase: AppDatabase.shared, facebit: facebit)),
+                        label: {
+                            GenericSettingsRow(text: "Database Log")
+                        }
+                    )
                     Button(action: {
-                        let rc = RespitoryClassifierPub(
+                        let rc = RespitoryClassifierViewModel(
                             appDatabase: AppDatabase.shared,
                             timeOffset: 4
                         )
-                        rc.fetchData()
                     }, label: {
                         Text("Test Classification")
                             .padding()

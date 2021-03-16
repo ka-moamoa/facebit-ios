@@ -45,7 +45,7 @@ extension TimeSeriesDataRead: TableRecord {
 }
 
 extension TimeSeriesDataRead: FetchableRecord, MutablePersistableRecord {
-    fileprivate enum Columns {
+    enum Columns {
         static let dataType = Column(CodingKeys.dataType)
         static let frequency = Column(CodingKeys.frequency)
         static let millisecondOffset = Column(CodingKeys.millisecondOffset)

@@ -9,21 +9,18 @@ import SwiftUI
 
 struct TimeSeriesGraphWidgetView: View {
     var title: String
-    @ObservedObject var publisher: TimeSeriesMeasurementPub
+    @ObservedObject var publisher: TimeSeriesMeasurementViewModel
     @EnvironmentObject var facebit: FaceBitPeripheral
     
     init(title: String, dataType: TimeSeriesDataRead.DataType, timerInterval: TimeInterval, rowLimit: Int, timeOffset: TimeInterval) {
         
         self.title = title
-        self.publisher = TimeSeriesMeasurementPub(
+        self.publisher = TimeSeriesMeasurementViewModel(
             appDatabase: AppDatabase.shared,
             dataType: dataType,
             rowLimit: rowLimit,
-            timerInterval: timerInterval,
             timeOffset: timeOffset
         )
-        
-        publisher.refresh()
     }
     
     var body: some View {
@@ -33,23 +30,6 @@ struct TimeSeriesGraphWidgetView: View {
                     .bold()
                 LiveLinePlot(timeSeries: $publisher.items, showAxis: false)
             }
-        }
-        .onLoad() {
-            setRefresh(facebit.state)
-            publisher.refresh()
-        }
-        .onAppear() { setRefresh(facebit.state) }
-        .onDisappear() { publisher.stop() }
-        .onReceive(facebit.$state.dropFirst()) { state in
-            setRefresh(state)
-        }
-    }
-    
-    func setRefresh(_ state: PeripheralState) {
-        if state == .connected {
-            publisher.start()
-        } else {
-            publisher.stop()
         }
     }
 }
