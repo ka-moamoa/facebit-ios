@@ -32,12 +32,6 @@ class MaskViewModel: ObservableObject {
         } catch {
             PersistanceLogger.error("Could not load Mask: \(error.localizedDescription)")
         }
-//        Mask.getActiveMask() { (mask) in
-//            self.mask = mask
-//            if mask != nil {
-//                self.loadTimestamps(for: mask!)
-//            }
-//        }
     }
     
     func createMask(of maskType: Mask.MaskType) {
@@ -49,14 +43,6 @@ class MaskViewModel: ObservableObject {
         )
         try? mask.save()
         self.mask = mask
-        
-//        let mask = Mask(
-//            maskType: maskType,
-//            startDate: Date(),
-//            isInserted: false
-//        )
-//        SQLiteDatabase.main?.insertRecord(record: mask)
-//        self.mask = mask
     }
     
     func disposeMask() {

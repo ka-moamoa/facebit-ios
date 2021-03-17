@@ -8,17 +8,6 @@
 import Foundation
 import GRDB
 
-struct MetricMeasurementInfo: FetchableRecord, Decodable {
-    let metric: MetricMeasurement
-    let event: Event
-    
-    enum CodingKeys: String, CodingKey {
-        case metric = "metric_measurement"
-        case event = "event"
-    }
-}
-
-
 struct MetricMeasurement: Identifiable, Equatable, Codable {
     enum DataType: String, CaseIterable, Identifiable, Codable, DatabaseValueConvertible {
         case respiratoryRate = "respiratory_rate"

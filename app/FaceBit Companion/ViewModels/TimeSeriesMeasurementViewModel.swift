@@ -11,7 +11,7 @@ import SQLite3
 import GRDB
 
 class TimeSeriesMeasurementViewModel: ObservableObject {
-    @Published var items: [TimeSeriesMeasurementInfo] = []
+    @Published var items: [TimeSeriesMeasurementDetailed] = []
     
     private let appDatabase: AppDatabase
     private let dataType: TimeSeriesDataRead.DataType
@@ -61,7 +61,7 @@ class TimeSeriesMeasurementViewModel: ObservableObject {
                 )
                 .order(TimeSeriesMeasurement.Columns.date.desc)
                 .limit(rowLimit)
-                .asRequest(of: TimeSeriesMeasurementInfo.self)
+                .asRequest(of: TimeSeriesMeasurementDetailed.self)
                 .fetchAll(db)
         } catch {
             PersistanceLogger.error("unable to fetch measurements from observer \(self.dataType.rawValue): \(error.localizedDescription)")

@@ -8,20 +8,6 @@
 import Foundation
 import GRDB
 
-struct TimeSeriesMeasurementInfo: FetchableRecord, Decodable, Equatable {
-    var timeseriesMeasurement: TimeSeriesMeasurement
-    var dataRead: TimeSeriesDataRead
-    var event: Event?
-    
-    var id: Int64? { return timeseriesMeasurement.id }
-    
-    enum CodingKeys: String, CodingKey {
-        case timeseriesMeasurement = "time_series_measurement"
-        case dataRead = "time_series_data_read"
-        case event = "event"
-    }
-}
-
 struct TimeSeriesMeasurement: Identifiable, Equatable, Codable {
     var id: Int64?
     var value: Double

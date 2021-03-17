@@ -38,7 +38,7 @@ struct TimeSeriesValueWidgetView: View {
                 Text(title)
                     .bold()
                 Spacer()
-                Text("\(String(format: "%.2f", publisher.items.first?.timeseriesMeasurement.value ?? 0.0))")
+                Text("\(String(format: "%.2f", publisher.items.first?.timeSeriesMeasurement.value ?? 0.0))")
                     .font(.system(size: 32.0))
                 Spacer()
                 Text(unit)

@@ -12,7 +12,7 @@ import GRDB
 
 class MetricViewModel: ObservableObject {
     
-    @Published var items: [MetricMeasurementInfo] = []
+    @Published var items: [MetricMeasurementDetailed] = []
     
     private let appDatabase: AppDatabase
     private let dataType: MetricMeasurement.DataType
@@ -47,7 +47,7 @@ class MetricViewModel: ObservableObject {
                 .filter(MetricMeasurement.Columns.dataType == self.dataType.rawValue)
                 .including(optional: MetricMeasurement.event)
                 .limit(rowLimit)
-                .asRequest(of: MetricMeasurementInfo.self)
+                .asRequest(of: MetricMeasurementDetailed.self)
                 .fetchAll(db)
         } catch {
             PersistanceLogger.error("unable to fetch measurements from observer \(self.dataType.rawValue): \(error.localizedDescription)")

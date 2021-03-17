@@ -82,7 +82,7 @@ class RespitoryClassifierViewModel: ObservableObject {
                     .filter(TimeSeriesMeasurement.Columns.date < endDate)
                     .order(TimeSeriesMeasurement.Columns.date.desc)
                     .including(required: TimeSeriesMeasurement.dataRead)
-                    .asRequest(of: TimeSeriesMeasurementInfo.self)
+                    .asRequest(of: TimeSeriesMeasurementDetailed.self)
                     .fetchAll(db)
             
             self.infer(measurements)
@@ -92,19 +92,19 @@ class RespitoryClassifierViewModel: ObservableObject {
     }
     
     // MARK: - Inference
-    private func infer(_ measurements: [TimeSeriesMeasurementInfo]) {
+    private func infer(_ measurements: [TimeSeriesMeasurementDetailed]) {
         let tempMeasurements = measurements.filter({ $0.dataRead.dataType == .temperature })
         let tempFreqMean = tempMeasurements.reduce(0.0, { return $0 + $1.dataRead.frequency }) / Double(tempMeasurements.count)
-        let tempStartTime = tempMeasurements.first?.timeseriesMeasurement.date ?? Date()
-        let tempEndTime = tempMeasurements.last?.timeseriesMeasurement.date ?? Date()
+        let tempStartTime = tempMeasurements.first?.timeSeriesMeasurement.date ?? Date()
+        let tempEndTime = tempMeasurements.last?.timeSeriesMeasurement.date ?? Date()
         
         let pressureMeasurements = measurements.filter({ $0.dataRead.dataType == .pressure })
         let pressureFreqMean = pressureMeasurements.reduce(0.0, { return $0 + $1.dataRead.frequency }) / Double(pressureMeasurements.count)
-        let pressureStartTime = pressureMeasurements.first?.timeseriesMeasurement.date ?? Date()
-        let pressureEndTime = pressureMeasurements.last?.timeseriesMeasurement.date ?? Date()
+        let pressureStartTime = pressureMeasurements.first?.timeSeriesMeasurement.date ?? Date()
+        let pressureEndTime = pressureMeasurements.last?.timeSeriesMeasurement.date ?? Date()
         
-        let tempSignal: [Float] = tempMeasurements.map({ Float($0.timeseriesMeasurement.value) })
-        let pressureSignal: [Float] = pressureMeasurements.map({ Float($0.timeseriesMeasurement.value) })
+        let tempSignal: [Float] = tempMeasurements.map({ Float($0.timeSeriesMeasurement.value) })
+        let pressureSignal: [Float] = pressureMeasurements.map({ Float($0.timeSeriesMeasurement.value) })
         
         // check dates of queried time series data
         guard

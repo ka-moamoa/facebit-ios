@@ -12,7 +12,23 @@ struct TimestampSummaryView: View {
     
     
     var body: some View {
-        Text("\(timestamp.date)")
+        VStack(alignment: .leading) {
+            DataSummaryFieldView(
+                title: "Id",
+                value: "\(timestamp.id ?? -1)"
+            )
+            
+            DataSummaryFieldView(
+                title: "Data Type",
+                value: "\(timestamp.dataType.rawValue)"
+            )
+            
+            DataSummaryFieldView(
+                title: "Date",
+                value: "\(timestamp.date)"
+            )
+        }
+        
     }
 }
 

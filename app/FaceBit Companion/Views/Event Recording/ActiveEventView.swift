@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GRDB
 
 struct ActiveEventView: View {
     @Binding var activeEvent: Event?
@@ -38,18 +39,32 @@ struct ActiveEventView: View {
         
         do {
             try AppDatabase.shared.dbWriter.write { (db) in
+                let arguments: StatementArguments =  [
+                    "eventId": eventId,
+                    "startDate": event.startDate,
+                    "endDate": endDate
+                ]
+                
+                // update time series records
                 try db.execute(
                     sql: """
                         UPDATE \(TimeSeriesMeasurement.databaseTableName)
                         SET event_id = :eventId
                         WHERE date >= :startDate
-                        AND date <= :endDate;
+                            AND date <= :endDate;
                     """,
-                    arguments: [
-                        "eventId": eventId,
-                        "startDate": event.startDate,
-                        "endDate": endDate
-                    ]
+                    arguments: arguments
+                )
+                
+                // update metric measurements
+                try db.execute(
+                    sql: """
+                        UPDATE \(MetricMeasurement.databaseTableName)
+                        SET event_id = :eventId
+                        WHERE date >= :startDate
+                            AND data <= :endDate;
+                    """,
+                    arguments: arguments
                 )
             }
         } catch {

@@ -6,40 +6,17 @@
 //
 
 import SwiftUI
+import GRDB
 
 struct DatabaseViewerView: View {
     @ObservedObject var viewModel: DataViewerViewModel
     
     var body: some View {
         List() {
-            NavigationLink(
-                destination: Text("TODO: List of Timestamps"),
-                label: {
-                    if let ts = viewModel.latestTimestamp {
-                        TimestampSummaryView(timestamp: ts)
-                    } else {
-                        Text("No Timestamp Records")
-                    }
-                }
-            )
-        
-            if let event = viewModel.activeEvent {
-                EventSummaryView(event: event)
-            } else {
-                Text("No Active Event")
-            }
-            
-            if let dataRead = viewModel.latestTimeSeriesDataRead {
-                TimeSeriesDataReadSummaryView(dataRead: dataRead)
-            } else {
-                Text("No Time Series Data Reads")
-            }
-            
-            if let metric = viewModel.latestMetricMeasurement {
-                MetricMeasurementSummaryView(metricMeasurement: metric)
-            } else {
-                Text("No Metric Measurements")
-            }
+            TimestampListView(latestTimestamp: viewModel.latestTimestamp)
+            EventListView(activeEvent: viewModel.activeEvent)
+            TimeSeriesDataReadListView(latestDataRead: viewModel.latestTimeSeriesDataRead)
+            MetricMeasurementListView(latestMetricMeasurement: viewModel.latestMetricMeasurement)
         }
         .navigationTitle("Data Viewer")
     }

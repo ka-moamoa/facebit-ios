@@ -20,11 +20,6 @@
 		010C675725BB5AFC00E0EF01 /* FaceBitConnectionStatusButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C675625BB5AFC00E0EF01 /* FaceBitConnectionStatusButtonView.swift */; };
 		010C675D25BB6C9A00E0EF01 /* TimeSeriesGraphWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C675C25BB6C9A00E0EF01 /* TimeSeriesGraphWidgetView.swift */; };
 		010C676525BB7EEC00E0EF01 /* MyFaceBitMetricsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C676425BB7EEC00E0EF01 /* MyFaceBitMetricsDashboardView.swift */; };
-		010C677625BB82A400E0EF01 /* EventRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677125BB82A400E0EF01 /* EventRecorderView.swift */; };
-		010C677725BB82A400E0EF01 /* CoughEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677225BB82A400E0EF01 /* CoughEventRecordView.swift */; };
-		010C677825BB82A400E0EF01 /* TalkingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677325BB82A400E0EF01 /* TalkingEventRecordView.swift */; };
-		010C677925BB82A400E0EF01 /* DeepBreathingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677425BB82A400E0EF01 /* DeepBreathingEventRecordView.swift */; };
-		010C677A25BB82A400E0EF01 /* NormalBreathingEventRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C677525BB82A400E0EF01 /* NormalBreathingEventRecordView.swift */; };
 		010C67A125BB9C7400E0EF01 /* ValueWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C67A025BB9C7400E0EF01 /* ValueWidgetView.swift */; };
 		010C67A925BB9FEC00E0EF01 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010C67A825BB9FEC00E0EF01 /* WidgetView.swift */; };
 		012735BA25D7A73E00C5CF6C /* MetricWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012735B925D7A73E00C5CF6C /* MetricWidget.swift */; };
@@ -52,6 +47,23 @@
 		016895FD260156CC00F48A82 /* MetricMeasurementSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016895FC260156CC00F48A82 /* MetricMeasurementSummaryView.swift */; };
 		016896022601571E00F48A82 /* TimestampSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016896012601571E00F48A82 /* TimestampSummaryView.swift */; };
 		0168960A2601577600F48A82 /* EventSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016896092601577600F48A82 /* EventSummaryView.swift */; };
+		016896162601A6E400F48A82 /* DataListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016896152601A6E400F48A82 /* DataListView.swift */; };
+		0168962A2601AA5A00F48A82 /* DatabaseTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016896292601AA5A00F48A82 /* DatabaseTableViewModel.swift */; };
+		0168963A2601B3D800F48A82 /* TimestampListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016896392601B3D800F48A82 /* TimestampListView.swift */; };
+		016CC97826024EA800B691C5 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC97726024EA800B691C5 /* EventListView.swift */; };
+		016CC97D260259AB00B691C5 /* TimeSeriesMeasurementSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC97C260259AA00B691C5 /* TimeSeriesMeasurementSummaryView.swift */; };
+		016CC9852602675A00B691C5 /* TimeSeriesDataReadListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9842602675A00B691C5 /* TimeSeriesDataReadListView.swift */; };
+		016CC98A260267C000B691C5 /* MetricMeasurementListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC989260267C000B691C5 /* MetricMeasurementListView.swift */; };
+		016CC99026026B3D00B691C5 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 016CC98F26026B3D00B691C5 /* SwiftUIRefresh */; };
+		016CC995260272EB00B691C5 /* DataSummaryFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC994260272EB00B691C5 /* DataSummaryFieldView.swift */; };
+		016CC9A6260281D000B691C5 /* DataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9A5260281D000B691C5 /* DataWrapper.swift */; };
+		016CC9AB2602829C00B691C5 /* MetricMeasurementDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9AA2602829C00B691C5 /* MetricMeasurementDetailed.swift */; };
+		016CC9B0260282C000B691C5 /* TimeSeriesMeasurementDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9AF260282C000B691C5 /* TimeSeriesMeasurementDetailed.swift */; };
+		016CC9BB260283F100B691C5 /* EventDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9BA260283F100B691C5 /* EventDetailed.swift */; };
+		016CC9C02602852C00B691C5 /* ShareUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9BF2602852C00B691C5 /* ShareUtil.swift */; };
+		016CC9C5260288F600B691C5 /* EventTimeSeriesMeasurementNavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9C4260288F600B691C5 /* EventTimeSeriesMeasurementNavLink.swift */; };
+		016CC9CA2602898300B691C5 /* EventMetricMeasurementNavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9C92602898300B691C5 /* EventMetricMeasurementNavLink.swift */; };
+		016CC9CF260289EF00B691C5 /* EventExportButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9CE260289EF00B691C5 /* EventExportButton.swift */; };
 		018B2F3625CCAE7C00178E6C /* FacebitReadCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018B2F3525CCAE7C00178E6C /* FacebitReadCharacteristic.swift */; };
 		018D6FB425FBB0BC00E5AD09 /* SQLSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D6FB325FBB0BC00E5AD09 /* SQLSchema.swift */; };
 		018D6FBC25FBB26000E5AD09 /* TimeSeriesMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018D6FBB25FBB26000E5AD09 /* TimeSeriesMeasurement.swift */; };
@@ -108,11 +120,6 @@
 		010C675625BB5AFC00E0EF01 /* FaceBitConnectionStatusButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBitConnectionStatusButtonView.swift; sourceTree = "<group>"; };
 		010C675C25BB6C9A00E0EF01 /* TimeSeriesGraphWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesGraphWidgetView.swift; sourceTree = "<group>"; };
 		010C676425BB7EEC00E0EF01 /* MyFaceBitMetricsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFaceBitMetricsDashboardView.swift; sourceTree = "<group>"; };
-		010C677125BB82A400E0EF01 /* EventRecorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRecorderView.swift; sourceTree = "<group>"; };
-		010C677225BB82A400E0EF01 /* CoughEventRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoughEventRecordView.swift; sourceTree = "<group>"; };
-		010C677325BB82A400E0EF01 /* TalkingEventRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkingEventRecordView.swift; sourceTree = "<group>"; };
-		010C677425BB82A400E0EF01 /* DeepBreathingEventRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepBreathingEventRecordView.swift; sourceTree = "<group>"; };
-		010C677525BB82A400E0EF01 /* NormalBreathingEventRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalBreathingEventRecordView.swift; sourceTree = "<group>"; };
 		010C67A025BB9C7400E0EF01 /* ValueWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueWidgetView.swift; sourceTree = "<group>"; };
 		010C67A825BB9FEC00E0EF01 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		012735B925D7A73E00C5CF6C /* MetricWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricWidget.swift; sourceTree = "<group>"; };
@@ -145,6 +152,22 @@
 		016895FC260156CC00F48A82 /* MetricMeasurementSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricMeasurementSummaryView.swift; sourceTree = "<group>"; };
 		016896012601571E00F48A82 /* TimestampSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampSummaryView.swift; sourceTree = "<group>"; };
 		016896092601577600F48A82 /* EventSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSummaryView.swift; sourceTree = "<group>"; };
+		016896152601A6E400F48A82 /* DataListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataListView.swift; sourceTree = "<group>"; };
+		016896292601AA5A00F48A82 /* DatabaseTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTableViewModel.swift; sourceTree = "<group>"; };
+		016896392601B3D800F48A82 /* TimestampListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampListView.swift; sourceTree = "<group>"; };
+		016CC97726024EA800B691C5 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
+		016CC97C260259AA00B691C5 /* TimeSeriesMeasurementSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurementSummaryView.swift; sourceTree = "<group>"; };
+		016CC9842602675A00B691C5 /* TimeSeriesDataReadListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesDataReadListView.swift; sourceTree = "<group>"; };
+		016CC989260267C000B691C5 /* MetricMeasurementListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricMeasurementListView.swift; sourceTree = "<group>"; };
+		016CC994260272EB00B691C5 /* DataSummaryFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSummaryFieldView.swift; sourceTree = "<group>"; };
+		016CC9A5260281D000B691C5 /* DataWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataWrapper.swift; sourceTree = "<group>"; };
+		016CC9AA2602829C00B691C5 /* MetricMeasurementDetailed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricMeasurementDetailed.swift; sourceTree = "<group>"; };
+		016CC9AF260282C000B691C5 /* TimeSeriesMeasurementDetailed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurementDetailed.swift; sourceTree = "<group>"; };
+		016CC9BA260283F100B691C5 /* EventDetailed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailed.swift; sourceTree = "<group>"; };
+		016CC9BF2602852C00B691C5 /* ShareUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareUtil.swift; sourceTree = "<group>"; };
+		016CC9C4260288F600B691C5 /* EventTimeSeriesMeasurementNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTimeSeriesMeasurementNavLink.swift; sourceTree = "<group>"; };
+		016CC9C92602898300B691C5 /* EventMetricMeasurementNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMetricMeasurementNavLink.swift; sourceTree = "<group>"; };
+		016CC9CE260289EF00B691C5 /* EventExportButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventExportButton.swift; sourceTree = "<group>"; };
 		018B2F3525CCAE7C00178E6C /* FacebitReadCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebitReadCharacteristic.swift; sourceTree = "<group>"; };
 		018D6FB325FBB0BC00E5AD09 /* SQLSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLSchema.swift; sourceTree = "<group>"; };
 		018D6FBB25FBB26000E5AD09 /* TimeSeriesMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurement.swift; sourceTree = "<group>"; };
@@ -177,6 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				016CC99026026B3D00B691C5 /* SwiftUIRefresh in Frameworks */,
 				013B00E625BB4B1C00319A42 /* ACarousel in Frameworks */,
 				0103210925FA951B00EC81B4 /* GRDB in Frameworks */,
 			);
@@ -231,6 +255,7 @@
 				013B00ED25BB517A00319A42 /* FaceBit+String.swift */,
 				0100B4D025D7243600898C05 /* UInt+Extension.swift */,
 				01E9277C25D99D2500873BD8 /* View+Extension.swift */,
+				016CC9BF2602852C00B691C5 /* ShareUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -263,6 +288,10 @@
 			children = (
 				0103211225FAABB700EC81B4 /* GRDB Tables */,
 				018F824E25D5DA4A0037C5BE /* RespiratoryClassifier.mlmodel */,
+				016CC9A5260281D000B691C5 /* DataWrapper.swift */,
+				016CC9AA2602829C00B691C5 /* MetricMeasurementDetailed.swift */,
+				016CC9AF260282C000B691C5 /* TimeSeriesMeasurementDetailed.swift */,
+				016CC9BA260283F100B691C5 /* EventDetailed.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -356,13 +385,39 @@
 		016895F32601561300F48A82 /* DataViewer */ = {
 			isa = PBXGroup;
 			children = (
+				016896202601A9C800F48A82 /* ListViews */,
+				016896142601A69F00F48A82 /* Summaries */,
 				01BC52E62601152800040149 /* DatabaseViewerView.swift */,
+				016896152601A6E400F48A82 /* DataListView.swift */,
+			);
+			path = DataViewer;
+			sourceTree = "<group>";
+		};
+		016896142601A69F00F48A82 /* Summaries */ = {
+			isa = PBXGroup;
+			children = (
 				016895F42601564200F48A82 /* TimeSeriesDataReadSummaryView.swift */,
+				016CC97C260259AA00B691C5 /* TimeSeriesMeasurementSummaryView.swift */,
 				016895FC260156CC00F48A82 /* MetricMeasurementSummaryView.swift */,
 				016896012601571E00F48A82 /* TimestampSummaryView.swift */,
 				016896092601577600F48A82 /* EventSummaryView.swift */,
+				016CC994260272EB00B691C5 /* DataSummaryFieldView.swift */,
+				016CC9C4260288F600B691C5 /* EventTimeSeriesMeasurementNavLink.swift */,
+				016CC9C92602898300B691C5 /* EventMetricMeasurementNavLink.swift */,
+				016CC9CE260289EF00B691C5 /* EventExportButton.swift */,
 			);
-			path = DataViewer;
+			path = Summaries;
+			sourceTree = "<group>";
+		};
+		016896202601A9C800F48A82 /* ListViews */ = {
+			isa = PBXGroup;
+			children = (
+				016896392601B3D800F48A82 /* TimestampListView.swift */,
+				016CC97726024EA800B691C5 /* EventListView.swift */,
+				016CC9842602675A00B691C5 /* TimeSeriesDataReadListView.swift */,
+				016CC989260267C000B691C5 /* MetricMeasurementListView.swift */,
+			);
+			path = ListViews;
 			sourceTree = "<group>";
 		};
 		01AB3B9525FBF7980027C918 /* ViewModels */ = {
@@ -374,6 +429,7 @@
 				01E9278125D9AD0D00873BD8 /* MaskViewModel.swift */,
 				01AB3B9625FBF7B50027C918 /* MyFaceBitViewModel.swift */,
 				01BC52E126010DD400040149 /* DataViewerViewModel.swift */,
+				016896292601AA5A00F48A82 /* DatabaseTableViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -419,11 +475,6 @@
 		01EDBE8B25B77022009505DC /* Event Recording */ = {
 			isa = PBXGroup;
 			children = (
-				010C677225BB82A400E0EF01 /* CoughEventRecordView.swift */,
-				010C677425BB82A400E0EF01 /* DeepBreathingEventRecordView.swift */,
-				010C677125BB82A400E0EF01 /* EventRecorderView.swift */,
-				010C677525BB82A400E0EF01 /* NormalBreathingEventRecordView.swift */,
-				010C677325BB82A400E0EF01 /* TalkingEventRecordView.swift */,
 				01325D3F25C35BC5000B2A05 /* GenericEventRecordingView.swift */,
 				019754FC25C4AAFE00211FE9 /* StartEventView.swift */,
 				0145251625C917B6006106ED /* ActiveEventView.swift */,
@@ -450,6 +501,7 @@
 			packageProductDependencies = (
 				013B00E525BB4B1C00319A42 /* ACarousel */,
 				0103210825FA951B00EC81B4 /* GRDB */,
+				016CC98F26026B3D00B691C5 /* SwiftUIRefresh */,
 			);
 			productName = "FaceBit Companion";
 			productReference = 015F992F25AE493500BDD672 /* FaceBit Companion.app */;
@@ -525,6 +577,7 @@
 			packageReferences = (
 				013B00E425BB4B1C00319A42 /* XCRemoteSwiftPackageReference "ACarousel" */,
 				0103210725FA951B00EC81B4 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+				016CC98E26026B3D00B691C5 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
 			);
 			productRefGroup = 015F993025AE493500BDD672 /* Products */;
 			projectDirPath = "";
@@ -575,12 +628,14 @@
 				01E9276B25D97AAA00873BD8 /* MaskWearTimeView.swift in Sources */,
 				01004AC425C997A4006F5670 /* TimeSeriesMeasurementViewModel.swift in Sources */,
 				018D6FC125FBB30000E5AD09 /* TimeSeriesDataRead.swift in Sources */,
+				016CC98A260267C000B691C5 /* MetricMeasurementListView.swift in Sources */,
 				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
 				018F822B25D5C3390037C5BE /* RespiratoryClsWidgetView.swift in Sources */,
 				0100B4D125D7243600898C05 /* UInt+Extension.swift in Sources */,
 				01325D3B25C35196000B2A05 /* ShareDatabaseButtonView.swift in Sources */,
+				016CC9AB2602829C00B691C5 /* MetricMeasurementDetailed.swift in Sources */,
+				016896162601A6E400F48A82 /* DataListView.swift in Sources */,
 				0149441525D838B100FB3DEF /* MetricViewModel.swift in Sources */,
-				010C677825BB82A400E0EF01 /* TalkingEventRecordView.swift in Sources */,
 				01BC52E226010DD400040149 /* DataViewerViewModel.swift in Sources */,
 				01B48FA525C9B3DD001EF3C3 /* TimeSeriesValueWidgetView.swift in Sources */,
 				018D6FB425FBB0BC00E5AD09 /* SQLSchema.swift in Sources */,
@@ -596,23 +651,29 @@
 				01AB3B8A25FBD9B00027C918 /* MetricMeasurement.swift in Sources */,
 				010C67A925BB9FEC00E0EF01 /* WidgetView.swift in Sources */,
 				01AB3B8525FBD3260027C918 /* Mask.swift in Sources */,
+				016CC9B0260282C000B691C5 /* TimeSeriesMeasurementDetailed.swift in Sources */,
 				0145251725C917B6006106ED /* ActiveEventView.swift in Sources */,
 				015F996425AE49A000BDD672 /* BluetoothConnectionManager.swift in Sources */,
 				010862CE25B6122600EAF722 /* Logger.swift in Sources */,
 				0100B4E725D7907300898C05 /* PrimaryButton.swift in Sources */,
 				01AB3B8025FBD1780027C918 /* Timestamp.swift in Sources */,
 				01325D4025C35BC5000B2A05 /* GenericEventRecordingView.swift in Sources */,
-				010C677725BB82A400E0EF01 /* CoughEventRecordView.swift in Sources */,
 				01EDBE7825B74604009505DC /* MyFaceBitMainView.swift in Sources */,
-				010C677625BB82A400E0EF01 /* EventRecorderView.swift in Sources */,
+				016CC9BB260283F100B691C5 /* EventDetailed.swift in Sources */,
+				016CC995260272EB00B691C5 /* DataSummaryFieldView.swift in Sources */,
+				016CC9CF260289EF00B691C5 /* EventExportButton.swift in Sources */,
 				012C91B425B1ECFE00274F82 /* LiveLinePlot.swift in Sources */,
+				016CC9852602675A00B691C5 /* TimeSeriesDataReadListView.swift in Sources */,
 				013B00D725BB324700319A42 /* FaceBitNotificationCardView.swift in Sources */,
 				0100B4DC25D7581900898C05 /* FaceBitDetailsView.swift in Sources */,
 				010C676525BB7EEC00E0EF01 /* MyFaceBitMetricsDashboardView.swift in Sources */,
 				018B2F3625CCAE7C00178E6C /* FacebitReadCharacteristic.swift in Sources */,
+				016CC9A6260281D000B691C5 /* DataWrapper.swift in Sources */,
+				016CC9CA2602898300B691C5 /* EventMetricMeasurementNavLink.swift in Sources */,
 				01EDBE7F25B7476D009505DC /* FaceBitLoadingBarButton.swift in Sources */,
-				010C677925BB82A400E0EF01 /* DeepBreathingEventRecordView.swift in Sources */,
+				0168962A2601AA5A00F48A82 /* DatabaseTableViewModel.swift in Sources */,
 				01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */,
+				0168963A2601B3D800F48A82 /* TimestampListView.swift in Sources */,
 				01E9277325D97C7700873BD8 /* ProgressBar.swift in Sources */,
 				018F824F25D5DA4A0037C5BE /* RespiratoryClassifier.mlmodel in Sources */,
 				016895F52601564200F48A82 /* TimeSeriesDataReadSummaryView.swift in Sources */,
@@ -625,11 +686,14 @@
 				019754FD25C4AAFE00211FE9 /* StartEventView.swift in Sources */,
 				018D6FBC25FBB26000E5AD09 /* TimeSeriesMeasurement.swift in Sources */,
 				016895FD260156CC00F48A82 /* MetricMeasurementSummaryView.swift in Sources */,
+				016CC9C5260288F600B691C5 /* EventTimeSeriesMeasurementNavLink.swift in Sources */,
 				010C67A125BB9C7400E0EF01 /* ValueWidgetView.swift in Sources */,
 				013B00EE25BB517A00319A42 /* FaceBit+String.swift in Sources */,
+				016CC9C02602852C00B691C5 /* ShareUtil.swift in Sources */,
 				01E9278225D9AD0D00873BD8 /* MaskViewModel.swift in Sources */,
-				010C677A25BB82A400E0EF01 /* NormalBreathingEventRecordView.swift in Sources */,
+				016CC97826024EA800B691C5 /* EventListView.swift in Sources */,
 				019754EF25C499D300211FE9 /* PurgeDatabaseButtonView.swift in Sources */,
+				016CC97D260259AB00B691C5 /* TimeSeriesMeasurementSummaryView.swift in Sources */,
 				0103210E25FA97A100EC81B4 /* AppDatabase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -978,6 +1042,14 @@
 				minimumVersion = 0.2.0;
 			};
 		};
+		016CC98E26026B3D00B691C5 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/timbersoftware/SwiftUIRefresh.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -990,6 +1062,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 013B00E425BB4B1C00319A42 /* XCRemoteSwiftPackageReference "ACarousel" */;
 			productName = ACarousel;
+		};
+		016CC98F26026B3D00B691C5 /* SwiftUIRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 016CC98E26026B3D00B691C5 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */;
+			productName = SwiftUIRefresh;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

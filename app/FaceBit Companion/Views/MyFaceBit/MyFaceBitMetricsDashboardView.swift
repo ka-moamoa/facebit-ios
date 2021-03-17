@@ -41,22 +41,22 @@ struct MyFaceBitMetricsDashboardView: View {
                 )
                 .frame(height: widgetHeight)
                 
-                TimeSeriesGraphWidgetView(
-                    title: "Temperature",
-                    dataType: .temperature,
-                    timerInterval: 1,
-                    rowLimit: 250,
-                    timeOffset: 5
-                )
-                .frame(height: widgetHeight)
-                TimeSeriesGraphWidgetView(
-                    title: "Pressure",
-                    dataType: .pressure,
-                    timerInterval: 1,
-                    rowLimit: 250,
-                    timeOffset: 4
-                )
-                .frame(height: widgetHeight)
+//                TimeSeriesGraphWidgetView(
+//                    title: "Temperature",
+//                    dataType: .temperature,
+//                    timerInterval: 1,
+//                    rowLimit: 250,
+//                    timeOffset: 5
+//                )
+//                .frame(height: widgetHeight)
+//                TimeSeriesGraphWidgetView(
+//                    title: "Pressure",
+//                    dataType: .pressure,
+//                    timerInterval: 1,
+//                    rowLimit: 250,
+//                    timeOffset: 4
+//                )
+//                .frame(height: widgetHeight)
                 TimeSeriesValueWidgetView(
                     title: "Temperature",
                     unit: "Celsius",
@@ -75,8 +75,10 @@ struct MyFaceBitMetricsDashboardView: View {
                     rowLimit: 1,
                     timeOffset: 4
                 )
-                RespiratoryClsWidgetView()
-                    .frame(height: widgetHeight)
+                .frame(height: widgetHeight)
+
+//                RespiratoryClsWidgetView()
+//                    .frame(height: widgetHeight)
                 }
             .padding(16.0)
         })

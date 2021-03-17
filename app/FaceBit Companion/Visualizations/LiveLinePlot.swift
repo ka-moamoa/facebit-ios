@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LiveLinePlot: View {
-    @Binding var timeSeries: [TimeSeriesMeasurementInfo]
+    @Binding var timeSeries: [TimeSeriesMeasurementDetailed]
     @State var showAxis: Bool
     @State var maxTicks: Int = 25
     @State var xOffset: CGFloat = 0.1
@@ -18,8 +18,8 @@ struct LiveLinePlot: View {
         
         let series = Array(timeSeries.reversed().prefix(maxTicks).reversed())
         
-        let values = Array(Array(series.map({ $0.timeseriesMeasurement.value }).reversed().prefix(maxTicks)).reversed())
-        let dates = Array(Array(series.map({ $0.timeseriesMeasurement.date }).reversed().prefix(maxTicks)).reversed())
+        let values = Array(Array(series.map({ $0.timeSeriesMeasurement.value }).reversed().prefix(maxTicks)).reversed())
+        let dates = Array(Array(series.map({ $0.timeSeriesMeasurement.date }).reversed().prefix(maxTicks)).reversed())
         
         guard values.count > 0 else { return [] }
          
@@ -38,10 +38,10 @@ struct LiveLinePlot: View {
             normalized.append(
                 (
                     point: CGPoint(
-                        x: (startDate.distance(to: m.timeseriesMeasurement.date) - timeStart) / (timeEnd - timeStart),
-                        y: (m.timeseriesMeasurement.value - minValue) / ((maxValue - minValue) + Double.leastNonzeroMagnitude)
+                        x: (startDate.distance(to: m.timeSeriesMeasurement.date) - timeStart) / (timeEnd - timeStart),
+                        y: (m.timeSeriesMeasurement.value - minValue) / ((maxValue - minValue) + Double.leastNonzeroMagnitude)
                     ),
-                    measurement: m.timeseriesMeasurement
+                    measurement: m.timeSeriesMeasurement
                 )
             )
         })
@@ -160,7 +160,7 @@ struct LiveLinePlot: View {
 }
 
 struct LiveLinePlot_Previews: PreviewProvider {
-    @State static var timeSeries: [TimeSeriesMeasurementInfo] = []
+    @State static var timeSeries: [TimeSeriesMeasurementDetailed] = []
     
     static var previews: some View {
         LiveLinePlot(
