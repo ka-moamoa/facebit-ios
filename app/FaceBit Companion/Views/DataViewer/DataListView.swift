@@ -33,7 +33,7 @@ struct DataListView<T: FetchableRecord & Identifiable & Codable, RowView: View>:
         })
         .navigationTitle(title)
         .toolbar {
-            Button("Share") {
+            Button("Export") {
                 viewModel.saveAndShare(fileName: "data")
             }
         }

@@ -11,9 +11,9 @@ struct ShareDatabaseButtonView: View {
     
     var text: String {
         #if targetEnvironment(macCatalyst)
-        return "Open SQLite Database"
+        return "Open Local Database"
         #else
-        return "Share SQLite Database"
+        return "Share Local Database"
         #endif
     }
     

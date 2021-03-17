@@ -13,21 +13,24 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Development")) {
+                Section(header: Text("Events")) {
                     NavigationLink(
                         destination: GenericEventRecordingView(),
                         label: {
                             GenericSettingsRow(text: "Record Events")
                         }
                     )
-                    ShareDatabaseButtonView()
-                    PurgeDatabaseButtonView()
+                }
+                Section(header: Text("Local Database")) {
                     NavigationLink(
                         destination: DatabaseViewerView(viewModel: DataViewerViewModel(appDatabase: AppDatabase.shared, facebit: facebit)),
                         label: {
-                            GenericSettingsRow(text: "Database Log")
+                            GenericSettingsRow(text: "Data Viewer")
                         }
                     )
+                    ShareDatabaseButtonView()
+                }
+                Section(header: Text("Development")) {
                     Button(action: {
                         let rc = RespitoryClassifierViewModel(
                             appDatabase: AppDatabase.shared,
@@ -37,6 +40,9 @@ struct SettingsView: View {
                         Text("Test Classification")
                             .padding()
                     })
+                }
+                Section(header: Text("Danger Zone")) {
+                    PurgeDatabaseButtonView()
                 }
             }
             .listStyle(GroupedListStyle())

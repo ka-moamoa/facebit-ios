@@ -19,6 +19,9 @@ struct DatabaseViewerView: View {
             MetricMeasurementListView(latestMetricMeasurement: viewModel.latestMetricMeasurement)
         }
         .navigationTitle("Data Viewer")
+        .navigationBarItems(trailing:
+            FaceBitConnectionStatusButtonView()
+        )
     }
 }
 
