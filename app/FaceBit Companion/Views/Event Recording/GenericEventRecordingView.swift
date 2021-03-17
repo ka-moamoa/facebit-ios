@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GenericEventRecordingView: View {
     @EnvironmentObject var facebit: FaceBitPeripheral
-    @State private var activeEvent: SmartPPEEvent?
+    @State private var activeEvent: Event?
     @State private var initialized: Bool = false
     
     var body: some View {
@@ -31,10 +31,12 @@ struct GenericEventRecordingView: View {
         )
         .onAppear(perform: {
             initialized = false
-            SmartPPEEvent.getActiveEvent(callback: { (event) in
-                self.activeEvent = event
+            do {
+                self.activeEvent = try Event.activeEvent()
                 self.initialized = true
-            })
+            } catch {
+                PersistanceLogger.error("Unable to load event: \(error.localizedDescription)")
+            }
         })
     }
 }

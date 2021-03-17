@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct StartEventView: View {
-    @Binding var activeEvent: SmartPPEEvent?
+    @Binding var activeEvent: Event?
     
-    @State private var selectedEventType: SmartPPEEventType = .cough
+    @State private var selectedEventType: Event.EventType = .cough
     @State private var otherEventName: String = ""
     @State private var notes: String = ""
     
     var body: some View {
         Form {
             Picker(selection: $selectedEventType, label: Text("Event Type"), content: {
-                ForEach(SmartPPEEventType.allCases) { t in
+                ForEach(Event.EventType.allCases) { t in
                     Text(t.rawValue).tag(t)
                 }
             })
@@ -33,20 +33,27 @@ struct StartEventView: View {
     }
     
     private func createEvent() {
-        let event = SmartPPEEvent(
+        
+        var event = Event(
+            id: nil,
             eventType: selectedEventType,
             otherEventLabel: selectedEventType == .other ? otherEventName : "",
             notes: notes,
-            startDate: Date()
+            startDate: Date(),
+            endDate: nil
         )
-        SQLiteDatabase.main?.insertRecord(record: event)
-        event.start()
-        activeEvent = event
+        
+        do {
+            try event.save()
+            self.activeEvent = event
+        } catch {
+            PersistanceLogger.error("Cannot create event: \(error.localizedDescription)")
+        }
     }
 }
 
 struct StartEventView_Previews: PreviewProvider {
-    @State static var activeEvent: SmartPPEEvent? = nil
+    @State static var activeEvent: Event? = nil
     
     static var previews: some View {
         StartEventView(activeEvent: $activeEvent)

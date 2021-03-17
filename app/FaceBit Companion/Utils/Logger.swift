@@ -8,6 +8,7 @@
 import Foundation
 import OSLog
 
+let GeneralLogger = Logger(subsystem: "com.kamoamoa.smartppe.FaceBit-Companion", category: "general")
 
 let PersistanceLogger = Logger(subsystem: "com.kamoamoa.smartppe.FaceBit-Companion", category: "persistance")
 let BLELogger = Logger(subsystem: "com.kamoamoa.smartppe.FaceBit-Companion", category: "ble")

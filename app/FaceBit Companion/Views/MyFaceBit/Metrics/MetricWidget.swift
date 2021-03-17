@@ -11,7 +11,7 @@ struct MetricWidget: View {
     var title: String
     var unit: String
     
-    @ObservedObject private var publisher: MetricPub
+    @ObservedObject private var publisher: MetricViewModel
     @EnvironmentObject var facebit: FaceBitPeripheral
     
     init(
@@ -23,12 +23,11 @@ struct MetricWidget: View {
         
         self.title = title
         self.unit = unit
-        self.publisher = MetricPub(
+        self.publisher = MetricViewModel(
+            appDatabase: AppDatabase.shared,
             dataType: dataType,
-            rowLimit: 1,
-            timerInterval: timerInterval
+            rowLimit: 1
         )
-        self.publisher.refresh()
     }
     
     private var dateFormatter: DateFormatter {
@@ -38,7 +37,7 @@ struct MetricWidget: View {
     }
     
     private var lastReadDate: String {
-        if let date = publisher.items.last?.date {
+        if let date = publisher.items.last?.metric.date {
             return dateFormatter.string(from: date)
         }
         
@@ -46,7 +45,7 @@ struct MetricWidget: View {
     }
     
     private var lastValue: Double {
-        return publisher.items.last?.value ?? 0.0
+        return publisher.items.last?.metric.value ?? 0.0
     }
     
     var body: some View {
@@ -67,23 +66,6 @@ struct MetricWidget: View {
                     .font(.system(size: 11.0))
                     
             }
-        }
-        .onLoad() {
-            setRefresh(facebit.state)
-            publisher.refresh()
-        }
-        .onAppear() { setRefresh(facebit.state) }
-        .onDisappear() { publisher.stop() }
-        .onReceive(facebit.$state.dropFirst()) { state in
-            setRefresh(state)
-        }
-    }
-    
-    func setRefresh(_ state: PeripheralState) {
-        if state == .connected {
-            publisher.start()
-        } else {
-            publisher.stop()
         }
     }
 }

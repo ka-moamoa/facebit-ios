@@ -8,23 +8,32 @@
 import SwiftUI
 
 struct PurgeDatabaseButtonView: View {
+    @State private var showConfirmationAlert: Bool = false
+    
     var body: some View {
         Button(action: {
-            purge()
+            showConfirmationAlert = true
         }, label: {
-            Text("Purge Database")
+            Text("🚨 Purge Database")
                 .padding()
+        })
+        .alert(isPresented: $showConfirmationAlert, content: {
+            Alert(
+                title: Text("Purge Local Database"),
+                message: Text("All facebit data will be delted from this device, this cannot be undone. To save a copy, first share the database file."),
+                primaryButton: .destructive(Text("Delete"), action: purge),
+                secondaryButton: .cancel(Text("Cancel"))
+            )
         })
     }
     
+    // FIXME: move to viewmodel
     private func purge() {
-                
-        SQLiteDatabase.openDatabase(purge: true)
-        
-        if let db = SQLiteDatabase.main {
-            for table in SQLiteDatabase.tables {
-                db.createTable(table: table)
-            }
+        showConfirmationAlert = false
+        do {
+            try AppDatabase.shared.purge()
+        } catch {
+            PersistanceLogger.error("Unable to purge database: \(error.localizedDescription)")
         }
     }
 }

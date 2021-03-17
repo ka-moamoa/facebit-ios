@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            MyFaceBitMainViewMacOS()
+            MyFaceBitMainViewMacOS(facebit: facebit, viewModel: MyFaceBitViewModel())
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("My FaceBit")

@@ -13,21 +13,36 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Development")) {
+                Section(header: Text("Events")) {
                     NavigationLink(
                         destination: GenericEventRecordingView(),
                         label: {
                             GenericSettingsRow(text: "Record Events")
-                        })
+                        }
+                    )
+                }
+                Section(header: Text("Local Database")) {
+                    NavigationLink(
+                        destination: DatabaseViewerView(viewModel: DataViewerViewModel(appDatabase: AppDatabase.shared, facebit: facebit)),
+                        label: {
+                            GenericSettingsRow(text: "Data Viewer")
+                        }
+                    )
                     ShareDatabaseButtonView()
-                    PurgeDatabaseButtonView()
+                }
+                Section(header: Text("Development")) {
                     Button(action: {
-                        let rc = RespitoryClassifierPub(timeOffset: 4)
-                        rc.fetchData()
+                        let rc = RespitoryClassifierViewModel(
+                            appDatabase: AppDatabase.shared,
+                            timeOffset: 4
+                        )
                     }, label: {
                         Text("Test Classification")
                             .padding()
                     })
+                }
+                Section(header: Text("Danger Zone")) {
+                    PurgeDatabaseButtonView()
                 }
             }
             .listStyle(GroupedListStyle())

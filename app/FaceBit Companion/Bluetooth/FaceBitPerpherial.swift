@@ -52,7 +52,7 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
         }
     }
     
-    private var currentEvent: SmartPPEEvent?
+    private var currentEvent: Event?
     
     var readChars: [FaceBitReadCharacteristic]
     
@@ -78,7 +78,7 @@ class FaceBitPeripheral: NSObject, Peripheral, ObservableObject  {
         }
     }
     
-    func setEvent(_ event: SmartPPEEvent?=nil) {
+    func setEvent(_ event: Event?=nil) {
         self.currentEvent = event
     }
 }
@@ -123,10 +123,7 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         
         switch characteristic.uuid {
         case DataReadyCharacteristicUUID:
-            handleReadReady(value)
-        case TemperatureCharacteristic.uuid, PressureCharacteristic.uuid:
-            updateReadReady(DataReadyNoData, peripheral: peripheral)
-            recordTimeSeriesData(value, uuid: characteristic.uuid)
+            handleReadReady(value)            
         default:
             if let c = readChars.first(where: { $0.uuid == characteristic.uuid }) {
                 updateReadReady(DataReadyNoData, peripheral: peripheral)
@@ -149,9 +146,18 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
         BLELogger.info("Writting Timestamp: \(timestamp)")
         
         peripheral.writeValue(data, for: characteristic, type: .withoutResponse)
-        SQLiteDatabase.main?.insertRecord(
-            record: Timestamp(dataType: .peripheralSync, date: now)
+        
+        var ts = Timestamp(
+            id: nil,
+            dataType: .peripheralSync,
+            date: now
         )
+        
+        do {
+            try ts.save()
+        } catch {
+            PersistanceLogger.error("unable to save timestamp: \(error.localizedDescription)")
+        }
         
     }
     
@@ -189,94 +195,6 @@ extension FaceBitPeripheral: CBPeripheralDelegate {
                     peripheral?.readValue(for: characteristic)
                 }
             }
-        }
-    }
-    
-    // TODO: move into characteristic data structure
-    private func recordTimeSeriesData(_ data: Data, uuid: CBUUID) {
-        guard let readChar = readChars.first(where: { $0.uuid == uuid }) else { return }
-        
-        let bytes = [UInt8](data)
-        var values: [UInt16] = []
-        
-        let millisecondBytes = Array(bytes[0..<8])
-        var millisecondOffset: UInt64 = 0
-        for byte in millisecondBytes.reversed() {
-            millisecondOffset = millisecondOffset << 8
-            millisecondOffset = millisecondOffset | UInt64(byte)
-        }
-        
-        let freqBytes = Array(bytes[8..<12])
-        var freqRaw: UInt32 = 0
-        for byte in freqBytes.reversed() {
-            freqRaw = freqRaw << 8
-            freqRaw = freqRaw | UInt32(byte)
-        }
-        let freq: Double = Double(freqRaw) / 100.0
-        
-        let numSamples = Int(bytes[12])
-        
-        let payload = Array(bytes[13..<13+(numSamples*2)])
-
-        for i in stride(from: 0, to: payload.count, by: 2) {
-            values.append((UInt16(payload[i]) << 8 | UInt16(payload[i+1])))
-        }
-        
-        let start = readChar.readStart.addingTimeInterval(Double(millisecondOffset) / 1000.0)
-        let period: Double = 1.0 / Double(freq)
-        
-        BLELogger.info("""
-            Processing \(readChar.name) Data
-                - Number of samples: \(numSamples)
-                - Offset: \(millisecondOffset)
-                - Frequency: \(freq)
-        """)
-        
-        let dataType: TimeSeriesDataRead.DataType
-        switch uuid {
-        case TemperatureCharacteristic.uuid: dataType = .temperature
-        case PressureCharacteristic.uuid: dataType = .pressure
-        default: dataType = .none
-        }
-        
-        let dataRead = TimeSeriesDataRead(
-            dataType: dataType,
-            frequency: freq,
-            millisecondOffset: Int(millisecondOffset),
-            startTime: start,
-            numSamples: numSamples
-        )
-        
-        SQLiteDatabase.main?.insertRecord(record: dataRead) { (dataRead) in
-            guard let dataRead = dataRead else { return }
-            
-            var measurements: [TimeSeriesMeasurement] = []
-
-            for (i, rawVal) in values.reversed().enumerated() {
-                var val: Double
-                
-                if dataType == .temperature {
-                    val = Double(rawVal) / 100.0
-                } else if dataType == .pressure {
-                    val = (Double(rawVal) + 80000) / 100
-                } else {
-                    val = Double(rawVal)
-                }
-                
-                let measurement = TimeSeriesMeasurement(
-                    value: val,
-                    date: start.addingTimeInterval(-(period*Double(i))),
-                    dataRead: dataRead,
-                    event: nil
-                )
-                measurements.append(measurement)
-            }
-
-            PersistanceLogger.info("Inserting \(measurements.count) \(readChar.name) time series records.")
-            
-            guard !measurements.isEmpty else { return }
-            
-            SQLiteDatabase.main?.executeSQL(sql: measurements.insertSQL())
         }
     }
 }

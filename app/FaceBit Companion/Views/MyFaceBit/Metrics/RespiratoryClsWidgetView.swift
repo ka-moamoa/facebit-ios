@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct RespiratoryClsWidgetView: View {
-    @ObservedObject private var publisher: RespitoryClassifierPub
+    @ObservedObject private var publisher: RespitoryClassifierViewModel
     @EnvironmentObject var facebit: FaceBitPeripheral
     
     init(timeOffset: TimeInterval=5, timerInterval: TimeInterval = 25) {
-        self.publisher = RespitoryClassifierPub(
-            timeOffset: timeOffset,
-            timerInterval: timerInterval
+        self.publisher = RespitoryClassifierViewModel(
+            appDatabase: AppDatabase.shared,
+            timeOffset: timeOffset
         )
     }
     
@@ -28,23 +28,6 @@ struct RespiratoryClsWidgetView: View {
                     .font(.system(size: 32.0))
                 Spacer()
             }
-        }
-        .onLoad() {
-            setRefresh(facebit.state)
-            publisher.fetchData()
-        }
-        .onAppear() { setRefresh(facebit.state) }
-        .onDisappear() { publisher.stop() }
-        .onReceive(facebit.$state.dropFirst()) { state in
-            setRefresh(state)
-        }
-    }
-    
-    func setRefresh(_ state: PeripheralState) {
-        if state == .connected {
-            publisher.start()
-        } else {
-            publisher.stop()
         }
     }
 }
