@@ -62,11 +62,14 @@ struct MetricMeasurementSummaryView_Previews: PreviewProvider {
                 ),
                 event: Event(
                     id: 0,
-                    eventType: .normalBreathing,
+                    eventName: "test event",
+                    eventType: .stationary,
+                    maskType: .other,
                     otherEventLabel: nil,
                     notes: nil,
                     startDate: Date(),
-                    endDate: nil)
+                    endDate: nil
+                )
             )
         )
     }

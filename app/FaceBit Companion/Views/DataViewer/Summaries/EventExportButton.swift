@@ -38,7 +38,9 @@ struct EventExportButton_Previews: PreviewProvider {
         EventExportButton(
             event: Event(
                 id: 0,
-                eventType: .cough,
+                eventName: "test event",
+                eventType: .stationary,
+                maskType: .other,
                 otherEventLabel: nil,
                 notes: nil,
                 startDate: Date(),

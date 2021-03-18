@@ -22,13 +22,14 @@ struct MaskWearTimeWidget: View {
                         Text("Wear Time")
                             .bold()
                         Spacer()
-                        Text(maskVM.mask?.wearTimeString ?? "")
-                            .font(.system(size: 48.0))
+                        Text(maskVM.mask?.wearTimeString ?? "00:00:00")
+                            .font(.system(size: 32.0))
                         ProgressBar(
                             value: maskVM.mask?.percentValue ?? 0.0,
                             backgroundColor: Color("PrimaryWhite"),
                             progressColor: Color("PrimaryOrange")
                         )
+                        .frame(height: 25.0)
                         Spacer()
                     }
                 })

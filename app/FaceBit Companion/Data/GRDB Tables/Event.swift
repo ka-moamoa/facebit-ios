@@ -10,14 +10,18 @@ import GRDB
 
 struct Event: Identifiable, Equatable, Codable {
     var id: Int64?
+    var eventName: String?
     var eventType: EventType
+    var maskType: Mask.MaskType?
     var otherEventLabel: String?
     var notes: String?
     var startDate: Date
     var endDate: Date?
     
     enum EventType: String, CaseIterable, Codable, Identifiable, DatabaseValueConvertible {
-        case normalBreathing = "normal_breathing"
+        case stationary = "stationary"
+        case moving = "moving"
+        case postAerobic = "post_aerobic"
         case deepBreathing = "deep_breathing"
         case talking = "talking"
         case cough = "cough"
@@ -25,12 +29,27 @@ struct Event: Identifiable, Equatable, Codable {
         case other = "other"
         
         var id: String { self.rawValue }
+        
+        var readableString: String {
+            switch self {
+            case .stationary: return "Stationary"
+            case .moving: return "Moving"
+            case .postAerobic: return "Post Aerobic"
+            case .deepBreathing: return "Deep Breathing"
+            case .talking: return "Talking"
+            case .cough: return "Cough"
+            case .maskOff: return "Mask Off"
+            case .other: return "Other"
+            }
+        }
     }
 
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
+        case eventName = "event_name"
         case eventType = "event_type"
+        case maskType = "mask_type"
         case otherEventLabel = "other_event_label"
         case notes = "notes"
         case startDate = "start_date"
@@ -56,7 +75,9 @@ extension Event: TableRecord {
 
 extension Event: FetchableRecord, MutablePersistableRecord {
     enum Columns {
+        static let eventName = Column(CodingKeys.eventName)
         static let eventType = Column(CodingKeys.eventType)
+        static let maskType = Column(CodingKeys.maskType)
         static let otherEventType = Column(CodingKeys.otherEventLabel)
         static let notes = Column(CodingKeys.notes)
         static let startDate = Column(CodingKeys.startDate)
@@ -72,7 +93,9 @@ extension Event: SQLSchema {
     static func create(in db: Database) throws {
         try db.create(table: Self.databaseTableName, body: { (t) in
             t.autoIncrementedPrimaryKey(CodingKeys.id.rawValue)
+            t.column(CodingKeys.eventName.rawValue, .text)
             t.column(CodingKeys.eventType.rawValue, .text).notNull()
+            t.column(CodingKeys.maskType.rawValue, .text)
             t.column(CodingKeys.otherEventLabel.rawValue, .text)
             t.column(CodingKeys.notes.rawValue, .text)
             t.column(CodingKeys.startDate.rawValue, .datetime)

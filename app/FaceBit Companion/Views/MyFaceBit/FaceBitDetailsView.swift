@@ -11,6 +11,7 @@ struct FaceBitDetailsView: View {
     
     @ObservedObject var facebit: FaceBitPeripheral
     @ObservedObject var bleManager: BluetoothConnectionManager
+    @ObservedObject var viewModel: FaceBitDetailsViewModel
     
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -20,15 +21,11 @@ struct FaceBitDetailsView: View {
     }
     
     private var lastDateText: String {
-        if facebit.state == .connected {
-        return "Now"
+        guard let ts = viewModel.latestTimestamp else {
+            return "Never"
         }
         
-        if let lastContact = facebit.lastContact {
-            return dateFormatter.string(from: lastContact)
-        }
-        
-        return "Never"
+        return dateFormatter.string(from: ts.date)
     }
     
     var body: some View {
@@ -98,6 +95,8 @@ struct FaceBitDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         FaceBitDetailsView(
             facebit: FaceBitPeripheral(readChars: []),
-            bleManager: BluetoothConnectionManager.shared)
+            bleManager: BluetoothConnectionManager.shared,
+            viewModel: FaceBitDetailsViewModel(appDatabase: AppDatabase.shared)
+            )
     }
 }

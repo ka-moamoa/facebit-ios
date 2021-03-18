@@ -20,8 +20,18 @@ struct EventSummaryView: View {
             )
             
             DataSummaryFieldView(
+                title: "Name",
+                value: "\(event.eventName ?? "--")"
+            )
+            
+            DataSummaryFieldView(
                 title: "Event Type",
-                value: event.eventType != .other ? "\(event.eventType.rawValue)" : "\(event.otherEventLabel ?? "--")"
+                value: event.eventType != .other ? "\(event.eventType.readableString)" : "\(event.otherEventLabel ?? "--")"
+            )
+            
+            DataSummaryFieldView(
+                title: "Mask Type",
+                value: event.maskType != nil ? "\(event.maskType!)" : "--"
             )
             
             DataSummaryFieldView(
@@ -52,8 +62,10 @@ struct EventSummaryView_Previews: PreviewProvider {
     static var previews: some View {
         EventSummaryView(
             event: Event(
-                id: nil,
-                eventType: .cough,
+                id: 0,
+                eventName: "test event",
+                eventType: .stationary,
+                maskType: .other,
                 otherEventLabel: nil,
                 notes: nil,
                 startDate: Date(),
