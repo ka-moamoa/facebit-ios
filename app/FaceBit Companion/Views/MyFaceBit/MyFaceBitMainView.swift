@@ -25,7 +25,8 @@ struct MyFaceBitMainViewMacOS: View {
                     NavigationLink(
                         destination: FaceBitDetailsView(
                             facebit: facebit,
-                            bleManager: BluetoothConnectionManager.shared
+                            bleManager: BluetoothConnectionManager.shared,
+                            viewModel: FaceBitDetailsViewModel(appDatabase: AppDatabase.shared)
                         ),
                         label: {
                             FaceBitStatusView()
@@ -38,7 +39,10 @@ struct MyFaceBitMainViewMacOS: View {
                     }
                 }
                 
-                MyFaceBitMetricsDashboardView(facebit: facebit, maskVM: MaskViewModel(db: AppDatabase.shared))
+                MyFaceBitMetricsDashboardView(
+                    facebit: facebit,
+                    maskVM: MaskViewModel(db: AppDatabase.shared)
+                )
                     .background(Color("PrimaryWhite"))
                 
                 Spacer()
@@ -53,27 +57,6 @@ struct MyFaceBitMainViewMacOS: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .accentColor(Color("PrimaryPurple"))
-//        .onReceive(maskVM.$mask, perform: { mask in
-//            guard let mask = mask else { return }
-//
-//            if mask.percentValue >= 0.9 {
-//                cards.append(
-//                    FaceBitNotificationCard(
-//                        title: "About time to Replace Your Mask",
-//                        message: "Your mask is nearing the end of its suggested wear time. You should consider replacing it soon",
-//                        notificationType: .alert
-//                    )
-//                )
-//            } else if mask.percentValue >= 0.5 {
-//                cards.append(
-//                    FaceBitNotificationCard(
-//                        title: "Time to Replace Mask",
-//                        message: "Your mask is at the end of its suggested wear time. Replace to ensure quality of protection.",
-//                        notificationType: .warning
-//                    )
-//                )
-//            }
-//        })
     }
     
     private func searchForFaceBit() {

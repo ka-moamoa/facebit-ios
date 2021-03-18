@@ -11,19 +11,32 @@ struct StartEventView: View {
     @Binding var activeEvent: Event?
     
     @State private var selectedEventType: Event.EventType = .cough
+    @State private var selectedMaskType: Mask.MaskType = .cloth
+    @State private var eventName: String = ""
     @State private var otherEventName: String = ""
     @State private var notes: String = ""
     
     var body: some View {
         Form {
+            
+            TextField("Event Name", text: $eventName)
+            
             Picker(selection: $selectedEventType, label: Text("Event Type"), content: {
                 ForEach(Event.EventType.allCases) { t in
-                    Text(t.rawValue).tag(t)
+                    Text(t.readableString).tag(t)
                 }
             })
+            
             if selectedEventType == .other {
                 TextField("Other Event Name: ", text: $otherEventName)
             }
+            
+            Picker(selection: $selectedMaskType, label: Text("Mask Type"), content: {
+                ForEach(Mask.MaskType.allCases) { t in
+                    Text(t.rawValue).tag(t)
+                }
+            })
+            
             TextField("Event Notes", text: $notes)
         }
         Button(action: createEvent, label: {
@@ -36,7 +49,9 @@ struct StartEventView: View {
         
         var event = Event(
             id: nil,
+            eventName: eventName,
             eventType: selectedEventType,
+            maskType: selectedMaskType,
             otherEventLabel: selectedEventType == .other ? otherEventName : "",
             notes: notes,
             startDate: Date(),

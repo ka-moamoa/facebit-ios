@@ -87,6 +87,7 @@
 		01EDBE7825B74604009505DC /* MyFaceBitMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */; };
 		01EDBE7E25B7476D009505DC /* FaceBitStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */; };
 		01EDBE7F25B7476D009505DC /* FaceBitLoadingBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7D25B7476D009505DC /* FaceBitLoadingBarButton.swift */; };
+		01F5FCFD2603A9FF00522884 /* FaceBitDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F5FCFC2603A9FF00522884 /* FaceBitDetailsViewModel.swift */; };
 		01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */; };
 /* End PBXBuildFile section */
 
@@ -191,6 +192,7 @@
 		01EDBE7725B74604009505DC /* MyFaceBitMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFaceBitMainView.swift; sourceTree = "<group>"; };
 		01EDBE7C25B7476D009505DC /* FaceBitStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBitStatusView.swift; sourceTree = "<group>"; };
 		01EDBE7D25B7476D009505DC /* FaceBitLoadingBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceBitLoadingBarButton.swift; sourceTree = "<group>"; };
+		01F5FCFC2603A9FF00522884 /* FaceBitDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBitDetailsViewModel.swift; sourceTree = "<group>"; };
 		01FAB92025B090FA009E5B72 /* FaceBit Companion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FaceBit Companion.entitlements"; sourceTree = "<group>"; };
 		01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBitPerpherial.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -430,6 +432,7 @@
 				01AB3B9625FBF7B50027C918 /* MyFaceBitViewModel.swift */,
 				01BC52E126010DD400040149 /* DataViewerViewModel.swift */,
 				016896292601AA5A00F48A82 /* DatabaseTableViewModel.swift */,
+				01F5FCFC2603A9FF00522884 /* FaceBitDetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				01E9276B25D97AAA00873BD8 /* MaskWearTimeView.swift in Sources */,
 				01004AC425C997A4006F5670 /* TimeSeriesMeasurementViewModel.swift in Sources */,
 				018D6FC125FBB30000E5AD09 /* TimeSeriesDataRead.swift in Sources */,
+				01F5FCFD2603A9FF00522884 /* FaceBitDetailsViewModel.swift in Sources */,
 				016CC98A260267C000B691C5 /* MetricMeasurementListView.swift in Sources */,
 				015F993325AE493500BDD672 /* FaceBit_CompanionApp.swift in Sources */,
 				018F822B25D5C3390037C5BE /* RespiratoryClsWidgetView.swift in Sources */,

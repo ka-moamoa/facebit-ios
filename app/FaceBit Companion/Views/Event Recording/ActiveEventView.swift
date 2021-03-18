@@ -13,14 +13,22 @@ struct ActiveEventView: View {
     
     var body: some View {
         VStack(spacing: 16.0) {
+            
             Text("Recording Event")
                 .font(.largeTitle)
+            
             if var event = activeEvent {
-                Text("Start Date: \(event.startDate)")
-                    .font(.body)
-                Button(action: { endEvent(event: &event) }, label: {
-                    Text("End Event")
-                })
+                
+                Divider()
+                EventSummaryView(event: event)
+                Divider()
+                
+                PrimaryButton(
+                    action: { endEvent(event: &event) },
+                    content: {
+                        Text("End Event")
+                    }
+                )
             }
         }
     }
