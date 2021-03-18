@@ -10,7 +10,7 @@ import SwiftUI
 struct StartEventView: View {
     @Binding var activeEvent: Event?
     
-    @State private var selectedEventType: Event.EventType = .cough
+    @State private var selectedEventType: Event.EventType = .stationary
     @State private var selectedMaskType: Mask.MaskType = .cloth
     @State private var eventName: String = ""
     @State private var otherEventName: String = ""
