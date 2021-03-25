@@ -21,6 +21,7 @@ struct SettingsView: View {
                         }
                     )
                 }
+                
                 Section(header: Text("Local Database")) {
                     NavigationLink(
                         destination: DatabaseViewerView(viewModel: DataViewerViewModel(appDatabase: AppDatabase.shared, facebit: facebit)),
@@ -30,6 +31,7 @@ struct SettingsView: View {
                     )
                     ShareDatabaseButtonView()
                 }
+                
                 Section(header: Text("Development")) {
                     Button(action: {
                         let rc = RespitoryClassifierViewModel(

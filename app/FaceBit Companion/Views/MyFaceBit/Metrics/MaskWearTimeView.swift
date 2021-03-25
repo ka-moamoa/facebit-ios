@@ -9,8 +9,9 @@ import SwiftUI
 
 struct MaskWearTimeView: View {
     @EnvironmentObject var maskVM: MaskViewModel
-    
     @State private var value: Float = 0.45
+    
+    @State private var selectedWearTime: Float = 8.0
     
     private var percentFormatter: NumberFormatter {
         let formatter = NumberFormatter()
@@ -46,7 +47,7 @@ struct MaskWearTimeView: View {
                         HStack{
                             Text("0H")
                             Spacer()
-                            Text("8H")
+                            Text("\(maskVM.mask?.desiredWearHours ?? 0)H")
                         }
                     }
                     Spacer()
@@ -69,9 +70,20 @@ struct MaskWearTimeView: View {
                 Text("There is currently no mask being tracked, let's create one")
                     .font(.subheadline)
                 VStack(spacing: 32.0) {
+                    Text("Desired Wear Time: \(Int(selectedWearTime)) Hours")
+                        .bold()
+                    HStack{
+                        Text("2hrs")
+                        Slider(
+                            value: $selectedWearTime,
+                            in: 2...24,
+                            step: 1.0
+                        )
+                        Text("24hrs")
+                    }
                     ForEach(Mask.MaskType.allCases, id: \.self) { (maskType) in
                         PrimaryButton(
-                            action: { maskVM.createMask(of: maskType) },
+                            action: { maskVM.createMask(of: maskType, wearHours: Int(selectedWearTime)) },
                             content: { Text(maskType.rawValue) }
                         )
                         .frame(maxWidth: .infinity)

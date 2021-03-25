@@ -20,12 +20,14 @@ struct Mask: Identifiable, Equatable, Codable {
     
     var id: Int64?
     let maskType: MaskType
+    let desiredWearHours: Int
     let startDate: Date
     var disposeDate: Date?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case maskType = "mask_type"
+        case desiredWearHours = "desired_wear_hours"
         case startDate = "start_date"
         case disposeDate = "dispose_date"
     }
@@ -44,7 +46,7 @@ struct Mask: Identifiable, Equatable, Codable {
     }
     
     var percentValue: Float {
-        let percent = Float(elapsedTime) / Float(8 * 60 * 60)
+        let percent = Float(elapsedTime) / Float(desiredWearHours * 60 * 60)
         return min(1.0, percent)
     }
     
@@ -63,6 +65,7 @@ extension Mask: TableRecord {
 extension Mask: FetchableRecord, MutablePersistableRecord {
     enum Columns {
         static let maskType = Column(CodingKeys.maskType)
+        static let desiredWearHours = Column(CodingKeys.desiredWearHours)
         static let startDate = Column(CodingKeys.startDate)
         static let disposeDate = Column(CodingKeys.disposeDate)
     }
@@ -77,6 +80,7 @@ extension Mask: SQLSchema {
         try db.create(table: Self.databaseTableName, body: { (t) in
             t.autoIncrementedPrimaryKey(CodingKeys.id.rawValue)
             t.column(CodingKeys.maskType.rawValue, .text).notNull()
+            t.column(CodingKeys.desiredWearHours.rawValue, .integer).notNull()
             t.column(CodingKeys.startDate.rawValue, .datetime).notNull()
             t.column(CodingKeys.disposeDate.rawValue, .datetime)
         })

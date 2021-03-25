@@ -34,10 +34,11 @@ class MaskViewModel: ObservableObject {
         }
     }
     
-    func createMask(of maskType: Mask.MaskType) {
+    func createMask(of maskType: Mask.MaskType, wearHours: Int) {
         var mask = Mask(
             id: nil,
             maskType: maskType,
+            desiredWearHours: wearHours,
             startDate: Date(),
             disposeDate: nil
         )
