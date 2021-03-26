@@ -11,6 +11,7 @@ import GRDB
 struct Mask: Identifiable, Equatable, Codable {
     enum MaskType: String, Identifiable, CaseIterable, Codable, DatabaseValueConvertible {
         case n95 = "N95"
+        case kn95 = "KN95"
         case surgical = "Surgical"
         case cloth = "Cloth"
         case other = "Other"

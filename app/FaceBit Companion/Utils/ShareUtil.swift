@@ -11,7 +11,10 @@ import UIKit
 class ShareUtil {
     static func saveJSON<T: Codable>(from obj: T, fileName: String) -> URL? {
         do {
-            let json = try JSONEncoder().encode(obj)
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            
+            let json = try encoder.encode(obj)
             let jsonString = String(data: json, encoding: .utf8)
             
             if let dbPath = AppDatabase.dbFolderPath {

@@ -70,7 +70,7 @@ struct ActiveEventView: View {
                         UPDATE \(MetricMeasurement.databaseTableName)
                         SET event_id = :eventId
                         WHERE date >= :startDate
-                            AND data <= :endDate;
+                            AND date <= :endDate;
                     """,
                     arguments: arguments
                 )

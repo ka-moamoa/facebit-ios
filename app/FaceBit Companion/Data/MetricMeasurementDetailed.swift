@@ -11,7 +11,7 @@ import GRDB
 
 struct MetricMeasurementDetailed: FetchableRecord, Codable, Identifiable {
     let metric: MetricMeasurement
-    let event: Event
+    let event: Event?
     
     var id: Int64? { return metric.id }
     
