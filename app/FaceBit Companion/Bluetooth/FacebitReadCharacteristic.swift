@@ -133,7 +133,8 @@ extension TimeSeriesCharacteristic where Self:FaceBitReadCharacteristic {
             frequency: freq,
             millisecondOffset: Int(millisecondOffset),
             startTime: start,
-            numSamples: numSamples
+            numSamples: numSamples,
+            eventId: nil
         )
         
         do {

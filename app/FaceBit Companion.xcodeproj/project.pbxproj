@@ -13,7 +13,6 @@
 		0100B4DC25D7581900898C05 /* FaceBitDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100B4DB25D7581900898C05 /* FaceBitDetailsView.swift */; };
 		0100B4E725D7907300898C05 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100B4E625D7907300898C05 /* PrimaryButton.swift */; };
 		0100B4EF25D7996900898C05 /* MaskWearTimeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100B4EE25D7996900898C05 /* MaskWearTimeWidget.swift */; };
-		0103210925FA951B00EC81B4 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 0103210825FA951B00EC81B4 /* GRDB */; };
 		0103210E25FA97A100EC81B4 /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103210D25FA97A100EC81B4 /* AppDatabase.swift */; };
 		0103211425FAABCE00EC81B4 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103211325FAABCE00EC81B4 /* Event.swift */; };
 		010862CE25B6122600EAF722 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010862CD25B6122600EAF722 /* Logger.swift */; };
@@ -32,7 +31,6 @@
 		013B00CD25BB2B6400319A42 /* FaceBit+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B00CC25BB2B6400319A42 /* FaceBit+Bundle.swift */; };
 		013B00D225BB315C00319A42 /* FaceBitNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B00D125BB315C00319A42 /* FaceBitNotificationView.swift */; };
 		013B00D725BB324700319A42 /* FaceBitNotificationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B00D625BB324700319A42 /* FaceBitNotificationCardView.swift */; };
-		013B00E625BB4B1C00319A42 /* ACarousel in Frameworks */ = {isa = PBXBuildFile; productRef = 013B00E525BB4B1C00319A42 /* ACarousel */; };
 		013B00EE25BB517A00319A42 /* FaceBit+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B00ED25BB517A00319A42 /* FaceBit+String.swift */; };
 		0145251725C917B6006106ED /* ActiveEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0145251625C917B6006106ED /* ActiveEventView.swift */; };
 		0149441525D838B100FB3DEF /* MetricViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149441425D838B100FB3DEF /* MetricViewModel.swift */; };
@@ -54,14 +52,13 @@
 		016CC97D260259AB00B691C5 /* TimeSeriesMeasurementSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC97C260259AA00B691C5 /* TimeSeriesMeasurementSummaryView.swift */; };
 		016CC9852602675A00B691C5 /* TimeSeriesDataReadListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9842602675A00B691C5 /* TimeSeriesDataReadListView.swift */; };
 		016CC98A260267C000B691C5 /* MetricMeasurementListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC989260267C000B691C5 /* MetricMeasurementListView.swift */; };
-		016CC99026026B3D00B691C5 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 016CC98F26026B3D00B691C5 /* SwiftUIRefresh */; };
 		016CC995260272EB00B691C5 /* DataSummaryFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC994260272EB00B691C5 /* DataSummaryFieldView.swift */; };
 		016CC9A6260281D000B691C5 /* DataWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9A5260281D000B691C5 /* DataWrapper.swift */; };
 		016CC9AB2602829C00B691C5 /* MetricMeasurementDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9AA2602829C00B691C5 /* MetricMeasurementDetailed.swift */; };
 		016CC9B0260282C000B691C5 /* TimeSeriesMeasurementDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9AF260282C000B691C5 /* TimeSeriesMeasurementDetailed.swift */; };
 		016CC9BB260283F100B691C5 /* EventDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9BA260283F100B691C5 /* EventDetailed.swift */; };
 		016CC9C02602852C00B691C5 /* ShareUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9BF2602852C00B691C5 /* ShareUtil.swift */; };
-		016CC9C5260288F600B691C5 /* EventTimeSeriesMeasurementNavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9C4260288F600B691C5 /* EventTimeSeriesMeasurementNavLink.swift */; };
+		016CC9C5260288F600B691C5 /* EventTimeSeriesDataReadNavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9C4260288F600B691C5 /* EventTimeSeriesDataReadNavLink.swift */; };
 		016CC9CA2602898300B691C5 /* EventMetricMeasurementNavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9C92602898300B691C5 /* EventMetricMeasurementNavLink.swift */; };
 		016CC9CF260289EF00B691C5 /* EventExportButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016CC9CE260289EF00B691C5 /* EventExportButton.swift */; };
 		018B2F3625CCAE7C00178E6C /* FacebitReadCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018B2F3525CCAE7C00178E6C /* FacebitReadCharacteristic.swift */; };
@@ -90,6 +87,7 @@
 		01EDBE7F25B7476D009505DC /* FaceBitLoadingBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EDBE7D25B7476D009505DC /* FaceBitLoadingBarButton.swift */; };
 		01F5FCFD2603A9FF00522884 /* FaceBitDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F5FCFC2603A9FF00522884 /* FaceBitDetailsViewModel.swift */; };
 		01FAB92525B09400009E5B72 /* FaceBitPerpherial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */; };
+		62E39C1363EDD2E412190BA9 /* TimeSeriesDataReadDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627F500FF65BB21C9B8C2101 /* TimeSeriesDataReadDetailed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,7 +165,7 @@
 		016CC9AF260282C000B691C5 /* TimeSeriesMeasurementDetailed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMeasurementDetailed.swift; sourceTree = "<group>"; };
 		016CC9BA260283F100B691C5 /* EventDetailed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailed.swift; sourceTree = "<group>"; };
 		016CC9BF2602852C00B691C5 /* ShareUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareUtil.swift; sourceTree = "<group>"; };
-		016CC9C4260288F600B691C5 /* EventTimeSeriesMeasurementNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTimeSeriesMeasurementNavLink.swift; sourceTree = "<group>"; };
+		016CC9C4260288F600B691C5 /* EventTimeSeriesDataReadNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTimeSeriesDataReadNavLink.swift; sourceTree = "<group>"; };
 		016CC9C92602898300B691C5 /* EventMetricMeasurementNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMetricMeasurementNavLink.swift; sourceTree = "<group>"; };
 		016CC9CE260289EF00B691C5 /* EventExportButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventExportButton.swift; sourceTree = "<group>"; };
 		018B2F3525CCAE7C00178E6C /* FacebitReadCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebitReadCharacteristic.swift; sourceTree = "<group>"; };
@@ -197,6 +195,7 @@
 		01F5FCFC2603A9FF00522884 /* FaceBitDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBitDetailsViewModel.swift; sourceTree = "<group>"; };
 		01FAB92025B090FA009E5B72 /* FaceBit Companion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FaceBit Companion.entitlements"; sourceTree = "<group>"; };
 		01FAB92425B09400009E5B72 /* FaceBitPerpherial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceBitPerpherial.swift; sourceTree = "<group>"; };
+		627F500FF65BB21C9B8C2101 /* TimeSeriesDataReadDetailed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeSeriesDataReadDetailed.swift; path = "GRDB Tables/TimeSeriesDataReadDetailed.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,9 +203,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				016CC99026026B3D00B691C5 /* SwiftUIRefresh in Frameworks */,
-				013B00E625BB4B1C00319A42 /* ACarousel in Frameworks */,
-				0103210925FA951B00EC81B4 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +293,7 @@
 				016CC9AA2602829C00B691C5 /* MetricMeasurementDetailed.swift */,
 				016CC9AF260282C000B691C5 /* TimeSeriesMeasurementDetailed.swift */,
 				016CC9BA260283F100B691C5 /* EventDetailed.swift */,
+				627F500FF65BB21C9B8C2101 /* TimeSeriesDataReadDetailed.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -407,7 +404,7 @@
 				016896012601571E00F48A82 /* TimestampSummaryView.swift */,
 				016896092601577600F48A82 /* EventSummaryView.swift */,
 				016CC994260272EB00B691C5 /* DataSummaryFieldView.swift */,
-				016CC9C4260288F600B691C5 /* EventTimeSeriesMeasurementNavLink.swift */,
+				016CC9C4260288F600B691C5 /* EventTimeSeriesDataReadNavLink.swift */,
 				016CC9C92602898300B691C5 /* EventMetricMeasurementNavLink.swift */,
 				016CC9CE260289EF00B691C5 /* EventExportButton.swift */,
 			);
@@ -505,9 +502,9 @@
 			);
 			name = "FaceBit Companion";
 			packageProductDependencies = (
-				013B00E525BB4B1C00319A42 /* ACarousel */,
-				0103210825FA951B00EC81B4 /* GRDB */,
-				016CC98F26026B3D00B691C5 /* SwiftUIRefresh */,
+				013B00E525BB4B1C00319A42,
+				0103210825FA951B00EC81B4,
+				016CC98F26026B3D00B691C5,
 			);
 			productName = "FaceBit Companion";
 			productReference = 015F992F25AE493500BDD672 /* FaceBit Companion.app */;
@@ -581,9 +578,9 @@
 			);
 			mainGroup = 015F992625AE493500BDD672;
 			packageReferences = (
-				013B00E425BB4B1C00319A42 /* XCRemoteSwiftPackageReference "ACarousel" */,
-				0103210725FA951B00EC81B4 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
-				016CC98E26026B3D00B691C5 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
+				013B00E425BB4B1C00319A42,
+				0103210725FA951B00EC81B4,
+				016CC98E26026B3D00B691C5,
 			);
 			productRefGroup = 015F993025AE493500BDD672 /* Products */;
 			projectDirPath = "";
@@ -694,7 +691,7 @@
 				019754FD25C4AAFE00211FE9 /* StartEventView.swift in Sources */,
 				018D6FBC25FBB26000E5AD09 /* TimeSeriesMeasurement.swift in Sources */,
 				016895FD260156CC00F48A82 /* MetricMeasurementSummaryView.swift in Sources */,
-				016CC9C5260288F600B691C5 /* EventTimeSeriesMeasurementNavLink.swift in Sources */,
+				016CC9C5260288F600B691C5 /* EventTimeSeriesDataReadNavLink.swift in Sources */,
 				010C67A125BB9C7400E0EF01 /* ValueWidgetView.swift in Sources */,
 				013B00EE25BB517A00319A42 /* FaceBit+String.swift in Sources */,
 				016CC9C02602852C00B691C5 /* ShareUtil.swift in Sources */,
@@ -703,6 +700,7 @@
 				019754EF25C499D300211FE9 /* PurgeDatabaseButtonView.swift in Sources */,
 				016CC97D260259AB00B691C5 /* TimeSeriesMeasurementSummaryView.swift in Sources */,
 				0103210E25FA97A100EC81B4 /* AppDatabase.swift in Sources */,
+				62E39C1363EDD2E412190BA9 /* TimeSeriesDataReadDetailed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1034,7 +1032,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0103210725FA951B00EC81B4 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+		0103210725FA951B00EC81B4 = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/GRDB.swift.git";
 			requirement = {
@@ -1042,7 +1040,7 @@
 				minimumVersion = 5.5.0;
 			};
 		};
-		013B00E425BB4B1C00319A42 /* XCRemoteSwiftPackageReference "ACarousel" */ = {
+		013B00E425BB4B1C00319A42 = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JWAutumn/ACarousel";
 			requirement = {
@@ -1050,7 +1048,7 @@
 				minimumVersion = 0.2.0;
 			};
 		};
-		016CC98E26026B3D00B691C5 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */ = {
+		016CC98E26026B3D00B691C5 = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/timbersoftware/SwiftUIRefresh.git";
 			requirement = {
@@ -1061,19 +1059,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0103210825FA951B00EC81B4 /* GRDB */ = {
+		0103210825FA951B00EC81B4 = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0103210725FA951B00EC81B4 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			package = 0103210725FA951B00EC81B4;
 			productName = GRDB;
 		};
-		013B00E525BB4B1C00319A42 /* ACarousel */ = {
+		013B00E525BB4B1C00319A42 = {
 			isa = XCSwiftPackageProductDependency;
-			package = 013B00E425BB4B1C00319A42 /* XCRemoteSwiftPackageReference "ACarousel" */;
+			package = 013B00E425BB4B1C00319A42;
 			productName = ACarousel;
 		};
-		016CC98F26026B3D00B691C5 /* SwiftUIRefresh */ = {
+		016CC98F26026B3D00B691C5 = {
 			isa = XCSwiftPackageProductDependency;
-			package = 016CC98E26026B3D00B691C5 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */;
+			package = 016CC98E26026B3D00B691C5;
 			productName = SwiftUIRefresh;
 		};
 /* End XCSwiftPackageProductDependency section */

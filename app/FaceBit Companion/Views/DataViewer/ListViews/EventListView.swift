@@ -22,7 +22,7 @@ struct EventListView: View {
                 rowBuilder: { e in
                     return Group {
                         EventSummaryView(event: e)
-                        EventTimeSeriesMeasurementNavLink(event: e)
+                        EventTimeSeriesDataReadNavLink(event: e)
                             .padding(.leading, 32.0)
                         EventMetricMeasurementNavLink(event: e)
                             .padding(.leading, 32.0)

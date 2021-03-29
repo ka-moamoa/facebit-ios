@@ -52,6 +52,17 @@ struct ActiveEventView: View {
                     "startDate": event.startDate,
                     "endDate": endDate
                 ]
+
+                // update data read records
+                try db.execute(
+                    sql: """
+                             UPDATE \(TimeSeriesDataRead.databaseTableName)
+                             SET event_id = :eventId
+                             WHERE start_time >= :startDate
+                                 AND start_time <= :endDate;
+                         """,
+                    arguments: arguments
+                )
                 
                 // update time series records
                 try db.execute(

@@ -16,9 +16,13 @@ struct TimeSeriesDataReadListView: View {
             destination: DataListView(
                 viewModel: DatabaseTableViewModel(
                     appDatabase: AppDatabase.shared,
-                    request: TimeSeriesDataRead.order(Column("id").desc)
+                    request: TimeSeriesDataRead
+                            .including(all: TimeSeriesDataRead.measurements)
+                            .including(optional: TimeSeriesDataRead.event)
+                            .order(Column("id").desc)
+                            .asRequest(of: TimeSeriesDataReadDetailed.self)
                 ),
-                rowBuilder: { dr in return TimeSeriesDataReadSummaryView(dataRead: dr) },
+                rowBuilder: { info in return TimeSeriesDataReadSummaryView(dataRead: info.dataRead) },
                 title: "Time Series Data Reads"
             ),
             label: {

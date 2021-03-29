@@ -59,7 +59,8 @@ struct TimeSeriesMeasurementSummaryView_Previews: PreviewProvider {
                     frequency: 20,
                     millisecondOffset: 100,
                     startTime: Date(),
-                    numSamples: 100
+                    numSamples: 100,
+                    eventId: nil
                 ),
                 event: nil)
         )

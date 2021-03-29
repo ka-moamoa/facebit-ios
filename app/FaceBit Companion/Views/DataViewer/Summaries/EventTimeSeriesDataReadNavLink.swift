@@ -8,7 +8,7 @@
 import SwiftUI
 import GRDB
 
-struct EventTimeSeriesMeasurementNavLink: View {
+struct EventTimeSeriesDataReadNavLink: View {
     var event: Event
     
     var body: some View {
@@ -16,19 +16,19 @@ struct EventTimeSeriesMeasurementNavLink: View {
             destination: DataListView(
                 viewModel: DatabaseTableViewModel(
                     appDatabase: AppDatabase.shared,
-                    request: TimeSeriesMeasurement
-                        .filter(TimeSeriesMeasurement.Columns.eventId == event.id)
-                        .including(required: TimeSeriesMeasurement.dataRead)
-                        .including(required: TimeSeriesMeasurement.event)
-                        .asRequest(of: TimeSeriesMeasurementDetailed.self)
+                    request: TimeSeriesDataRead
+                        .filter(TimeSeriesDataRead.Columns.eventId == event.id)
+                        .including(all: TimeSeriesDataRead.measurements)
+                        .including(optional: TimeSeriesDataRead.event)
+                        .asRequest(of: TimeSeriesDataReadDetailed.self)
                 ),
                 rowBuilder: { info in
-                    return TimeSeriesMeasurementSummaryView(measurement: info)
+                    return TimeSeriesDataReadSummaryView(dataRead: info.dataRead)
                 },
-                title: "Time Series Measurements"
+                title: "Time Series Data"
             ),
             label: {
-                Text("Time Series Measurements")
+                Text("Time Series Data")
             }
         )
     }
@@ -36,7 +36,7 @@ struct EventTimeSeriesMeasurementNavLink: View {
 
 struct EventTimeSeriesMeasurementNavLink_Previews: PreviewProvider {
     static var previews: some View {
-        EventTimeSeriesMeasurementNavLink(
+        EventTimeSeriesDataReadNavLink(
             event: Event(
                 id: 0,
                 eventName: "test event",

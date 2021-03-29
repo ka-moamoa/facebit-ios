@@ -77,7 +77,8 @@ struct DataReadSummaryView_Previews: PreviewProvider {
                 frequency: 25.0,
                 millisecondOffset: 100,
                 startTime: Date(),
-                numSamples: 100
+                numSamples: 100,
+                eventId: nil
             )
         )
     }

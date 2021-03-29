@@ -15,6 +15,7 @@ struct TimeSeriesDataRead: Identifiable, Equatable, Codable {
     let millisecondOffset: Int
     let startTime: Date
     let numSamples: Int
+    let eventId: Int64?
     
     enum DataType: String, Identifiable, Equatable, Codable, DatabaseValueConvertible {
         case none = "none"
@@ -31,11 +32,17 @@ struct TimeSeriesDataRead: Identifiable, Equatable, Codable {
         case millisecondOffset = "millisecond_offset"
         case startTime = "start_time"
         case numSamples = "num_samples"
+        case eventId = "event_id"
     }
 }
 
 extension TimeSeriesDataRead: TableRecord {
     static var databaseTableName: String = "time_series_data_read"
+
+    static let event = belongsTo(Event.self)
+    var event: QueryInterfaceRequest<Event> {
+        request(for: TimeSeriesDataRead.event)
+    }
     
     static var measurementForeignKey = ForeignKey([TimeSeriesMeasurement.CodingKeys.dataReadId.rawValue])
     static var measurements = hasMany(TimeSeriesMeasurement.self, using: measurementForeignKey)
@@ -51,6 +58,7 @@ extension TimeSeriesDataRead: FetchableRecord, MutablePersistableRecord {
         static let millisecondOffset = Column(CodingKeys.millisecondOffset)
         static let startTime = Column(CodingKeys.startTime)
         static let numSamples = Column(CodingKeys.numSamples)
+        static let eventId = Column(CodingKeys.eventId)
     }
     
     mutating func didInsert(with rowID: Int64, for column: String?) {
@@ -67,6 +75,9 @@ extension TimeSeriesDataRead: SQLSchema {
             t.column(CodingKeys.millisecondOffset.rawValue, .double).notNull()
             t.column(CodingKeys.numSamples.rawValue, .integer).notNull()
             t.column(CodingKeys.startTime.rawValue, .datetime).notNull()
+            t.column(CodingKeys.eventId.rawValue, .integer)
+                    .indexed()
+                    .references(Event.databaseTableName, onDelete: .setNull)
         })
     }
 }
