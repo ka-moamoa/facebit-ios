@@ -58,7 +58,11 @@ extension MetricCharacteristic where Self:FaceBitReadCharacteristic {
         var value = Double(bytes[8])
         
         if self.dataType == .respiratoryRate {
-            value = value / 10.0
+            if value == 255 { // failure indication
+                value = -1.0
+            } else {
+                value = value / 10.0
+            }
         }
         
         BLELogger.info("value from characteristic \(dataType.rawValue): \(value)")
