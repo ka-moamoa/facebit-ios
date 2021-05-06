@@ -12,7 +12,7 @@ class ShareUtil {
     static func saveJSON<T: Codable>(from obj: T, fileName: String) -> URL? {
         do {
             let encoder = JSONEncoder()
-            encoder.dateEncodingStrategy = .iso8601
+            encoder.dateEncodingStrategy = .millisecondsSince1970
             
             let json = try encoder.encode(obj)
             let jsonString = String(data: json, encoding: .utf8)

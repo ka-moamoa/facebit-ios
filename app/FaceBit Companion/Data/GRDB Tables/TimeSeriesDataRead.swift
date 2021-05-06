@@ -75,6 +75,7 @@ extension TimeSeriesDataRead: SQLSchema {
             t.column(CodingKeys.millisecondOffset.rawValue, .double).notNull()
             t.column(CodingKeys.numSamples.rawValue, .integer).notNull()
             t.column(CodingKeys.startTime.rawValue, .datetime).notNull()
+            
             t.column(CodingKeys.eventId.rawValue, .integer)
                     .indexed()
                     .references(Event.databaseTableName, onDelete: .setNull)

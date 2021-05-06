@@ -18,7 +18,9 @@ struct EventExportButton: View {
                     let eventDetail = try? Event
                         .filter(Column("id") == event.id!)
                         .including(all: Event.measurements)
+                        .including(all: Event.timeSeriesDataReads)
                         .including(all: Event.metrics)
+                        .including(all: Event.timestamps)
                         .asRequest(of: EventDetailed.self)
                         .fetchOne(db)
 
