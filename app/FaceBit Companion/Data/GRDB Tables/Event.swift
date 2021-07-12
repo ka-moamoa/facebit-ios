@@ -71,6 +71,18 @@ extension Event: TableRecord {
     var metrics: QueryInterfaceRequest<MetricMeasurement> {
         request(for: Event.metrics)
     }
+    
+    static let timestampForeignKey = ForeignKey([Timestamp.CodingKeys.eventId.rawValue])
+    static var timestamps = hasMany(Timestamp.self, using: timestampForeignKey)
+    var timestamps: QueryInterfaceRequest<Timestamp> {
+        request(for: Event.timestamps)
+    }
+    
+    static let timeSeriesDataReadForeignKey = ForeignKey([TimeSeriesDataRead.CodingKeys.eventId.rawValue])
+    static var timeSeriesDataReads = hasMany(TimeSeriesDataRead.self, using: timeSeriesDataReadForeignKey)
+    var timeSeriesDataReads: QueryInterfaceRequest<TimeSeriesDataRead> {
+        request(for: Event.timeSeriesDataReads)
+    }
 }
 
 extension Event: FetchableRecord, MutablePersistableRecord {

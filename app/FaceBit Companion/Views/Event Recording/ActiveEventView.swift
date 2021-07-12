@@ -24,12 +24,36 @@ struct ActiveEventView: View {
                 Divider()
                 
                 PrimaryButton(
+                    action: { insertEventTag(for: event) },
+                    content: {
+                        Text("Tag")
+                    }
+                )
+                
+                Divider()
+                
+                PrimaryButton(
                     action: { endEvent(event: &event) },
                     content: {
                         Text("End Event")
                     }
                 )
             }
+        }
+    }
+    
+    private func insertEventTag(for event: Event) {
+        var ts = Timestamp(
+            id: nil,
+            dataType: .eventTag,
+            date: Date(),
+            eventId: event.id
+        )
+        
+        do {
+            try ts.save()
+        } catch {
+            PersistanceLogger.error("unable to save timestamp: \(error.localizedDescription)")
         }
     }
     
@@ -56,11 +80,10 @@ struct ActiveEventView: View {
                 // update data read records
                 try db.execute(
                     sql: """
-                             UPDATE \(TimeSeriesDataRead.databaseTableName)
-                             SET event_id = :eventId
-                             WHERE start_time >= :startDate
-                                 AND start_time <= :endDate;
-                         """,
+                         UPDATE \(TimeSeriesDataRead.databaseTableName)
+                         SET event_id = :eventId
+                         WHERE start_time >= :startDate;
+                        """,
                     arguments: arguments
                 )
                 
