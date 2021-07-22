@@ -19,12 +19,14 @@ struct Timestamp: Identifiable, Equatable, Codable {
     }
     
     var id: Int64?
+    var name: String?
     let dataType: DataType
     let date: Date
     var eventId: Int64?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
+        case name = "name"
         case dataType = "data_type"
         case date = "date"
         case eventId = "event_id"
@@ -42,6 +44,7 @@ extension Timestamp: TableRecord {
 
 extension Timestamp: FetchableRecord, MutablePersistableRecord {
     enum Columns {
+        static let name = Column(CodingKeys.name)
         static let dataType = Column(CodingKeys.dataType)
         static let date = Column(CodingKeys.date)
         static let eventId = Column(CodingKeys.eventId)
@@ -56,6 +59,7 @@ extension Timestamp: SQLSchema {
     static func create(in db: Database) throws {
         try db.create(table: Self.databaseTableName, body: { (t) in
             t.autoIncrementedPrimaryKey(CodingKeys.id.rawValue)
+            t.column(CodingKeys.name.rawValue, .text)
             t.column(CodingKeys.dataType.rawValue, .text).notNull()
             t.column(CodingKeys.date.rawValue, .datetime).notNull()
             

@@ -14,6 +14,11 @@ struct TimestampSummaryView: View {
     var body: some View {
         VStack(alignment: .leading) {
             DataSummaryFieldView(
+                title: "Name",
+                value: "\(timestamp.name ?? "")"
+            )
+            
+            DataSummaryFieldView(
                 title: "Id",
                 value: "\(timestamp.id ?? -1)"
             )
@@ -26,6 +31,11 @@ struct TimestampSummaryView: View {
             DataSummaryFieldView(
                 title: "Date",
                 value: "\(timestamp.date)"
+            )
+            
+            DataSummaryFieldView(
+                title: "Event Id",
+                value: "\(timestamp.eventId ?? -1)"
             )
         }
         
