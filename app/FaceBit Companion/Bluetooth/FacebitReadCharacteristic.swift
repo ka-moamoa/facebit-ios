@@ -55,14 +55,25 @@ extension MetricCharacteristic where Self:FaceBitReadCharacteristic {
             timestamp = timestamp | UInt64(byte)
         }
         
-        var value = Double(bytes[8])
+        let valueBytes = Array(bytes[8..<10])
+        var valueInt16: UInt16 = 0
+        for byte in valueBytes.reversed() {
+            valueInt16 = valueInt16 << 8
+            valueInt16 = valueInt16 | UInt16(byte)
+        }
         
-        if self.dataType == .respiratoryRate {
-            if value == 255 { // failure indication
-                value = -1.0
-            } else {
-                value = value / 10.0
-            }
+//        if self.dataType == .respiratoryRate {
+//            if value == 255 { // failure indication
+//                value = -1.0
+//            } else {
+//                value = value / 10.0
+//            }
+//        }
+        
+        var value: Double = 0.0
+        switch self.dataType {
+            case .respiratoryRate: value = Double(valueInt16) / 10.0
+            default: value = Double(valueInt16)
         }
         
         BLELogger.info("value from characteristic \(dataType.rawValue): \(value)")
