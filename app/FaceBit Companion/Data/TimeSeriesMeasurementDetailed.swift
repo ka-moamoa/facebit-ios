@@ -8,7 +8,7 @@
 import Foundation
 import GRDB
 
-struct TimeSeriesMeasurementDetailed: FetchableRecord, Codable, Equatable, Identifiable {
+struct TimeSeriesMeasurementDetailed: FetchableRecord, MutablePersistableRecord, Codable, Equatable, Identifiable {
     var timeSeriesMeasurement: TimeSeriesMeasurement
     var dataRead: TimeSeriesDataRead
     var event: Event?

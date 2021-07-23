@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import GRDB
 
-class DatabaseTableViewModel<T: FetchableRecord & Codable>: ObservableObject {
+class DatabaseTableViewModel<T: FetchableRecord & MutablePersistableRecord & Codable>: ObservableObject {
     @Published var items: [T] = []
     
     private var request: QueryInterfaceRequest<T>
@@ -32,6 +32,13 @@ class DatabaseTableViewModel<T: FetchableRecord & Codable>: ObservableObject {
                     .limit(rowLimit)
                     .fetchAll(db)
             }
+        }
+    }
+    
+    func delete(at idx: Int) {
+        let item = self.items[idx]
+        try? appDatabase.dbWriter.write { (db) in
+            _ = try? item.delete(db)
         }
     }
     

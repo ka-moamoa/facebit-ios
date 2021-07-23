@@ -11,6 +11,9 @@ import GRDB
 struct ActiveEventView: View {
     @Binding var activeEvent: Event?
     
+    @State private var tagName: String = ""
+    @State private var showingAllTags: Bool = false
+    
     var body: some View {
         VStack(spacing: 16.0) {
             
@@ -23,12 +26,48 @@ struct ActiveEventView: View {
                 EventSummaryView(event: event)
                 Divider()
                 
-                PrimaryButton(
-                    action: { insertEventTag(for: event) },
-                    content: {
-                        Text("Tag")
-                    }
+                HStack(spacing: 16.0) {
+                    TextField("Tag Name", text: $tagName)
+                    PrimaryButton(
+                        action: { insertEventTag(for: event) },
+                        content: {
+                            Text("Add New Tag")
+                        }
+                    )
+                }
+                
+                NavigationLink(
+                    destination: DataListView(
+                        viewModel: DatabaseTableViewModel(
+                            appDatabase: AppDatabase.shared,
+                            request: Timestamp
+                                .filter(Timestamp.Columns.dataType == Timestamp.DataType.eventTag.rawValue)
+                                .filter(Timestamp.Columns.eventId == event.id)
+                                .order(Timestamp.Columns.date.desc)
+                        ),
+                        rowBuilder: { ts in TimestampSummaryView(timestamp: ts) },
+                        title: "Timestamps"
+                    )
+                ) {
+                    Text("View All Tags")
+                        .foregroundColor(Color("PrimaryWhite"))
+                        .padding(16.0)
+                }
+                .navigationBarTitle("Navigation")
+                .frame(height: 50.0)
+                .background(
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .fill(Color("PrimaryBrown"))
                 )
+                
+//                PrimaryButton(
+//                    action: { showingAllTags.toggle() },
+//                    content: {
+//                        Text("View All Tags")
+//                    }
+//                ).sheet(isPresented: $showingAllTags, content: {
+//
+//                })
                 
                 Divider()
                 
@@ -45,6 +84,7 @@ struct ActiveEventView: View {
     private func insertEventTag(for event: Event) {
         var ts = Timestamp(
             id: nil,
+            name: $tagName.wrappedValue,
             dataType: .eventTag,
             date: Date(),
             eventId: event.id

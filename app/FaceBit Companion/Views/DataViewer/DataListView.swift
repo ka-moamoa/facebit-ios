@@ -9,7 +9,7 @@ import SwiftUI
 import GRDB
 import SwiftUIRefresh
 
-struct DataListView<T: FetchableRecord & Identifiable & Codable, RowView: View>: View {
+struct DataListView<T: FetchableRecord & MutablePersistableRecord & Identifiable & Codable, RowView: View>: View {
     @ObservedObject var viewModel: DatabaseTableViewModel<T>
     var buildRow: (T) -> RowView
     var title: String
@@ -27,6 +27,9 @@ struct DataListView<T: FetchableRecord & Identifiable & Codable, RowView: View>:
             ForEach(viewModel.items) { item in
                 buildRow(item)
             }
+            .onDelete(perform: { indexSet in
+                deleteItem(at: indexSet)
+            })
         }
         .pullToRefresh(isShowing: $isLoading, onRefresh: {
             viewModel.refresh(callback: { isLoading = false })
@@ -36,7 +39,27 @@ struct DataListView<T: FetchableRecord & Identifiable & Codable, RowView: View>:
             Button("Export") {
                 viewModel.saveAndShare(fileName: "data")
             }
+            #if targetEnvironment(macCatalyst)
+            Button("Refresh") {
+                isLoading = true
+                viewModel.refresh(callback: { isLoading = false })
+            }
+            #endif
+            EditButton()
         }
+        .onAppear() {
+            isLoading = true
+            viewModel.refresh(callback: { isLoading = false })
+        }
+    }
+    
+    
+    private func deleteItem(at indexSet: IndexSet) {
+        isLoading = true
+        for idx in indexSet {
+            viewModel.delete(at: idx)
+        }
+        viewModel.refresh(callback: { self.isLoading = false })
     }
 }
 

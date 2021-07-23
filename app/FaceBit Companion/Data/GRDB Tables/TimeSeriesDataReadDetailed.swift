@@ -5,7 +5,7 @@
 import Foundation
 import GRDB
 
-struct TimeSeriesDataReadDetailed: FetchableRecord, Codable, Equatable, Identifiable {
+struct TimeSeriesDataReadDetailed: FetchableRecord, MutablePersistableRecord, Codable, Equatable, Identifiable {
     let dataRead: TimeSeriesDataRead
     let measurements: [TimeSeriesMeasurement]
     let event: Event?

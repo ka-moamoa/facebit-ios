@@ -9,7 +9,7 @@ import Foundation
 import GRDB
 
 
-struct MetricMeasurementDetailed: FetchableRecord, Codable, Identifiable {
+struct MetricMeasurementDetailed: FetchableRecord, MutablePersistableRecord, Codable, Identifiable {
     let metric: MetricMeasurement
     let event: Event?
     
