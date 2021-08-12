@@ -89,12 +89,12 @@ extension AppDatabase {
     
     func purge() throws {
         try dbWriter.write { (db) in
-            try Event.deleteAll(db)
+            try Timestamp.deleteAll(db)
             try TimeSeriesDataRead.deleteAll(db)
             try TimeSeriesMeasurement.deleteAll(db)
-            try Timestamp.deleteAll(db)
             try Mask.deleteAll(db)
             try MetricMeasurement.deleteAll(db)
+            try Event.deleteAll(db)
         }
     }
 }
