@@ -70,11 +70,11 @@ extension MetricCharacteristic where Self:FaceBitReadCharacteristic {
 //            }
 //        }
         
-        var value: Double = 0.0
-        switch self.dataType {
-            case .respiratoryRate: value = Double(valueInt16) / 10.0
-            default: value = Double(valueInt16)
-        }
+        let value: Double = Double(valueInt16)
+//        switch self.dataType {
+//            case .respiratoryRate: value = Double(valueInt16) / 10.0
+//            default: value = Double(valueInt16)
+//        }
         
         BLELogger.info("value from characteristic \(dataType.rawValue): \(value)")
             
