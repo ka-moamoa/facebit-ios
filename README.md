@@ -1,37 +1,24 @@
 # Introduction
 The FaceBit Companion App is a iOS/macOS application that manages sensor data from a FaceBit device. The app collects, stores, and processes data into insights that can be presented to the user of FaceBit. 
 
-The application is built as a [Catalyst](https://developer.apple.com/mac-catalyst/) application which allows the same code to run on both iOS and MacOS. 
+The application is built as a [Catalyst](https://developer.apple.com/mac-catalyst/) application which allows the same code to run on both iOS and MacOS. All external packages are managed with Swift Package Manager.
 
 # MacOS App
 ## Running macOS Application (No XCode- Release)
 * Download the latest version from the Releases section of this repository.
     * May require security permission. System Preferences->Security & Privacy->General->Allow Applications
 
-## Running MacOS Application (XCode - Development)
+## Running MacOS or iOS Application (XCode - Development)
 1. On macOS 11+, download the latest version of XCode from the AppStore
 2. Clone this repository
 3. Open `app/FaceBit Companion.xcode.proj` in XCode
 4. Update the app signing to your Apple Id
-5. Select **My Mac** from the device drop down in XCode's tool bar.
+5. Select **My Mac** or iOS device from the device drop down in XCode's tool bar.
 6. Run using **Cmd+r** or run button in the top left.
 ![xcode-signing](resources/imgs/xcode-signing.png)
 
-# iOS App
-## Running iOS Application (No XCode - Release)
-* on a iOS Device, download TestFlight from the AppStore
-* Slack Blaine to add you to the app team as a Developer
-* Accept the invite via email on your iOS Device
-* Download the app via TestFlight (should receive notification for new builds)
-![testflight](resources/imgs/testflight.jpeg)
-
-## Running on iOS Application (XCode - Development)
-**Note**: Requires a active [Apple Developer Account](https://developer.apple.com/)
-
+**Note**: Requires a active [Apple Developer Account](https://developer.apple.com/) for iOS development
 **Note**: Bluetooth is not supported on iOS Simulators. The application will run on a simulator but you will not be able to interact with the FaceBit Sensor Board.
-
-
-Follow the same steps as running the MacOS Application, but instead of selecting **My Mac**, connect your physical iPhone and select it from the  device drop down in XCode's tool bar.
 
 ![xcode-iphone-select](resources/imgs/xcode-iphone-select.png)
 
@@ -74,7 +61,7 @@ SQLite was selected as the datastore for easy access to any programming language
 
 # Troubleshooting
 ## MacOS Version
-Since the application is built using [Catalyst](https://developer.apple.com/mac-catalyst/) which is a new feature of Apple ecosystem development, macOS Big Sur (11) is required to run the application on Mac.
+Since the application is built using [Catalyst](https://developer.apple.com/mac-catalyst/) which is a new feature of Apple ecosystem development, macOS Big Sur (11) or above is required to run the application on Mac.
 
 ## MacOS Running
 Occasionally when developing on macOS, The application does not properly close when stopping the application in Xcode and the following error is displayed. To fix, open Activity Monitor and search `facebit` and force quit the application.
