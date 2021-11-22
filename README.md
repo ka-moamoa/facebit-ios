@@ -5,13 +5,11 @@ The application is built as a [Catalyst](https://developer.apple.com/mac-catalys
 
 # MacOS App
 ## Running macOS Application (No XCode- Release)
-
-* Download the latest version hosted [here](https://nuwildcat-my.sharepoint.com/:f:/g/personal/bry4768_ads_northwestern_edu/Emgr5TQZ8cNErO6qYIV2aekBzwq1hjrX_bgnD944xHSVkg?e=wGTVVs) (Requires Northwestern Office 365 auth).
-* Extract the app file and run it. 
+* Download the latest version from the Releases section of this repository.
     * May require security permission. System Preferences->Security & Privacy->General->Allow Applications
 
 ## Running MacOS Application (XCode - Development)
-1. On macOS 11, download the latest version of XCode from the AppStore
+1. On macOS 11+, download the latest version of XCode from the AppStore
 2. Clone this repository
 3. Open `app/FaceBit Companion.xcode.proj` in XCode
 4. Update the app signing to your Apple Id
@@ -39,7 +37,7 @@ Follow the same steps as running the MacOS Application, but instead of selecting
 
 # App Functionality
 ## Homepage
-Under development ... TODO:
+The homepage contains a demonstration of a consumer application, displaying high level information about the device and health metrics. More widget can be developed by exploring the code in `Views/MyFaceBit/Metrics`.
 
 ## Connect FaceBit Sensor
 Following instruction in the [Embedded Firmware repository](https://gitlab.com/ka-moamoa/smart-ppe/embedded-firmware) for setting up the FaceBit Sensor. 
@@ -50,8 +48,6 @@ Following instruction in the [Embedded Firmware repository](https://gitlab.com/k
 
 
 ## Data Collection
-**NOTE**: In active development. The the time of writing, only Pressure and Temperature data is stored.
-
 Data is stored in a local SQLite database. Raw readings on the device are stored in a transactional table. To explore the database open the settings tab and select **Open SQL Database** (macOS) or **Share SQLite Database** (iOS). [SQLite DB Browser](https://sqlitebrowser.org/) is a free cross-platform application for interfacing with SQLite Databases.
 ![settings](resources/imgs/settings.png)
 
@@ -61,7 +57,6 @@ Event recording is used to tag data with events for data exploration. Access eve
 When a event is started a new event record is stored in the database. When Stopped, all transactional recording between the start and end time are updated (tagged) with the event. See the Python exploration below for accessing events and plotting.
 ![event-recoding](resources/imgs/event-recording.png)
 ![normal-breathing](resources/imgs/normal_breathing_2.png)
-
 
 # Data Exploration
 SQLite was selected as the datastore for easy access to any programming language or tool for data exploration. 
